@@ -1,3 +1,5 @@
+package koneksi;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,8 +18,8 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class koneksi {
-    Connection conn;
-    Statement stm;
+    public Connection conn;
+    public Statement stm;
     
     public void config(){
         try{

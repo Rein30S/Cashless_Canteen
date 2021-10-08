@@ -5,6 +5,16 @@
  */
 package Login;
 
+import koneksi.koneksi;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
 /**
  *
  * @author ASUS
@@ -14,8 +24,17 @@ public class RegisterPage extends javax.swing.JFrame {
     /**
      * Creates new form RegisterPage
      */
+    Connection conn;
+    Statement stm;
+    ResultSet rs;
+    
+    Random random = new Random();
     public RegisterPage() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        conn = DB.conn;
+        stm = DB.stm;
         Mhs.setSelected(true);
         LK.setSelected(true);
     }
@@ -35,7 +54,6 @@ public class RegisterPage extends javax.swing.JFrame {
         SubmitButton = new javax.swing.JLabel();
         CloseButton = new javax.swing.JLabel();
         BackButton = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         Perem = new javax.swing.JRadioButton();
         LK = new javax.swing.JRadioButton();
         Nama_Lengkap = new javax.swing.JTextField();
@@ -45,7 +63,7 @@ public class RegisterPage extends javax.swing.JFrame {
         Notelp = new javax.swing.JTextField();
         Email = new javax.swing.JTextField();
         Password = new javax.swing.JPasswordField();
-        Username = new javax.swing.JTextField();
+        tanggalLahir = new com.toedter.calendar.JDateChooser();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,6 +80,11 @@ public class RegisterPage extends javax.swing.JFrame {
         getContentPane().add(ClearButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 100, 40));
 
         SubmitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SubmitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SubmitButtonMouseClicked(evt);
+            }
+        });
         getContentPane().add(SubmitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, 100, 40));
 
         CloseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -79,7 +102,6 @@ public class RegisterPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 23, 23));
-        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 290, -1));
 
         buttonGroup2.add(Perem);
         Perem.setOpaque(false);
@@ -113,8 +135,8 @@ public class RegisterPage extends javax.swing.JFrame {
                 NotelpActionPerformed(evt);
             }
         });
-        getContentPane().add(Notelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, 180, -1));
-        getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 180, -1));
+        getContentPane().add(Notelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 180, -1));
+        getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 180, -1));
 
         Password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +144,7 @@ public class RegisterPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 180, -1));
-        getContentPane().add(Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 180, -1));
+        getContentPane().add(tanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 290, -1));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Register Page.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -155,23 +177,80 @@ public class RegisterPage extends javax.swing.JFrame {
 
     private void BackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackButtonMouseClicked
         // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BackButtonMouseClicked
+
+    private void SubmitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SubmitButtonMouseClicked
+        // TODO add your handling code here:
+        String email = Email.getText();
+        String password = Password.getText();
+        String noTelp = Notelp.getText();
+        String jenisJabatan = "Mahasiswa";
+        if(Dosen.isSelected() == true){
+            jenisJabatan = "Dosen";
+        }else if(Pegawai.isSelected() == true){
+            jenisJabatan = "Pegawai";
+        }
+        String namaLengkap = Nama_Lengkap.getText();
+        String jenisKelamin = "Laki-Laki";
+        if(Perem.isSelected() == true){
+            jenisKelamin = "Perempuan";
+        }
+        
+        Date date = new Date();
+        date = tanggalLahir.getDate();
+        String tanggal = "";
+        if(date != null){
+            String tampilan ="yyyy-MM-dd" ; 
+            SimpleDateFormat fm = new SimpleDateFormat(tampilan); 
+            tanggal = String.valueOf(fm.format(date));
+        }
+        
+        int id = random.nextInt(Integer.MAX_VALUE);
+        
+        if(!"".equals(email) && !"".equals(password) && !"".equals(noTelp) && !"".equals(jenisJabatan) && !"".equals(namaLengkap) && !"".equals(jenisKelamin) && !"".equals(tanggal)){
+            try{
+                rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+email+"'");
+                
+                if(rs.next()){
+                    JOptionPane.showMessageDialog(null, "Maaf, email sudah digunakan");
+                }else{
+                    int query1 = stm.executeUpdate("INSERT INTO user VALUES('"+id+"', '"+email+"', '"+password+"', '"+0+"', 'Pelanggan', 'Aktif')");
+                    int query2 = stm.executeUpdate("INSERT INTO pelanggan(id_user, nama_pelanggan, jk_pelanggan, tgl_lahir_pelanggan) VALUES('"+id+"', '"+namaLengkap+"', '"+jenisKelamin+"', '"+tanggal+"')");
+
+                    if((query1 == 1) && (query2 == 1)){
+                        JOptionPane.showMessageDialog(null, "Registrasi berhasil silahkan login untuk melanjutkan");
+                        moveToLogin();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Registrasi gagal silahkan coba lagi!");
+                        stm.executeUpdate("DELETE FROM user WHERE id_user= "+id);
+                    }   
+                }
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Semua data harus diisi terlebih dahulu!");
+        }
+    }//GEN-LAST:event_SubmitButtonMouseClicked
+    
+    private void systemClose(){
+        System.exit(0);
+    }
+    
+    private void moveToLogin(){
         LoginPage lp = new LoginPage();
         lp.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_BackButtonMouseClicked
-    
-    public void systemClose(){
-        System.exit(0);
     }
-    public void clearMahasiswa(){
-        Username.setText("");
-        Password.setText("");
+    
+    private void clearMahasiswa(){
         Email.setText("");
+        Password.setText("");
         Notelp.setText("");
         Mhs.setSelected(true);
         Nama_Lengkap.setText("");
         LK.setSelected(true);
-        Alamat.setText("");
     }
     
     /**
@@ -224,9 +303,8 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JRadioButton Pegawai;
     private javax.swing.JRadioButton Perem;
     private javax.swing.JLabel SubmitButton;
-    private javax.swing.JTextField Username;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser tanggalLahir;
     // End of variables declaration//GEN-END:variables
 }
