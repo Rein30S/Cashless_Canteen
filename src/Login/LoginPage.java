@@ -28,18 +28,49 @@ public class LoginPage extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        SignUp = new javax.swing.JLabel();
+        LoginButton = new javax.swing.JLabel();
+        PassText = new javax.swing.JPasswordField();
+        UserText = new javax.swing.JTextField();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 7, 25, 25));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Login Page.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        SignUp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(SignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 60, 20));
 
-        setSize(new java.awt.Dimension(400, 600));
+        LoginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 455, 220, 55));
+
+        PassText.setBorder(null);
+        PassText.setFocusable(false);
+        PassText.setHighlighter(null);
+        getContentPane().add(PassText, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 260, 30));
+
+        UserText.setBorder(null);
+        UserText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        UserText.setHighlighter(null);
+        UserText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserTextActionPerformed(evt);
+            }
+        });
+        getContentPane().add(UserText, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 295, 260, 30));
+
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Login Page.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void UserTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,6 +108,11 @@ public class LoginPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
+    private javax.swing.JLabel LoginButton;
+    private javax.swing.JPasswordField PassText;
+    private javax.swing.JLabel SignUp;
+    private javax.swing.JTextField UserText;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
