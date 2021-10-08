@@ -49,6 +49,11 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().add(SignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 60, 20));
 
         LoginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LoginButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginButtonMouseClicked(evt);
+            }
+        });
         getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 455, 220, 55));
 
         PassText.setBorder(null);
@@ -83,6 +88,14 @@ public class LoginPage extends javax.swing.JFrame {
         rp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_SignUpMouseClicked
+
+    private void LoginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginButtonMouseClicked
+        // TODO add your handling code here:
+        String username = UserText.getText();
+        String password = PassText.getText();
+        
+        
+    }//GEN-LAST:event_LoginButtonMouseClicked
 
     /**
      * @param args the command line arguments
