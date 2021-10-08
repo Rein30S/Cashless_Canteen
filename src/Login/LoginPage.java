@@ -41,6 +41,11 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 7, 25, 25));
 
         SignUp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SignUp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SignUpMouseClicked(evt);
+            }
+        });
         getContentPane().add(SignUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 520, 60, 20));
 
         LoginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -71,6 +76,13 @@ public class LoginPage extends javax.swing.JFrame {
     private void UserTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_UserTextActionPerformed
+
+    private void SignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SignUpMouseClicked
+        // TODO add your handling code here:
+        RegisterPage rp = new RegisterPage();
+        rp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_SignUpMouseClicked
 
     /**
      * @param args the command line arguments

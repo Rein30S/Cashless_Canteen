@@ -16,6 +16,8 @@ public class RegisterPage extends javax.swing.JFrame {
      */
     public RegisterPage() {
         initComponents();
+        Mhs.setSelected(true);
+        LK.setSelected(true);
     }
 
     /**
@@ -27,6 +29,8 @@ public class RegisterPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         ClearButton = new javax.swing.JLabel();
         SubmitButton = new javax.swing.JLabel();
         CloseButton = new javax.swing.JLabel();
@@ -50,15 +54,30 @@ public class RegisterPage extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         ClearButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ClearButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClearButtonMouseClicked(evt);
+            }
+        });
         getContentPane().add(ClearButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 470, 100, 40));
 
         SubmitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(SubmitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, 100, 40));
 
         CloseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CloseButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CloseButtonMouseClicked(evt);
+            }
+        });
         getContentPane().add(CloseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(868, 10, 23, 23));
 
         BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BackButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BackButtonMouseClicked(evt);
+            }
+        });
         getContentPane().add(BackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 23, 23));
 
         Alamat.addActionListener(new java.awt.event.ActionListener() {
@@ -68,9 +87,11 @@ public class RegisterPage extends javax.swing.JFrame {
         });
         getContentPane().add(Alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 180, -1));
 
+        buttonGroup2.add(Perem);
         Perem.setOpaque(false);
         getContentPane().add(Perem, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 297, -1, -1));
 
+        buttonGroup2.add(LK);
         LK.setOpaque(false);
         getContentPane().add(LK, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 297, -1, -1));
 
@@ -81,12 +102,15 @@ public class RegisterPage extends javax.swing.JFrame {
         });
         getContentPane().add(Nama_Lengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 180, -1));
 
+        buttonGroup1.add(Pegawai);
         Pegawai.setOpaque(false);
         getContentPane().add(Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 474, -1, -1));
 
+        buttonGroup1.add(Dosen);
         Dosen.setOpaque(false);
         getContentPane().add(Dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 436, -1, -1));
 
+        buttonGroup1.add(Mhs);
         Mhs.setOpaque(false);
         getContentPane().add(Mhs, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 401, -1, -1));
 
@@ -129,6 +153,37 @@ public class RegisterPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordActionPerformed
 
+    private void ClearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearButtonMouseClicked
+        // TODO add your handling code here:
+        clearMahasiswa();
+    }//GEN-LAST:event_ClearButtonMouseClicked
+
+    private void CloseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseButtonMouseClicked
+        // TODO add your handling code here:
+        systemClose();
+    }//GEN-LAST:event_CloseButtonMouseClicked
+
+    private void BackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackButtonMouseClicked
+        // TODO add your handling code here:
+        LoginPage lp = new LoginPage();
+        lp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BackButtonMouseClicked
+    
+    public void systemClose(){
+        System.exit(0);
+    }
+    public void clearMahasiswa(){
+        Username.setText("");
+        Password.setText("");
+        Email.setText("");
+        Notelp.setText("");
+        Mhs.setSelected(true);
+        Nama_Lengkap.setText("");
+        LK.setSelected(true);
+        Alamat.setText("");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -181,5 +236,7 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JRadioButton Perem;
     private javax.swing.JLabel SubmitButton;
     private javax.swing.JTextField Username;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     // End of variables declaration//GEN-END:variables
 }
