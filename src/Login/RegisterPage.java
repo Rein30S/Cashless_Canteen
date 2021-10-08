@@ -35,7 +35,7 @@ public class RegisterPage extends javax.swing.JFrame {
         SubmitButton = new javax.swing.JLabel();
         CloseButton = new javax.swing.JLabel();
         BackButton = new javax.swing.JLabel();
-        Alamat = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         Perem = new javax.swing.JRadioButton();
         LK = new javax.swing.JRadioButton();
         Nama_Lengkap = new javax.swing.JTextField();
@@ -79,13 +79,7 @@ public class RegisterPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(BackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 23, 23));
-
-        Alamat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlamatActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Alamat, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 180, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 290, -1));
 
         buttonGroup2.add(Perem);
         Perem.setOpaque(false);
@@ -100,19 +94,19 @@ public class RegisterPage extends javax.swing.JFrame {
                 Nama_LengkapActionPerformed(evt);
             }
         });
-        getContentPane().add(Nama_Lengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 180, -1));
+        getContentPane().add(Nama_Lengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 290, -1));
 
         buttonGroup1.add(Pegawai);
         Pegawai.setOpaque(false);
-        getContentPane().add(Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 474, -1, -1));
+        getContentPane().add(Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 422, -1, -1));
 
         buttonGroup1.add(Dosen);
         Dosen.setOpaque(false);
-        getContentPane().add(Dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 436, -1, -1));
+        getContentPane().add(Dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 384, -1, -1));
 
         buttonGroup1.add(Mhs);
         Mhs.setOpaque(false);
-        getContentPane().add(Mhs, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 401, -1, -1));
+        getContentPane().add(Mhs, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 348, -1, -1));
 
         Notelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,10 +138,6 @@ public class RegisterPage extends javax.swing.JFrame {
     private void Nama_LengkapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nama_LengkapActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Nama_LengkapActionPerformed
-
-    private void AlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlamatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AlamatActionPerformed
 
     private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
         // TODO add your handling code here:
@@ -220,7 +210,6 @@ public class RegisterPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Alamat;
     private javax.swing.JLabel BG;
     private javax.swing.JLabel BackButton;
     private javax.swing.JLabel ClearButton;
@@ -238,5 +227,6 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JTextField Username;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     // End of variables declaration//GEN-END:variables
 }
