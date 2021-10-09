@@ -177,6 +177,9 @@ public class RegisterPage extends javax.swing.JFrame {
 
     private void BackButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackButtonMouseClicked
         // TODO add your handling code here:
+        LoginPage l = new LoginPage();
+        l.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_BackButtonMouseClicked
 

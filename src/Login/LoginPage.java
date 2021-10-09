@@ -5,6 +5,14 @@
  */
 package Login;
 
+import User.Menu_User;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
+
 /**
  *
  * @author ASUS
@@ -14,8 +22,16 @@ public class LoginPage extends javax.swing.JFrame {
     /**
      * Creates new form LoginPage
      */
+    Connection conn;
+    Statement stm;
+    ResultSet rs;
+    
     public LoginPage() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        conn = DB.conn;
+        stm = DB.stm;
     }
 
     /**
@@ -38,6 +54,13 @@ public class LoginPage extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 7, 25, 25));
 
         SignUp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -57,8 +80,6 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 455, 220, 55));
 
         PassText.setBorder(null);
-        PassText.setFocusable(false);
-        PassText.setHighlighter(null);
         getContentPane().add(PassText, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 260, 30));
 
         UserText.setBorder(null);
@@ -91,11 +112,35 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void LoginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginButtonMouseClicked
         // TODO add your handling code here:
-        String username = UserText.getText();
-        String password = PassText.getText();
-        
-        
+        try{
+            String username = UserText.getText();
+            String password = PassText.getText();
+            
+            rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+username+"' AND password='"+password+"'");
+            
+            if(rs.next()){
+                String level = rs.getString("level");
+                if(level.equals("Admin")){
+                    JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai admin");
+                }else if(level.equals("Toko")){
+                    JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai Owner toko");
+                }else if(level.equals("Pelanggan")){
+                    Menu_User m = new Menu_User();
+                    m.setVisible(true);
+                    this.dispose();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Maaf, kombinasi username dan password Anda salah");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_LoginButtonMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
