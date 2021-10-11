@@ -50,6 +50,7 @@ public class RegisterPage extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        tanggalLahir = new com.toedter.calendar.JDateChooser();
         ClearButton = new javax.swing.JLabel();
         SubmitButton = new javax.swing.JLabel();
         CloseButton = new javax.swing.JLabel();
@@ -63,13 +64,13 @@ public class RegisterPage extends javax.swing.JFrame {
         Notelp = new javax.swing.JTextField();
         Email = new javax.swing.JTextField();
         Password = new javax.swing.JPasswordField();
-        tanggalLahir = new com.toedter.calendar.JDateChooser();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(tanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 290, -1));
 
         ClearButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ClearButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,7 +145,6 @@ public class RegisterPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 180, -1));
-        getContentPane().add(tanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 290, -1));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Register Page.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
