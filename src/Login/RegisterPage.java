@@ -218,7 +218,7 @@ public class RegisterPage extends javax.swing.JFrame {
                 if(rs.next()){
                     JOptionPane.showMessageDialog(null, "Maaf, email sudah digunakan");
                 }else{
-                    int query1 = stm.executeUpdate("INSERT INTO user VALUES('"+id+"', '"+email+"', '"+password+"', '"+0+"', 'Pelanggan', 'Aktif')");
+                    int query1 = stm.executeUpdate("INSERT INTO user VALUES('"+id+"', '"+email+"', '"+password+"', '"+0+"', 'Pelanggan')");
                     int query2 = stm.executeUpdate("INSERT INTO pelanggan(id_user, nama_pelanggan, jk_pelanggan, tgl_lahir_pelanggan) VALUES('"+id+"', '"+namaLengkap+"', '"+jenisKelamin+"', '"+tanggal+"')");
 
                     if((query1 == 1) && (query2 == 1)){
@@ -227,6 +227,7 @@ public class RegisterPage extends javax.swing.JFrame {
                     }else{
                         JOptionPane.showMessageDialog(null, "Registrasi gagal silahkan coba lagi!");
                         stm.executeUpdate("DELETE FROM user WHERE id_user= "+id);
+                        stm.executeUpdate("DELETE FROM pelanggan WHERE id_user= "+id);
                     }   
                 }
             }catch(SQLException e){
