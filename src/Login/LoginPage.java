@@ -6,6 +6,7 @@
 package Login;
 
 import User.Menu_User;
+import Admin.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -121,7 +122,9 @@ public class LoginPage extends javax.swing.JFrame {
             if(rs.next()){
                 String level = rs.getString("level");
                 if(level.equals("Admin")){
-                    JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai admin");
+                    Menu_Admin ma = new Menu_Admin();
+                    ma.setVisible(true);
+                    this.dispose();
                 }else if(level.equals("Toko")){
                     JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai Owner toko");
                 }else if(level.equals("Pelanggan")){
