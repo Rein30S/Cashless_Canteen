@@ -5,6 +5,15 @@
  */
 package Admin;
 
+import static java.lang.Math.random;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Random;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
+
 /**
  *
  * @author ASUS
@@ -14,8 +23,19 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
     /**
      * Creates new form Menu_Registrasi_Toko
      */
+    
+    Connection conn;
+    Statement stm;
+    ResultSet rs;
+    Random random = new Random();
+    
     public Menu_Registrasi_Toko() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        conn = DB.conn;
+        stm = DB.stm;
+        fillCb();
     }
 
     /**
@@ -27,6 +47,12 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tfNamaToko = new javax.swing.JTextField();
+        tfNamaPemilik = new javax.swing.JTextField();
+        cbNomorKantin = new javax.swing.JComboBox<>();
+        tfUsernameToko = new javax.swing.JTextField();
+        tfPasswordToko = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -34,6 +60,33 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(tfNamaToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 500, 30));
+
+        tfNamaPemilik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNamaPemilikActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tfNamaPemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 500, 30));
+
+        cbNomorKantin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toko 1", "Toko 2", "Toko 3", "Toko 4", "Toko 5", "Toko 6" }));
+        getContentPane().add(cbNomorKantin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 500, 30));
+
+        tfUsernameToko.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfUsernameTokoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tfUsernameToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 490, 30));
+        getContentPane().add(tfPasswordToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, 310, 30));
+
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 500, 120, 50));
 
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -43,6 +96,7 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
 
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -69,6 +123,85 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void tfNamaPemilikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamaPemilikActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNamaPemilikActionPerformed
+
+    private void tfUsernameTokoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameTokoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfUsernameTokoActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        String namaToko = tfNamaToko.getText();
+        String namaPemilik = tfNamaPemilik.getText();
+        String userNameToko = tfUsernameToko.getText();
+        String nomorToko = cbNomorKantin.getSelectedItem().toString();
+        String passwordToko = generatePassword();
+        
+        int id = random.nextInt(Integer.MAX_VALUE);
+        
+        if(!"".equals(namaToko) && !"".equals(namaPemilik) && !"".equals(userNameToko) && !"".equals(passwordToko)){
+            try{
+                rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+userNameToko+"'");
+                
+                if(rs.next()){
+                    JOptionPane.showMessageDialog(null, "Maaf, email sudah digunakan");
+                }else{
+                    int query1 = stm.executeUpdate("INSERT INTO user VALUES('"+id+"', '"+userNameToko+"', '"+passwordToko+"', '"+0+"', 'Toko')");
+                    int query2 = stm.executeUpdate("INSERT INTO toko(id_user, nama_toko, id_blok, nama_pemilik_toko) VALUES('"+id+"', '"+namaToko+"', '"+nomorToko+"', '"+namaPemilik+"')");
+                    
+                    if((query1 == 1) && (query2 == 1)){
+                        JOptionPane.showMessageDialog(null, "Registrasi berhasil!");
+                        clearText();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Registrasi gagal silahkan coba lagi!");
+                        stm.executeUpdate("DELETE FROM user WHERE id_user= "+id);
+                        stm.executeUpdate("DELETE FROM toko WHERE id_user= "+id);
+                    }
+                }
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Data harus terisi semua!");
+        }
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void clearText(){
+        tfNamaToko.setText("");
+        tfNamaPemilik.setText("");
+        cbNomorKantin.setSelectedIndex(0);
+        tfUsernameToko.setText("");
+        fillCb();
+    }
+    
+    private String generatePassword(){
+        String saltchars = "abcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder salt = new StringBuilder();
+        
+        while (salt.length() < 10) { // length of the random string.
+            int index = (int) (random.nextFloat() * saltchars.length());
+            salt.append(saltchars.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+        
+    }
+    
+    private void fillCb(){
+        try{
+            rs = stm.executeQuery("SELECT * FROM blok LEFT JOIN toko ON blok.ID_BLOK = toko.ID_BLOK WHERE toko.ID_BLOK IS NULL");
+            
+            cbNomorKantin.removeAllItems();
+            while(rs.next()){
+                String dataNomorKantin = rs.getString("blok");
+                cbNomorKantin.addItem(dataNomorKantin);
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -105,8 +238,14 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cbNomorKantin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextField tfNamaPemilik;
+    private javax.swing.JTextField tfNamaToko;
+    private javax.swing.JPasswordField tfPasswordToko;
+    private javax.swing.JTextField tfUsernameToko;
     // End of variables declaration//GEN-END:variables
 }
