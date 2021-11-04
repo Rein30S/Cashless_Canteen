@@ -5,7 +5,12 @@
  */
 package Admin;
 
-import Admin.Menu_Registrasi_Toko;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
 
 /**
  *
@@ -16,8 +21,30 @@ public class Menu_Atur_Toko extends javax.swing.JFrame {
     /**
      * Creates new form Menu_Atur_Toko
      */
+    
+    Connection conn;
+    Statement stm;
+    ResultSet rs;
     public Menu_Atur_Toko() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        conn = DB.conn;
+        stm = DB.stm;
+    }
+    
+    private int getCountKantin(){
+        int row = 0;
+        try {
+            rs = stm.executeQuery("SELECT COUNT(*) FROM toko");
+            while(rs.next()){
+                row =  rs.getInt(1);
+            }
+            rs.close();
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return row;
     }
 
     /**
@@ -61,9 +88,13 @@ public class Menu_Atur_Toko extends javax.swing.JFrame {
 
     private void RegistrasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrasiMouseClicked
         // TODO add your handling code here:
-        Menu_Registrasi_Toko reg = new Menu_Registrasi_Toko();
-        reg.setVisible(true);
-        this.dispose();
+        if(getCountKantin() == 6){
+            JOptionPane.showMessageDialog(null, "Tidak bisa menambah kantin! Toko sudah penuh");
+        }else{
+            Menu_Registrasi_Toko reg = new Menu_Registrasi_Toko();
+            reg.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_RegistrasiMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

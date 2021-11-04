@@ -5,14 +5,20 @@
  */
 package Admin;
 
-import static java.lang.Math.random;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Random;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 /**
  *
@@ -153,6 +159,16 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
                     
                     if((query1 == 1) && (query2 == 1)){
                         JOptionPane.showMessageDialog(null, "Registrasi berhasil!");
+                        
+                        // Report PDF
+                        String jrxmlFile = "src/Report/akunkantin.jrxml";
+                        HashMap param = new HashMap();
+                        param.put("id", String.valueOf(id));
+                        JasperReport jspR = JasperCompileManager.compileReport(jrxmlFile);
+                        JasperPrint JPrint = JasperFillManager.fillReport(jspR, param, conn);
+                        String dest = "src/Report/akun_"+id+".pdf";
+                        JasperExportManager.exportReportToPdfFile(JPrint, dest);
+                        // End Report PDF
                         clearText();
                     }else{
                         JOptionPane.showMessageDialog(null, "Registrasi gagal silahkan coba lagi!");
@@ -160,7 +176,7 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
                         stm.executeUpdate("DELETE FROM toko WHERE id_user= "+id);
                     }
                 }
-            }catch(SQLException e){
+            }catch(SQLException | JRException e){
                 JOptionPane.showMessageDialog(null, e);
             }
         }else{
