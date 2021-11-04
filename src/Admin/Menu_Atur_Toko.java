@@ -88,6 +88,7 @@ public class Menu_Atur_Toko extends javax.swing.JFrame {
 
     private void RegistrasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrasiMouseClicked
         // TODO add your handling code here:
+        //Cek Toko Tersedia
         if(getCountKantin() == 6){
             JOptionPane.showMessageDialog(null, "Tidak bisa menambah kantin! Toko sudah penuh");
         }else{
