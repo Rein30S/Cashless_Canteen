@@ -72,6 +72,7 @@ public class Menu_Atur_Toko extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
 
+        Registrasi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Registrasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 RegistrasiMouseClicked(evt);

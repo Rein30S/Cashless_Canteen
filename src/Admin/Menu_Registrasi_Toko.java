@@ -57,7 +57,6 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
         tfNamaPemilik = new javax.swing.JTextField();
         cbNomorKantin = new javax.swing.JComboBox<>();
         tfUsernameToko = new javax.swing.JTextField();
-        tfPasswordToko = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -83,8 +82,7 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
                 tfUsernameTokoActionPerformed(evt);
             }
         });
-        getContentPane().add(tfUsernameToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 490, 30));
-        getContentPane().add(tfPasswordToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 490, 310, 30));
+        getContentPane().add(tfUsernameToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 490, 30));
 
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -261,7 +259,6 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField tfNamaPemilik;
     private javax.swing.JTextField tfNamaToko;
-    private javax.swing.JPasswordField tfPasswordToko;
     private javax.swing.JTextField tfUsernameToko;
     // End of variables declaration//GEN-END:variables
 }
