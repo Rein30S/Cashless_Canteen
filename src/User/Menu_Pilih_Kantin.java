@@ -27,18 +27,74 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Close_Button = new javax.swing.JLabel();
+        btn_close = new javax.swing.JLabel();
+        kantin1 = new javax.swing.JLabel();
+        kantin2 = new javax.swing.JLabel();
+        kantin3 = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(Close_Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(858, 12, 30, 30));
+
+        btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_closeMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(858, 12, 30, 30));
+
+        kantin1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kantin1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(kantin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 240, 240));
+
+        kantin2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kantin2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(kantin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 240, 240));
+
+        kantin3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kantin3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(kantin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, 240, 240));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Kantin.png"))); // NOI18N
-        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kantin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin1MouseClicked
+        // TODO add your handling code here:
+        Pilih_Menu kantin1 = new Pilih_Menu();
+        kantin1.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_kantin1MouseClicked
+
+    private void kantin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin2MouseClicked
+        // TODO add your handling code here:
+        Pilih_Menu kantin2 = new Pilih_Menu();
+        kantin2.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_kantin2MouseClicked
+
+    private void kantin3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin3MouseClicked
+        // TODO add your handling code here:
+        Pilih_Menu kantin3 = new Pilih_Menu();
+        kantin3.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_kantin3MouseClicked
+
+    private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btn_closeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -77,6 +133,9 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
-    private javax.swing.JLabel Close_Button;
+    private javax.swing.JLabel btn_close;
+    private javax.swing.JLabel kantin1;
+    private javax.swing.JLabel kantin2;
+    private javax.swing.JLabel kantin3;
     // End of variables declaration//GEN-END:variables
 }
