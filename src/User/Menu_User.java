@@ -6,6 +6,7 @@
 package User;
 
 import Login.LoginPage;
+import static User.user_login.saldo;
 
 /**
  *
@@ -18,6 +19,12 @@ public class Menu_User extends javax.swing.JFrame {
      */
     public Menu_User() {
         initComponents();
+        
+        int balance = user_login.getsaldo();
+        String balanceS = Integer.toString(balance);
+        
+        String saldo1 = Integer.toString(saldo);
+        tm_saldo.setText(balanceS);
     }
 
     /**
@@ -34,7 +41,7 @@ public class Menu_User extends javax.swing.JFrame {
         tm_saldo = new javax.swing.JLabel();
         btn_logout = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -73,9 +80,9 @@ public class Menu_User extends javax.swing.JFrame {
         });
         getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(851, 10, 40, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Page.png"))); // NOI18N
-        jLabel1.setNextFocusableComponent(this);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Page.png"))); // NOI18N
+        BG.setNextFocusableComponent(this);
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         setSize(new java.awt.Dimension(916, 656));
         setLocationRelativeTo(null);
@@ -143,11 +150,11 @@ public class Menu_User extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel btn_logout;
     private javax.swing.JLabel btn_pesan;
     private javax.swing.JLabel btn_topup;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel tm_saldo;
     // End of variables declaration//GEN-END:variables
 }

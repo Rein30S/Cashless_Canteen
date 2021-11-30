@@ -38,7 +38,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 40, 30));
+        getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 30, 30));
         getContentPane().add(tm_pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 200, 340, 230));
         getContentPane().add(tm_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 350, 230));
 

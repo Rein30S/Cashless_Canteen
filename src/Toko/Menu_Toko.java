@@ -27,14 +27,22 @@ public class Menu_Toko extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        Btn_RiwayatPenarikan = new javax.swing.JLabel();
+        Btn_TarikSaldo = new javax.swing.JLabel();
+        Btn_RiwayatPenjualan = new javax.swing.JLabel();
+        Btn_UpdateMenu = new javax.swing.JLabel();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(Btn_RiwayatPenarikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 240, 60));
+        getContentPane().add(Btn_TarikSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 240, 60));
+        getContentPane().add(Btn_RiwayatPenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 400, 240, 110));
+        getContentPane().add(Btn_UpdateMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 240, 260));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Menu Page.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Menu Page.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
@@ -76,6 +84,10 @@ public class Menu_Toko extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel BG;
+    private javax.swing.JLabel Btn_RiwayatPenarikan;
+    private javax.swing.JLabel Btn_RiwayatPenjualan;
+    private javax.swing.JLabel Btn_TarikSaldo;
+    private javax.swing.JLabel Btn_UpdateMenu;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,6 +7,8 @@ package Login;
 
 import User.Menu_User;
 import Admin.*;
+import User.user_login;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +28,11 @@ public class LoginPage extends javax.swing.JFrame {
     Connection conn;
     Statement stm;
     ResultSet rs;
+    static String session = "";
+    
+    public static String session() {
+        return session;
+    }
     
     public LoginPage() {
         initComponents();
@@ -33,6 +40,9 @@ public class LoginPage extends javax.swing.JFrame {
         DB.config();
         conn = DB.conn;
         stm = DB.stm;
+        
+        UserText.setBackground(new Color(0, 0, 0, 0));
+        PassText.setBackground(new Color(0, 0, 0, 0));
     }
 
     /**
@@ -120,14 +130,18 @@ public class LoginPage extends javax.swing.JFrame {
             rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+username+"' AND password='"+password+"'");
             
             if(rs.next()){
+                user_login.setsaldo(rs.getInt("saldo"));
                 String level = rs.getString("level");
                 if(level.equals("Admin")){
+                    session = UserText.getText();
                     Menu_Admin ma = new Menu_Admin();
                     ma.setVisible(true);
                     this.dispose();
                 }else if(level.equals("Toko")){
+                    session = UserText.getText();
                     JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai Owner toko");
                 }else if(level.equals("Pelanggan")){
+                    session = UserText.getText();
                     Menu_User m = new Menu_User();
                     m.setVisible(true);
                     this.dispose();
