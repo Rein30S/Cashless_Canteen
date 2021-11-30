@@ -7,14 +7,14 @@ package Admin;
 
 /**
  *
- * @author handy
+ * @author ASUS
  */
-public class ListToko extends javax.swing.JFrame {
+public class Detail_Toko extends javax.swing.JFrame {
 
     /**
-     * Creates new form ListToko
+     * Creates new form Detail_Toko
      */
-    public ListToko() {
+    public Detail_Toko() {
         initComponents();
     }
 
@@ -32,8 +32,7 @@ public class ListToko extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Daftar Toko.png"))); // NOI18N
-        BG.setText("jLabel1");
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Detail Toko.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(916, 639));
@@ -57,20 +56,20 @@ public class ListToko extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListToko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_Toko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListToko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_Toko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListToko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_Toko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListToko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_Toko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListToko().setVisible(true);
+                new Detail_Toko().setVisible(true);
             }
         });
     }

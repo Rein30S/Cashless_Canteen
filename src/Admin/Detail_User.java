@@ -7,14 +7,14 @@ package Admin;
 
 /**
  *
- * @author handy
+ * @author ASUS
  */
-public class ListToko extends javax.swing.JFrame {
+public class Detail_User extends javax.swing.JFrame {
 
     /**
-     * Creates new form ListToko
+     * Creates new form Detail_User
      */
-    public ListToko() {
+    public Detail_User() {
         initComponents();
     }
 
@@ -30,13 +30,15 @@ public class ListToko extends javax.swing.JFrame {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Daftar Toko.png"))); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Detail User.png"))); // NOI18N
         BG.setText("jLabel1");
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
-        setSize(new java.awt.Dimension(916, 639));
+        setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -57,20 +59,20 @@ public class ListToko extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListToko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListToko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListToko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListToko.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListToko().setVisible(true);
+                new Detail_User().setVisible(true);
             }
         });
     }
