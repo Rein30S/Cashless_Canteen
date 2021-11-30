@@ -5,6 +5,13 @@
  */
 package Admin;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
+
 /**
  *
  * @author ASUS
@@ -14,8 +21,35 @@ public class Detail_User extends javax.swing.JFrame {
     /**
      * Creates new form Detail_User
      */
+    
+    Connection conn;
+    Statement stm;
+    ResultSet rs;
+    int id;
     public Detail_User() {
         initComponents();
+        initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        conn = DB.conn;
+        stm = DB.stm;
+    }
+    
+    public void setData(int id){
+        this.id = id;
+        try{
+            rs = stm.executeQuery("SELECT * FROM pelanggan INNER JOIN user ON pelanggan.id_user = user.id_user WHERE pelanggan.id_pelanggan = '"+id+"'");
+            rs.next();
+            labelNama.setText(rs.getString("nama_pelanggan"));
+            labelJenisKelamin.setText(rs.getString("jk_pelanggan"));
+            labelTanggalLahir.setText(rs.getString("tgl_lahir_pelanggan"));
+            labelSaldo.setText("saldo");
+            labelLevel.setText("level");
+            
+            rs.close();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -27,12 +61,77 @@ public class Detail_User extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        labelLevel = new javax.swing.JLabel();
+        labelSaldo = new javax.swing.JLabel();
+        labelTanggalLahir = new javax.swing.JLabel();
+        labelJenisKelamin = new javax.swing.JLabel();
+        labelNama = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.setPreferredSize(new java.awt.Dimension(300, 65));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 380, 310));
+
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 98, 30));
+
+        labelLevel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelLevel.setText("jLabel7");
+        getContentPane().add(labelLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, -1, -1));
+
+        labelSaldo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelSaldo.setText("jLabel6");
+        getContentPane().add(labelSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 390, -1, -1));
+
+        labelTanggalLahir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelTanggalLahir.setText("jLabel5");
+        getContentPane().add(labelTanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, -1, -1));
+
+        labelJenisKelamin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelJenisKelamin.setText("jLabel4");
+        getContentPane().add(labelJenisKelamin, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 290, -1, -1));
+
+        labelNama.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelNama.setText("jLabel3");
+        getContentPane().add(labelNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, -1, -1));
+
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
+
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Detail User.png"))); // NOI18N
         BG.setText("jLabel1");
@@ -41,6 +140,18 @@ public class Detail_User extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        ListUser lu = new ListUser();
+        lu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -79,5 +190,15 @@ public class Detail_User extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel labelJenisKelamin;
+    private javax.swing.JLabel labelLevel;
+    private javax.swing.JLabel labelNama;
+    private javax.swing.JLabel labelSaldo;
+    private javax.swing.JLabel labelTanggalLahir;
     // End of variables declaration//GEN-END:variables
 }
