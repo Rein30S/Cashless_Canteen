@@ -5,6 +5,13 @@
  */
 package Toko;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
+
 /**
  *
  * @author ASUS
@@ -14,8 +21,30 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
     /**
      * Creates new form Pengaturan_Akun
      */
+    
+    Connection conn;
+    Statement stm;
+    ResultSet rs;
+    int idUser;
+    String username;
     public Pengaturan_Akun() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        conn = DB.conn;
+        stm = DB.stm;
+    }
+    
+    public void setData(String username){
+        tfUsername.setText(username);
+        this.username = username;
+        try{
+            rs = stm.executeQuery("SELECT * FROM user WHERE username='"+username+"'");
+            rs.next();
+            idUser = Integer.parseInt(rs.getString("id_user"));
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -27,6 +56,12 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        tfUsername = new javax.swing.JTextField();
+        tfPasswordLama = new javax.swing.JPasswordField();
+        tfPasswordBaru = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -34,12 +69,108 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 490, 100, 30));
+
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
+
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
+
+        tfUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfUsernameActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tfUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 670, 30));
+
+        tfPasswordLama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfPasswordLamaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tfPasswordLama, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 670, 30));
+        getContentPane().add(tfPasswordBaru, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 670, 30));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Pengaturan Akun.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfUsernameActionPerformed
+
+    private void tfPasswordLamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordLamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfPasswordLamaActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        Menu_Toko mt = new Menu_Toko();
+        mt.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        String usernameBaru = tfUsername.getText();
+        String passwordLama = tfPasswordLama.getText();
+        String passwordBaru = tfPasswordBaru.getText();
+        
+        if(!"".equals(username) && !"".equals(passwordLama) && !"".equals(passwordBaru)){
+            try {
+                rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+usernameBaru+"' AND id_user !='"+idUser+"'");
+                if(rs.next()){
+                    JOptionPane.showMessageDialog(null, "Username sudah digunakan!");
+                }else{
+                    rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+username+"' AND password='"+passwordLama+"'");
+                    if(rs.next()){
+                        int result = stm.executeUpdate("UPDATE user SET username = '"+usernameBaru+"', password = '"+passwordBaru+"' WHERE id_user='"+idUser+"'");
+                        if(result == 1){
+                            JOptionPane.showMessageDialog(null, "Data berhasil di-update!");
+                            
+                            Menu_Toko mt = new Menu_Toko();
+                            mt.setData(usernameBaru);
+                            mt.setVisible(true);
+                            this.dispose();
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Data gagal di-update!");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Password yang Anda masukkan salah!");
+                    }
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Semua kolom harus diisi terlebih dahulu!");
+        }
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -78,5 +209,11 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField tfPasswordBaru;
+    private javax.swing.JPasswordField tfPasswordLama;
+    private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
 }

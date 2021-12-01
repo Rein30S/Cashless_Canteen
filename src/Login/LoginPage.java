@@ -7,6 +7,7 @@ package Login;
 
 import User.Menu_User;
 import Admin.*;
+import Toko.Menu_Toko;
 import User.user_login;
 import java.awt.Color;
 import java.sql.Connection;
@@ -139,7 +140,10 @@ public class LoginPage extends javax.swing.JFrame {
                     this.dispose();
                 }else if(level.equals("Toko")){
                     session = UserText.getText();
-                    JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai Owner toko");
+                    Menu_Toko mt = new Menu_Toko();
+                    mt.setVisible(true);
+                    mt.setData(session);
+                    this.dispose();
                 }else if(level.equals("Pelanggan")){
                     session = UserText.getText();
                     Menu_User m = new Menu_User();
