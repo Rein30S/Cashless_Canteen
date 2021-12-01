@@ -13,6 +13,7 @@ import javax.swing.JLabel;
  * @author Ajeng Niarti
  */
 public class Pilih_Menu extends javax.swing.JFrame {
+    int nilai= 0;
 
     /**
      * Creates new form Pilih_Menu
@@ -25,7 +26,8 @@ public class Pilih_Menu extends javax.swing.JFrame {
         
         String saldo1 = Integer.toString(saldo);
         tm_saldo.setText(balanceS);
-    }
+        
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,9 +96,19 @@ public class Pilih_Menu extends javax.swing.JFrame {
         getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 160, 30));
 
         jButton2.setText("-");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 228, -1, 30));
 
         jButton1.setText("+");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(824, 229, -1, 30));
         getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 160, 40));
         getContentPane().add(txt_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 160, 30));
@@ -107,6 +119,9 @@ public class Pilih_Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 160, 34));
+
+        txt_jml.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_jml.setText("0");
         getContentPane().add(txt_jml, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 70, 30));
         getContentPane().add(tm_memesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 200, 360, 230));
 
@@ -155,6 +170,22 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private void txt_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_hargaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_hargaActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        int nilai1 = ++nilai;
+        String nilai2 = Integer.toString(nilai1);
+        
+        txt_jml.setText(nilai2);
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        int nilai1 = --nilai;
+        String nilai2 = Integer.toString(nilai1);
+        
+        txt_jml.setText(nilai2);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
