@@ -28,8 +28,6 @@ public class Pilih_Menu extends javax.swing.JFrame {
         String saldo1 = Integer.toString(saldo);
         tm_saldo.setText(balanceS);
         
-        
-        
 }
 
     /**
