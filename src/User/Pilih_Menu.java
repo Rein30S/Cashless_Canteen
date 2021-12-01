@@ -6,6 +6,7 @@
 package User;
 
 import static User.user_login.saldo;
+import java.awt.Color;
 import javax.swing.JLabel;
 
 /**
@@ -26,6 +27,8 @@ public class Pilih_Menu extends javax.swing.JFrame {
         
         String saldo1 = Integer.toString(saldo);
         tm_saldo.setText(balanceS);
+        
+        
         
 }
 
@@ -96,23 +99,30 @@ public class Pilih_Menu extends javax.swing.JFrame {
         getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 160, 30));
 
         jButton2.setText("-");
+        jButton2.setBorder(null);
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 228, -1, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 228, 40, 30));
 
         jButton1.setText("+");
+        jButton1.setBorder(null);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(824, 229, -1, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(824, 229, 40, 30));
+
+        txt_total.setBorder(null);
         getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 160, 40));
+
+        txt_menu.setBorder(null);
         getContentPane().add(txt_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 160, 30));
 
+        txt_harga.setBorder(null);
         txt_harga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_hargaActionPerformed(evt);
@@ -122,6 +132,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
         txt_jml.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_jml.setText("0");
+        txt_jml.setBorder(null);
         getContentPane().add(txt_jml, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 70, 30));
         getContentPane().add(tm_memesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 200, 360, 230));
 
