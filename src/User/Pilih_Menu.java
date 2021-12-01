@@ -5,6 +5,9 @@
  */
 package User;
 
+import static User.user_login.saldo;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Ajeng Niarti
@@ -16,6 +19,12 @@ public class Pilih_Menu extends javax.swing.JFrame {
      */
     public Pilih_Menu() {
         initComponents();
+        
+        int balance = user_login.getsaldo();
+        String balanceS = Integer.toString(balance);
+        
+        String saldo1 = Integer.toString(saldo);
+        tm_saldo.setText(balanceS);
     }
 
     /**
@@ -32,9 +41,12 @@ public class Pilih_Menu extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         btn_hapus = new javax.swing.JLabel();
         btn_tambah = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         txt_total = new javax.swing.JTextField();
         txt_menu = new javax.swing.JTextField();
         txt_harga = new javax.swing.JTextField();
+        txt_jml = new javax.swing.JTextField();
         tm_memesan = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
         btn_pesan = new javax.swing.JLabel();
@@ -80,9 +92,22 @@ public class Pilih_Menu extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 360, 250));
         getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 150, 30));
         getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 160, 30));
+
+        jButton2.setText("-");
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 228, -1, 30));
+
+        jButton1.setText("+");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(824, 229, -1, 30));
         getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 160, 40));
         getContentPane().add(txt_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 160, 30));
-        getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 160, 30));
+
+        txt_harga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_hargaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 160, 34));
+        getContentPane().add(txt_jml, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 70, 30));
         getContentPane().add(tm_memesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 200, 360, 230));
 
         tm_saldo.setText("0");
@@ -125,6 +150,10 @@ public class Pilih_Menu extends javax.swing.JFrame {
         mu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_pesanMouseClicked
+
+    private void txt_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_hargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_hargaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,6 +198,8 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel btn_minuman;
     private javax.swing.JLabel btn_pesan;
     private javax.swing.JLabel btn_tambah;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel template;
@@ -176,6 +207,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel tm_pesanan;
     private javax.swing.JLabel tm_saldo;
     private javax.swing.JTextField txt_harga;
+    private javax.swing.JTextField txt_jml;
     private javax.swing.JTextField txt_menu;
     private javax.swing.JTextField txt_total;
     // End of variables declaration//GEN-END:variables

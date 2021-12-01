@@ -27,21 +27,38 @@ public class Menu_TopUp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        btn_back = new javax.swing.JLabel();
+        saldo = new javax.swing.JLabel();
+        template = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 500, 110, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Top-Up Menu.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_backMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 100, 40));
+
+        saldo.setText("0");
+        getContentPane().add(saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 110, -1));
+
+        template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Top-Up Menu.png"))); // NOI18N
+        getContentPane().add(template, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
+        // TODO add your handling code here:
+        Menu_User back = new Menu_User();
+        back.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -79,7 +96,8 @@ public class Menu_TopUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel btn_back;
+    private javax.swing.JLabel saldo;
+    private javax.swing.JLabel template;
     // End of variables declaration//GEN-END:variables
 }
