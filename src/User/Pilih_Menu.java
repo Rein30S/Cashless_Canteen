@@ -110,6 +110,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
         getContentPane().add(txt_jml, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 70, 30));
         getContentPane().add(tm_memesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 200, 360, 230));
 
+        tm_saldo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tm_saldo.setText("0");
         getContentPane().add(tm_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 80, 30));
 
