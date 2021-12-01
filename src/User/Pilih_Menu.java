@@ -28,19 +28,62 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_close = new javax.swing.JLabel();
-        tm_pesanan = new javax.swing.JLabel();
-        tm_menu = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btn_hapus = new javax.swing.JLabel();
+        btn_tambah = new javax.swing.JLabel();
+        txt_total = new javax.swing.JTextField();
+        txt_menu = new javax.swing.JTextField();
+        txt_harga = new javax.swing.JTextField();
+        tm_memesan = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
         btn_pesan = new javax.swing.JLabel();
-        btn_hapus = new javax.swing.JLabel();
         btn_cencle = new javax.swing.JLabel();
+        btn_makanan = new javax.swing.JLabel();
+        btn_minuman = new javax.swing.JLabel();
+        tm_pesanan = new javax.swing.JLabel();
         template = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 30, 30));
-        getContentPane().add(tm_pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(521, 200, 340, 230));
-        getContentPane().add(tm_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 350, 230));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nama Menu", "Deskripsi", "Harga", "Gambar"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 360, 250));
+        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 150, 30));
+        getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 160, 30));
+        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 160, 40));
+        getContentPane().add(txt_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 160, 30));
+        getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 160, 30));
+        getContentPane().add(tm_memesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 200, 360, 230));
 
         tm_saldo.setText("0");
         getContentPane().add(tm_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 80, 30));
@@ -50,15 +93,17 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 btn_pesanMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 460, 360, 50));
-        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 530, 170, 50));
+        getContentPane().add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, 140, 35));
 
         btn_cencle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_cencleMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_cencle, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 530, 160, 50));
+        getContentPane().add(btn_cencle, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 525, 140, 35));
+        getContentPane().add(btn_makanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 90, 82));
+        getContentPane().add(btn_minuman, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 90, 89));
+        getContentPane().add(tm_pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 466, 540, 110));
 
         template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Pesan.png"))); // NOI18N
         getContentPane().add(template, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 900, 600));
@@ -69,7 +114,9 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
     private void btn_cencleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cencleMouseClicked
         // TODO add your handling code here:
-        
+        Menu_User back = new Menu_User();
+        back.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_cencleMouseClicked
 
     private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
@@ -118,10 +165,18 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel btn_cencle;
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel btn_hapus;
+    private javax.swing.JLabel btn_makanan;
+    private javax.swing.JLabel btn_minuman;
     private javax.swing.JLabel btn_pesan;
+    private javax.swing.JLabel btn_tambah;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel template;
-    private javax.swing.JLabel tm_menu;
+    private javax.swing.JLabel tm_memesan;
     private javax.swing.JLabel tm_pesanan;
     private javax.swing.JLabel tm_saldo;
+    private javax.swing.JTextField txt_harga;
+    private javax.swing.JTextField txt_menu;
+    private javax.swing.JTextField txt_total;
     // End of variables declaration//GEN-END:variables
 }

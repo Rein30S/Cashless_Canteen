@@ -44,6 +44,8 @@ public class Menu_User extends javax.swing.JFrame {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_topup.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,7 +86,7 @@ public class Menu_User extends javax.swing.JFrame {
         BG.setNextFocusableComponent(this);
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        setSize(new java.awt.Dimension(916, 656));
+        setSize(new java.awt.Dimension(894, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

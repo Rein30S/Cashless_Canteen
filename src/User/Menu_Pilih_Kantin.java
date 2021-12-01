@@ -28,12 +28,18 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
     private void initComponents() {
 
         btn_close = new javax.swing.JLabel();
+        btn_back = new javax.swing.JLabel();
         kantin1 = new javax.swing.JLabel();
         kantin2 = new javax.swing.JLabel();
         kantin3 = new javax.swing.JLabel();
+        kantin4 = new javax.swing.JLabel();
+        kantin5 = new javax.swing.JLabel();
+        kantin6 = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -43,31 +49,60 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         });
         getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(858, 12, 30, 30));
 
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_backMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 50, 50));
+
         kantin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin1MouseClicked(evt);
             }
         });
-        getContentPane().add(kantin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 240, 240));
+        getContentPane().add(kantin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 170, 180));
 
         kantin2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin2MouseClicked(evt);
             }
         });
-        getContentPane().add(kantin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 240, 240));
+        getContentPane().add(kantin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 170, 180));
 
         kantin3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin3MouseClicked(evt);
             }
         });
-        getContentPane().add(kantin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, 240, 240));
+        getContentPane().add(kantin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 170, 180));
+
+        kantin4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kantin4MouseClicked(evt);
+            }
+        });
+        getContentPane().add(kantin4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 180, 180));
+
+        kantin5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kantin5MouseClicked(evt);
+            }
+        });
+        getContentPane().add(kantin5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, 180, 170));
+
+        kantin6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kantin6MouseClicked(evt);
+            }
+        });
+        getContentPane().add(kantin6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, 170, 170));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Kantin.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void kantin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin1MouseClicked
@@ -95,6 +130,34 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btn_closeMouseClicked
+
+    private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
+        // TODO add your handling code here:
+        Menu_User back = new Menu_User();
+        back.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_backMouseClicked
+
+    private void kantin4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin4MouseClicked
+        // TODO add your handling code here:
+        Pilih_Menu kantin4 = new Pilih_Menu();
+        kantin4.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_kantin4MouseClicked
+
+    private void kantin5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin5MouseClicked
+        // TODO add your handling code here:
+        Pilih_Menu kantin5 = new Pilih_Menu();
+        kantin5.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_kantin5MouseClicked
+
+    private void kantin6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin6MouseClicked
+        // TODO add your handling code here:
+        Pilih_Menu kantin6 = new Pilih_Menu();
+        kantin6.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_kantin6MouseClicked
 
     /**
      * @param args the command line arguments
@@ -133,9 +196,13 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
+    private javax.swing.JLabel btn_back;
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel kantin1;
     private javax.swing.JLabel kantin2;
     private javax.swing.JLabel kantin3;
+    private javax.swing.JLabel kantin4;
+    private javax.swing.JLabel kantin5;
+    private javax.swing.JLabel kantin6;
     // End of variables declaration//GEN-END:variables
 }
