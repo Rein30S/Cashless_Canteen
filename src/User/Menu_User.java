@@ -7,6 +7,7 @@ package User;
 
 import Login.LoginPage;
 import static User.user_login.saldo;
+import javax.swing.JLabel;
 
 /**
  *
@@ -25,6 +26,12 @@ public class Menu_User extends javax.swing.JFrame {
         
         String saldo1 = Integer.toString(saldo);
         tm_saldo.setText(balanceS);
+        
+        String user = user_login.getusername();
+        String users = user;
+        
+        JLabel username1 = username;
+        username.setText(users);
     }
 
     /**
@@ -36,6 +43,8 @@ public class Menu_User extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ucapan = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
         btn_topup = new javax.swing.JLabel();
         btn_pesan = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
@@ -47,6 +56,15 @@ public class Menu_User extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ucapan.setFont(new java.awt.Font("Tekton Pro Ext", 1, 24)); // NOI18N
+        ucapan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ucapan.setText("SELAMAT DATANG");
+        getContentPane().add(ucapan, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 170, 880, -1));
+
+        username.setFont(new java.awt.Font("Tekton Pro Ext", 1, 24)); // NOI18N
+        username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 890, 40));
 
         btn_topup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -158,5 +176,7 @@ public class Menu_User extends javax.swing.JFrame {
     private javax.swing.JLabel btn_pesan;
     private javax.swing.JLabel btn_topup;
     private javax.swing.JLabel tm_saldo;
+    private javax.swing.JLabel ucapan;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }
