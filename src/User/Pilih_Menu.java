@@ -52,7 +52,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
         tm_memesan = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
         btn_pesan = new javax.swing.JLabel();
-        btn_cencle = new javax.swing.JLabel();
+        btn_cancel = new javax.swing.JLabel();
         btn_makanan = new javax.swing.JLabel();
         btn_minuman = new javax.swing.JLabel();
         tm_pesanan = new javax.swing.JLabel();
@@ -136,12 +136,12 @@ public class Pilih_Menu extends javax.swing.JFrame {
         });
         getContentPane().add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, 140, 35));
 
-        btn_cencle.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_cencleMouseClicked(evt);
+                btn_cancelMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_cencle, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 525, 140, 35));
+        getContentPane().add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 525, 140, 35));
         getContentPane().add(btn_makanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 90, 82));
         getContentPane().add(btn_minuman, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 90, 89));
         getContentPane().add(tm_pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 466, 540, 110));
@@ -153,12 +153,12 @@ public class Pilih_Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_cencleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cencleMouseClicked
+    private void btn_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelMouseClicked
         // TODO add your handling code here:
         Menu_User back = new Menu_User();
         back.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btn_cencleMouseClicked
+    }//GEN-LAST:event_btn_cancelMouseClicked
 
     private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
         // TODO add your handling code here:
@@ -223,7 +223,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btn_cencle;
+    private javax.swing.JLabel btn_cancel;
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel btn_hapus;
     private javax.swing.JLabel btn_makanan;
