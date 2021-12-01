@@ -27,15 +27,23 @@ public class Atur_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        btn_back1 = new javax.swing.JLabel();
+        btn_back = new javax.swing.JLabel();
+        btn_detail = new javax.swing.JLabel();
+        btn_tambah = new javax.swing.JLabel();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(btn_back1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
+        getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
+        getContentPane().add(btn_detail, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 490, 100, 34));
+        getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 490, 100, 34));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Atur Menu.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Atur Menu.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
@@ -77,6 +85,10 @@ public class Atur_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel BG;
+    private javax.swing.JLabel btn_back;
+    private javax.swing.JLabel btn_back1;
+    private javax.swing.JLabel btn_detail;
+    private javax.swing.JLabel btn_tambah;
     // End of variables declaration//GEN-END:variables
 }
