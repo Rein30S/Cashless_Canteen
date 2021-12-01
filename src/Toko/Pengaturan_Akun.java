@@ -62,7 +62,7 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
         tfUsername = new javax.swing.JTextField();
         tfPasswordLama = new javax.swing.JPasswordField();
         tfPasswordBaru = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -108,8 +108,8 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
         getContentPane().add(tfPasswordLama, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 670, 30));
         getContentPane().add(tfPasswordBaru, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, 670, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Pengaturan Akun.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Pengaturan Akun.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
@@ -208,7 +208,7 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel BG;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

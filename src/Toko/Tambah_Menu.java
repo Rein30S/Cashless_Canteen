@@ -27,28 +27,64 @@ public class Tambah_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_back = new javax.swing.JLabel();
+        btn_close = new javax.swing.JLabel();
+        btn_hapus = new javax.swing.JLabel();
+        btn_tambah = new javax.swing.JLabel();
+        btn_ubahgambar = new javax.swing.JLabel();
+        lbl_gambar = new javax.swing.JLabel();
+        txt_harga = new javax.swing.JTextField();
+        txt_kategori = new javax.swing.JTextField();
+        txt_deskripsi = new javax.swing.JTextField();
+        txt_nama = new javax.swing.JTextField();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
+        getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(855, 15, 30, 30));
+        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(729, 486, 100, 34));
+        getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 486, 100, 34));
+        getContentPane().add(btn_ubahgambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 410, 174, 30));
+        getContentPane().add(lbl_gambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(656, 233, 172, 171));
+
+        txt_harga.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 357, 300, -1));
+
+        txt_kategori.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        getContentPane().add(txt_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 317, 300, -1));
+
+        txt_deskripsi.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        getContentPane().add(txt_deskripsi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 275, 300, -1));
+
+        txt_nama.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        getContentPane().add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 233, 300, -1));
+
+        jRadioButton2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jRadioButton2.setText("Tidak Tersedia");
+        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 398, -1, -1));
+
+        jRadioButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jRadioButton1.setText("Tersedia");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 398, -1, -1));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Tambah_Menu.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        setSize(new java.awt.Dimension(900, 600));
+        setSize(new java.awt.Dimension(916, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +123,17 @@ public class Tambah_Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
+    private javax.swing.JLabel btn_back;
+    private javax.swing.JLabel btn_close;
+    private javax.swing.JLabel btn_hapus;
+    private javax.swing.JLabel btn_tambah;
+    private javax.swing.JLabel btn_ubahgambar;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JLabel lbl_gambar;
+    private javax.swing.JTextField txt_deskripsi;
+    private javax.swing.JTextField txt_harga;
+    private javax.swing.JTextField txt_kategori;
+    private javax.swing.JTextField txt_nama;
     // End of variables declaration//GEN-END:variables
 }
