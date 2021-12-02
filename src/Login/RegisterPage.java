@@ -5,6 +5,7 @@
  */
 package Login;
 
+import java.awt.Color;
 import koneksi.koneksi;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,6 +32,12 @@ public class RegisterPage extends javax.swing.JFrame {
     Random random = new Random();
     public RegisterPage() {
         initComponents();
+        
+        Email.setBackground(new Color(0, 0, 0, 0));
+        Password.setBackground(new Color(0, 0, 0, 0));
+        NoTelp.setBackground(new Color(0,0,0,0));
+        Nama_Lengkap.setBackground(new Color(0, 0, 0, 0));
+        
         koneksi DB = new koneksi();
         DB.config();
         conn = DB.conn;
@@ -96,7 +103,7 @@ public class RegisterPage extends javax.swing.JFrame {
                 CloseButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(CloseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(868, 10, 23, 23));
+        getContentPane().add(CloseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(851, 10, 40, 40));
 
         BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BackButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,7 +111,7 @@ public class RegisterPage extends javax.swing.JFrame {
                 BackButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(BackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 23, 23));
+        getContentPane().add(BackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
         buttonGroup2.add(Perem);
         Perem.setOpaque(false);
@@ -114,7 +121,7 @@ public class RegisterPage extends javax.swing.JFrame {
         LK.setOpaque(false);
         getContentPane().add(LK, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 297, -1, -1));
 
-        Nama_Lengkap.setFocusable(false);
+        Nama_Lengkap.setBorder(null);
         Nama_Lengkap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Nama_LengkapActionPerformed(evt);
@@ -134,14 +141,19 @@ public class RegisterPage extends javax.swing.JFrame {
         Mhs.setOpaque(false);
         getContentPane().add(Mhs, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 345, -1, -1));
 
+        NoTelp.setBorder(null);
         NoTelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NoTelpActionPerformed(evt);
             }
         });
-        getContentPane().add(NoTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 258, 180, -1));
-        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 212, 180, -1));
-        getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 168, 180, -1));
+        getContentPane().add(NoTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 257, 180, -1));
+
+        Password.setBorder(null);
+        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 180, -1));
+
+        Email.setBorder(null);
+        getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 180, -1));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Register Page.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
