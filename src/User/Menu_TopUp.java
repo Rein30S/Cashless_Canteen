@@ -6,6 +6,7 @@
 package User;
 
 import static User.user_login.saldo;
+import javax.swing.JLabel;
 
 /**
  *
@@ -16,6 +17,10 @@ public class Menu_TopUp extends javax.swing.JFrame {
     /**
      * Creates new form Menu_TopUp
      */
+    
+    int tambah_saldo = 0;
+    int total = 0;
+    
     public Menu_TopUp() {
         initComponents();
         
@@ -24,6 +29,13 @@ public class Menu_TopUp extends javax.swing.JFrame {
         
         String saldo1 = Integer.toString(saldo);
         tm_saldo.setText(balanceS);
+        
+        String user = user_login.getusername();
+        String users = user;
+        
+        JLabel username1 = username;
+        username.setText(users);
+        
     }
 
     /**
@@ -35,16 +47,27 @@ public class Menu_TopUp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        username = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
         btn_back = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
         btn_tambah = new javax.swing.JLabel();
-        template = new javax.swing.JLabel();
+        btn_50000 = new javax.swing.JLabel();
+        btn_20000 = new javax.swing.JLabel();
+        btn_10000 = new javax.swing.JLabel();
+        btn_5000 = new javax.swing.JLabel();
+        txt_total = new javax.swing.JLabel();
+        btn_hapus = new javax.swing.JButton();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        username.setFont(new java.awt.Font("Tekton Pro Ext", 1, 24)); // NOI18N
+        username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 320, 40));
 
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -65,8 +88,51 @@ public class Menu_TopUp extends javax.swing.JFrame {
         getContentPane().add(tm_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 254, 110, -1));
         getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 513, 100, 36));
 
-        template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Top-Up Menu.png"))); // NOI18N
-        getContentPane().add(template, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
+        btn_50000.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_50000.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_50000MouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_50000, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 365, 147, 56));
+
+        btn_20000.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_20000.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_20000MouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_20000, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 365, 147, 56));
+
+        btn_10000.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_10000.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_10000MouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_10000, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 365, 147, 57));
+
+        btn_5000.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_5000.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_5000MouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_5000, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 365, 147, 57));
+
+        txt_total.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 448, 120, 42));
+
+        btn_hapus.setText("Hapus");
+        btn_hapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_hapusMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 100, 40));
+
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Top-Up Menu.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
@@ -83,6 +149,40 @@ public class Menu_TopUp extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btn_closeMouseClicked
+
+    private void btn_5000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_5000MouseClicked
+        // TODO add your handling code here:
+        tambah_saldo = 5000;
+        total = total + tambah_saldo;
+        txt_total.setText(String.valueOf(total));
+    }//GEN-LAST:event_btn_5000MouseClicked
+
+    private void btn_10000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_10000MouseClicked
+        // TODO add your handling code here:
+        tambah_saldo = 10000;
+        total = total + tambah_saldo;
+        txt_total.setText(String.valueOf(total));
+    }//GEN-LAST:event_btn_10000MouseClicked
+
+    private void btn_20000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_20000MouseClicked
+        // TODO add your handling code here:
+        tambah_saldo = 20000;
+        total = total + tambah_saldo;
+        txt_total.setText(String.valueOf(total));
+    }//GEN-LAST:event_btn_20000MouseClicked
+
+    private void btn_50000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_50000MouseClicked
+        // TODO add your handling code here:
+        tambah_saldo = 50000;
+        total = total + tambah_saldo;
+        txt_total.setText(String.valueOf(total));
+    }//GEN-LAST:event_btn_50000MouseClicked
+
+    private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
+        // TODO add your handling code here:
+        total = 0;
+        txt_total.setText(String.valueOf(total));
+    }//GEN-LAST:event_btn_hapusMouseClicked
 
     /**
      * @param args the command line arguments
@@ -120,10 +220,17 @@ public class Menu_TopUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
+    private javax.swing.JLabel btn_10000;
+    private javax.swing.JLabel btn_20000;
+    private javax.swing.JLabel btn_5000;
+    private javax.swing.JLabel btn_50000;
     private javax.swing.JLabel btn_back;
     private javax.swing.JLabel btn_close;
+    private javax.swing.JButton btn_hapus;
     private javax.swing.JLabel btn_tambah;
-    private javax.swing.JLabel template;
     private javax.swing.JLabel tm_saldo;
+    private javax.swing.JLabel txt_total;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

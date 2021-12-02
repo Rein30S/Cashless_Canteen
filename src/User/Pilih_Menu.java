@@ -63,6 +63,12 @@ public class Pilih_Menu extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_closeMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 30, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -195,6 +201,11 @@ public class Pilih_Menu extends javax.swing.JFrame {
         
         txt_jml.setText(nilai2);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btn_closeMouseClicked
 
     /**
      * @param args the command line arguments
