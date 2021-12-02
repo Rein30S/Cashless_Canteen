@@ -5,6 +5,14 @@
  */
 package Toko;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import koneksi.koneksi;
+
 /**
  *
  * @author ASUS
@@ -14,8 +22,42 @@ public class Atur_Menu extends javax.swing.JFrame {
     /**
      * Creates new form Atur_Menu
      */
+    
+    Connection conn;
+    Statement stm;
+    ResultSet rs;
+    String username;
     public Atur_Menu() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        conn = DB.conn;
+        stm = DB.stm;
+    }
+    
+    public void setTabelMenu(String username){
+        this.username = username;
+        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID Menu");
+        model.addColumn("Nama Menu");
+        model.addColumn("Kategori");
+        model.addColumn("Harga");
+        tabelMenu.setModel(model);
+        try{
+            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN user ON toko.id_user = user.id_user WHERE user.username = '"+this.username+"' AND menu.isdelete != 1");
+            while(rs.next()){
+                Object[] data = new Object[4];
+                data[0] = rs.getString("id_menu");
+                data[1] = rs.getString("nama_menu");
+                data[2] = rs.getString("kategori");
+                data[3] = rs.getString("harga");
+                model.addRow(data);
+                tabelMenu.setModel(model);
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -27,6 +69,8 @@ public class Atur_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelMenu = new javax.swing.JTable();
         btn_back1 = new javax.swing.JLabel();
         btn_back = new javax.swing.JLabel();
         btn_detail = new javax.swing.JLabel();
@@ -37,9 +81,51 @@ public class Atur_Menu extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tabelMenu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelMenu);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 217, 760, 260));
+
+        btn_back1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_back1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_back1MouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_back1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
+
+        btn_back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_backMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
+
+        btn_detail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_detailMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_detail, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 490, 100, 34));
+
+        btn_tambah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_tambah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_tambahMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 490, 100, 34));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Atur Menu.png"))); // NOI18N
@@ -48,6 +134,40 @@ public class Atur_Menu extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
+        // TODO add your handling code here:
+        Menu_Toko mt = new Menu_Toko();
+        mt.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_backMouseClicked
+
+    private void btn_back1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_back1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btn_back1MouseClicked
+
+    private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
+        // TODO add your handling code here:
+        Tambah_Menu tm = new Tambah_Menu();
+        tm.setData(username);
+        tm.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_tambahMouseClicked
+
+    private void btn_detailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_detailMouseClicked
+        // TODO add your handling code here:
+        if(tabelMenu.getSelectionModel().isSelectionEmpty() == false){
+            int row = tabelMenu.getSelectedRow();
+            int idMenu = Integer.parseInt(String.valueOf(tabelMenu.getValueAt(row, 0)));
+            Detail_Menu dm = new Detail_Menu();
+            dm.setData(idMenu);
+            dm.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Anda belum memilih data pada tabel!");
+        }
+    }//GEN-LAST:event_btn_detailMouseClicked
 
     /**
      * @param args the command line arguments
@@ -90,5 +210,7 @@ public class Atur_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel btn_back1;
     private javax.swing.JLabel btn_detail;
     private javax.swing.JLabel btn_tambah;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelMenu;
     // End of variables declaration//GEN-END:variables
 }

@@ -124,7 +124,10 @@ public class Menu_Toko extends javax.swing.JFrame {
 
     private void Btn_UpdateMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_UpdateMenuMouseClicked
         // TODO add your handling code here:
-        
+        Atur_Menu am = new Atur_Menu();
+        am.setTabelMenu(username);
+        am.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_Btn_UpdateMenuMouseClicked
 
     /**
