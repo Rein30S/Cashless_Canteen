@@ -17,6 +17,10 @@ public class Menu_TopUp extends javax.swing.JFrame {
     /**
      * Creates new form Menu_TopUp
      */
+    
+    int tambah_saldo = 0;
+    int total = 0;
+    
     public Menu_TopUp() {
         initComponents();
         
@@ -31,6 +35,7 @@ public class Menu_TopUp extends javax.swing.JFrame {
         
         JLabel username1 = username;
         username.setText(users);
+        
     }
 
     /**
@@ -47,7 +52,12 @@ public class Menu_TopUp extends javax.swing.JFrame {
         btn_back = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
         btn_tambah = new javax.swing.JLabel();
-        template = new javax.swing.JLabel();
+        btn_50000 = new javax.swing.JLabel();
+        btn_20000 = new javax.swing.JLabel();
+        btn_10000 = new javax.swing.JLabel();
+        btn_5000 = new javax.swing.JLabel();
+        txt_total = new javax.swing.JLabel();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -77,8 +87,33 @@ public class Menu_TopUp extends javax.swing.JFrame {
         getContentPane().add(tm_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 254, 110, -1));
         getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 513, 100, 36));
 
-        template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Top-Up Menu.png"))); // NOI18N
-        getContentPane().add(template, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
+        btn_50000.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(btn_50000, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 365, 147, 56));
+
+        btn_20000.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(btn_20000, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 365, 147, 56));
+
+        btn_10000.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_10000.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_10000MouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_10000, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 365, 147, 57));
+
+        btn_5000.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_5000.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_5000MouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_5000, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 365, 147, 57));
+
+        txt_total.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 448, 120, 42));
+
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Top-Up Menu.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
@@ -95,6 +130,18 @@ public class Menu_TopUp extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btn_closeMouseClicked
+
+    private void btn_5000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_5000MouseClicked
+        // TODO add your handling code here:
+        total = tambah_saldo + 5000;
+        txt_total.setText(String.valueOf(total));
+    }//GEN-LAST:event_btn_5000MouseClicked
+
+    private void btn_10000MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_10000MouseClicked
+        // TODO add your handling code here:
+        total = tambah_saldo + 10000;
+        txt_total.setText(String.valueOf(total));
+    }//GEN-LAST:event_btn_10000MouseClicked
 
     /**
      * @param args the command line arguments
@@ -132,11 +179,16 @@ public class Menu_TopUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
+    private javax.swing.JLabel btn_10000;
+    private javax.swing.JLabel btn_20000;
+    private javax.swing.JLabel btn_5000;
+    private javax.swing.JLabel btn_50000;
     private javax.swing.JLabel btn_back;
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel btn_tambah;
-    private javax.swing.JLabel template;
     private javax.swing.JLabel tm_saldo;
+    private javax.swing.JLabel txt_total;
     private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }
