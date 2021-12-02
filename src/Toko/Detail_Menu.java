@@ -5,10 +5,22 @@
  */
 package Toko;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
 
@@ -26,6 +38,8 @@ public class Detail_Menu extends javax.swing.JFrame {
     Statement stm;
     ResultSet rs;
     int id;
+    String asalFile = "";
+    String username;
     public Detail_Menu() {
         initComponents();
         initComponents();
@@ -36,11 +50,45 @@ public class Detail_Menu extends javax.swing.JFrame {
         stm = DB.stm;
     }
     
-    public void setData(int id){
+    private void pindahMenu(){
+        Atur_Menu atur = new Atur_Menu();
+        atur.setTabelMenu(username);
+        atur.setVisible(true);
+        this.dispose();
+    }
+    
+    public void setData(int id, String username){
+        this.username = username;
         this.id = id;
         try{
             rs = stm.executeQuery("SELECT * FROM menu WHERE id_menu = '"+id+"'");
+            rs.next();
+            txt_nama.setText(rs.getString("nama_menu"));
+            txt_deskripsi.setText(rs.getString("deskripsi"));
             
+            if(rs.getString("kategori").equals("Makanan")){
+                cbKategori.setSelectedIndex(0);
+            }else{
+                cbKategori.setSelectedIndex(1);
+            }
+            
+            txt_harga.setText(rs.getString("harga"));
+            
+            if(Integer.parseInt(rs.getString("tersedia")) == 1){
+                rbTersedia.setSelected(true);
+            }else{
+                rbTidakTersedia.setSelected(true);
+            }
+            
+            try {
+            asalFile = rs.getString("gambar");    
+            BufferedImage img = ImageIO.read(new File(asalFile));
+            Image resizedImage = img.getScaledInstance(171, 171, Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(resizedImage);
+            lbl_gambar.setIcon(icon);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -55,16 +103,17 @@ public class Detail_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        lbl_gambar = new javax.swing.JLabel();
+        cbKategori = new javax.swing.JComboBox<>();
         txt_nama = new javax.swing.JTextField();
         txt_deskripsi = new javax.swing.JTextField();
-        txt_kategori = new javax.swing.JTextField();
         txt_harga = new javax.swing.JTextField();
-        lbl_gambar = new javax.swing.JLabel();
         btn_ubahgambar = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        btn_ubah = new javax.swing.JLabel();
+        rbTidakTersedia = new javax.swing.JRadioButton();
+        rbTersedia = new javax.swing.JRadioButton();
         btn_hapus = new javax.swing.JLabel();
+        btn_ubah = new javax.swing.JLabel();
         btn_back = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
         BG = new javax.swing.JLabel();
@@ -73,21 +122,40 @@ public class Detail_Menu extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(lbl_gambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 233, 171, 171));
+
+        cbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Makanan", "Minuman" }));
+        getContentPane().add(cbKategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 316, 300, -1));
         getContentPane().add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 233, 300, -1));
         getContentPane().add(txt_deskripsi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 275, 300, -1));
-        getContentPane().add(txt_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 317, 300, -1));
         getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 358, 300, -1));
-        getContentPane().add(lbl_gambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 233, 171, 171));
+
+        btn_ubahgambar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_ubahgambar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ubahgambarMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_ubahgambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 410, 175, 30));
 
-        jRadioButton1.setText("Tidak Tersedia");
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 398, -1, -1));
+        buttonGroup1.add(rbTidakTersedia);
+        rbTidakTersedia.setText("Tidak Tersedia");
+        getContentPane().add(rbTidakTersedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 398, -1, -1));
 
-        jRadioButton2.setText("Tersedia");
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 398, -1, -1));
-        getContentPane().add(btn_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(729, 487, 100, 33));
-        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 487, 100, 33));
+        buttonGroup1.add(rbTersedia);
+        rbTersedia.setText("Tersedia");
+        getContentPane().add(rbTersedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 398, -1, -1));
+        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(729, 487, 100, 33));
 
+        btn_ubah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_ubah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ubahMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 487, 100, 33));
+
+        btn_back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_backMouseClicked(evt);
@@ -95,6 +163,7 @@ public class Detail_Menu extends javax.swing.JFrame {
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -103,6 +172,11 @@ public class Detail_Menu extends javax.swing.JFrame {
         getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Detail Menu.png"))); // NOI18N
+        BG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BGMouseClicked(evt);
+            }
+        });
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         setSize(new java.awt.Dimension(900, 600));
@@ -116,10 +190,68 @@ public class Detail_Menu extends javax.swing.JFrame {
 
     private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
         // TODO add your handling code here:
-        Atur_Menu atur = new Atur_Menu();
-        atur.setVisible(true);
-        this.dispose();
+        pindahMenu();
     }//GEN-LAST:event_btn_backMouseClicked
+
+    private void BGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BGMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BGMouseClicked
+
+    private void btn_ubahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseClicked
+        // TODO add your handling code here:
+        String namaMenu = txt_nama.getText();
+        String deskripsi = txt_deskripsi.getText();
+        String kategori = cbKategori.getSelectedItem().toString();
+        String harga = txt_harga.getText();
+        int statusTersedia = 1;
+        if(rbTersedia.isSelected() == true){
+            statusTersedia = 1;
+        }else{
+            statusTersedia = 0;
+        }
+        
+        if(!"".equals(namaMenu) && !"".equals(deskripsi) && !"".equals(kategori) && !"".equals(harga) && !"".equals(statusTersedia) && !"".equals(asalFile)){
+            try{
+                rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko WHERE id_menu = '"+this.id+"'");
+                rs.next();
+                String fileLama = rs.getString("gambar");
+                
+                int index = asalFile.lastIndexOf('.');
+                String jenisFile = asalFile.substring(index + 1);
+                SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");
+                Date date = new Date();
+                Random rand = new Random();
+                int namaFile = 1000+ rand.nextInt(9000);
+                String linkFile = "src\\gambar\\"+formatter.format(date)+namaFile+rs.getString("nama_toko")+"."+jenisFile;
+                String link = linkFile.replace("\\", "\\\\");
+                stm.executeUpdate("UPDATE menu SET nama_menu = '"+namaMenu+"', deskripsi = '"+deskripsi+"', gambar = '"+link+"', kategori='"+kategori+"', harga='"+harga+"', tersedia= '"+statusTersedia+"' WHERE id_menu = '"+id+"'");
+                Files.delete(Paths.get(fileLama));
+                Files.copy(Paths.get(asalFile), Paths.get(linkFile));
+                JOptionPane.showMessageDialog(null, "Menu berhasil di-update");
+                pindahMenu();
+            }catch(SQLException | IOException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Semua data harus diisi terlebih dahulu!");
+        }
+    }//GEN-LAST:event_btn_ubahMouseClicked
+
+    private void btn_ubahgambarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahgambarMouseClicked
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        asalFile = f.getAbsolutePath();
+        try{
+            BufferedImage img = ImageIO.read(new File(asalFile));
+            Image resizedImage = img.getScaledInstance(171, 171, Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(resizedImage);
+            lbl_gambar.setIcon(icon);
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_ubahgambarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -163,12 +295,13 @@ public class Detail_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel btn_hapus;
     private javax.swing.JLabel btn_ubah;
     private javax.swing.JLabel btn_ubahgambar;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbKategori;
     private javax.swing.JLabel lbl_gambar;
+    private javax.swing.JRadioButton rbTersedia;
+    private javax.swing.JRadioButton rbTidakTersedia;
     private javax.swing.JTextField txt_deskripsi;
     private javax.swing.JTextField txt_harga;
-    private javax.swing.JTextField txt_kategori;
     private javax.swing.JTextField txt_nama;
     // End of variables declaration//GEN-END:variables
 }

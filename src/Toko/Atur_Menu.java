@@ -113,6 +113,7 @@ public class Atur_Menu extends javax.swing.JFrame {
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
+        btn_detail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_detail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_detailMouseClicked(evt);
@@ -138,6 +139,7 @@ public class Atur_Menu extends javax.swing.JFrame {
     private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
         // TODO add your handling code here:
         Menu_Toko mt = new Menu_Toko();
+        mt.setData(username);
         mt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_backMouseClicked
@@ -161,7 +163,7 @@ public class Atur_Menu extends javax.swing.JFrame {
             int row = tabelMenu.getSelectedRow();
             int idMenu = Integer.parseInt(String.valueOf(tabelMenu.getValueAt(row, 0)));
             Detail_Menu dm = new Detail_Menu();
-            dm.setData(idMenu);
+            dm.setData(idMenu, this.username);
             dm.setVisible(true);
             this.dispose();
         }else{
