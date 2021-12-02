@@ -55,28 +55,71 @@ public class Detail_Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        txt_nama = new javax.swing.JTextField();
+        txt_deskripsi = new javax.swing.JTextField();
+        txt_kategori = new javax.swing.JTextField();
+        txt_harga = new javax.swing.JTextField();
+        lbl_gambar = new javax.swing.JLabel();
+        btn_ubahgambar = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        btn_ubah = new javax.swing.JLabel();
+        btn_hapus = new javax.swing.JLabel();
+        btn_back = new javax.swing.JLabel();
+        btn_close = new javax.swing.JLabel();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(txt_nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 233, 300, -1));
+        getContentPane().add(txt_deskripsi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 275, 300, -1));
+        getContentPane().add(txt_kategori, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 317, 300, -1));
+        getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 358, 300, -1));
+        getContentPane().add(lbl_gambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(657, 233, 171, 171));
+        getContentPane().add(btn_ubahgambar, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 410, 175, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Detail Menu.png"))); // NOI18N
+        jRadioButton1.setText("Tidak Tersedia");
+        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 398, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jRadioButton2.setText("Tersedia");
+        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 398, -1, -1));
+        getContentPane().add(btn_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(729, 487, 100, 33));
+        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 487, 100, 33));
+
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_backMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
+
+        btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_closeMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
+
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Detail Menu.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btn_closeMouseClicked
+
+    private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
+        // TODO add your handling code here:
+        Atur_Menu atur = new Atur_Menu();
+        atur.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -114,6 +157,18 @@ public class Detail_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel BG;
+    private javax.swing.JLabel btn_back;
+    private javax.swing.JLabel btn_close;
+    private javax.swing.JLabel btn_hapus;
+    private javax.swing.JLabel btn_ubah;
+    private javax.swing.JLabel btn_ubahgambar;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JLabel lbl_gambar;
+    private javax.swing.JTextField txt_deskripsi;
+    private javax.swing.JTextField txt_harga;
+    private javax.swing.JTextField txt_kategori;
+    private javax.swing.JTextField txt_nama;
     // End of variables declaration//GEN-END:variables
 }
