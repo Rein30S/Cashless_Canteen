@@ -38,6 +38,7 @@ public class Detail_Menu extends javax.swing.JFrame {
     Statement stm;
     ResultSet rs;
     int id;
+    boolean isImageChanged = false;
     String asalFile = "";
     String username;
     public Detail_Menu() {
@@ -152,6 +153,9 @@ public class Detail_Menu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_ubahMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_ubahMouseEntered(evt);
+            }
         });
         getContentPane().add(btn_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 487, 100, 33));
 
@@ -225,8 +229,15 @@ public class Detail_Menu extends javax.swing.JFrame {
                 String linkFile = "src\\gambar\\"+formatter.format(date)+namaFile+rs.getString("nama_toko")+"."+jenisFile;
                 String link = linkFile.replace("\\", "\\\\");
                 stm.executeUpdate("UPDATE menu SET nama_menu = '"+namaMenu+"', deskripsi = '"+deskripsi+"', gambar = '"+link+"', kategori='"+kategori+"', harga='"+harga+"', tersedia= '"+statusTersedia+"' WHERE id_menu = '"+id+"'");
-                Files.delete(Paths.get(fileLama));
-                Files.copy(Paths.get(asalFile), Paths.get(linkFile));
+                
+                if(isImageChanged){
+                    Files.delete(Paths.get(fileLama));
+                    Files.copy(Paths.get(asalFile), Paths.get(linkFile));
+                }else{
+                    String oldLink = fileLama.replace("\\", "\\\\");
+                    stm.executeUpdate("UPDATE menu SET gambar = '"+oldLink+"' WHERE id_menu = '"+id+"'");
+                }
+                
                 JOptionPane.showMessageDialog(null, "Menu berhasil di-update");
                 pindahMenu();
             }catch(SQLException | IOException e){
@@ -241,17 +252,26 @@ public class Detail_Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        asalFile = f.getAbsolutePath();
+        
         try{
-            BufferedImage img = ImageIO.read(new File(asalFile));
+            File f = chooser.getSelectedFile();
+            asalFile = f.getAbsolutePath();
+            File gambar = new File(asalFile);
+            BufferedImage img = ImageIO.read(gambar);
             Image resizedImage = img.getScaledInstance(171, 171, Image.SCALE_SMOOTH);
             ImageIcon icon = new ImageIcon(resizedImage);
             lbl_gambar.setIcon(icon);
+            isImageChanged = true;
         }catch(IOException e){
             JOptionPane.showMessageDialog(null, e);
+        }catch(NullPointerException e){
+            isImageChanged = false;
         }
     }//GEN-LAST:event_btn_ubahgambarMouseClicked
+
+    private void btn_ubahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ubahMouseEntered
 
     /**
      * @param args the command line arguments
