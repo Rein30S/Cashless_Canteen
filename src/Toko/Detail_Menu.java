@@ -18,6 +18,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -146,6 +148,13 @@ public class Detail_Menu extends javax.swing.JFrame {
         buttonGroup1.add(rbTersedia);
         rbTersedia.setText("Tersedia");
         getContentPane().add(rbTersedia, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 398, -1, -1));
+
+        btn_hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_hapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_hapusMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(729, 487, 100, 33));
 
         btn_ubah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -272,6 +281,25 @@ public class Detail_Menu extends javax.swing.JFrame {
     private void btn_ubahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_ubahMouseEntered
+
+    private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
+        // TODO add your handling code here: 
+        int confirmed = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin?", "Delete Confirmation Dialog", JOptionPane.YES_NO_OPTION);
+
+        if (confirmed == JOptionPane.YES_OPTION) {
+            try {
+                int result = stm.executeUpdate("UPDATE menu SET isDelete = '"+1+"' WHERE id_menu = '"+id+"'");
+                if(result == 1){
+                    JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");
+                    pindahMenu();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Data gagal dihapus!");
+                }
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }//GEN-LAST:event_btn_hapusMouseClicked
 
     /**
      * @param args the command line arguments
