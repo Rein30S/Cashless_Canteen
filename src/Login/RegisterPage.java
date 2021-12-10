@@ -77,8 +77,6 @@ public class RegisterPage extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tanggalLahir.setFocusable(false);
         getContentPane().add(tanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 290, -1));
 
         ClearButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

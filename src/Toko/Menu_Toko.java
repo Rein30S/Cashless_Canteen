@@ -46,7 +46,7 @@ public class Menu_Toko extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         labelUsername = new javax.swing.JLabel();
-        Btn_RiwayatPenarikan = new javax.swing.JLabel();
+        Btn_Pesanan = new javax.swing.JLabel();
         Btn_TarikSaldo = new javax.swing.JLabel();
         Btn_RiwayatPenjualan = new javax.swing.JLabel();
         Btn_UpdateMenu = new javax.swing.JLabel();
@@ -83,9 +83,9 @@ public class Menu_Toko extends javax.swing.JFrame {
         labelUsername.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         labelUsername.setText("jLabel1");
         getContentPane().add(labelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, -1, -1));
-        getContentPane().add(Btn_RiwayatPenarikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 450, 240, 60));
-        getContentPane().add(Btn_TarikSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 240, 60));
-        getContentPane().add(Btn_RiwayatPenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 400, 240, 110));
+        getContentPane().add(Btn_Pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 240, 170));
+        getContentPane().add(Btn_TarikSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 240, 170));
+        getContentPane().add(Btn_RiwayatPenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 240, 170));
 
         Btn_UpdateMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Btn_UpdateMenu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,7 +93,7 @@ public class Menu_Toko extends javax.swing.JFrame {
                 Btn_UpdateMenuMouseClicked(evt);
             }
         });
-        getContentPane().add(Btn_UpdateMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 240, 260));
+        getContentPane().add(Btn_UpdateMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 240, 170));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Menu Page.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
@@ -167,7 +167,7 @@ public class Menu_Toko extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
-    private javax.swing.JLabel Btn_RiwayatPenarikan;
+    private javax.swing.JLabel Btn_Pesanan;
     private javax.swing.JLabel Btn_RiwayatPenjualan;
     private javax.swing.JLabel Btn_TarikSaldo;
     private javax.swing.JLabel Btn_UpdateMenu;
