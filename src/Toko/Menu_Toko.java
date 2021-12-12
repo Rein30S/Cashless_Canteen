@@ -6,6 +6,7 @@
 package Toko;
 
 import Login.LoginPage;
+import User.user_login;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -26,12 +27,10 @@ public class Menu_Toko extends javax.swing.JFrame {
     String username;
     public Menu_Toko() {
         initComponents();
-    }
-    
-    public void setData(String username){
-        this.username = username;
+        this.username = toko_login.getUsername();
         labelUsername.setText(username);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -117,7 +116,6 @@ public class Menu_Toko extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
         Pengaturan_Akun pa = new Pengaturan_Akun();
-        pa.setData(username);
         pa.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
@@ -125,7 +123,6 @@ public class Menu_Toko extends javax.swing.JFrame {
     private void Btn_UpdateMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_UpdateMenuMouseClicked
         // TODO add your handling code here:
         Atur_Menu am = new Atur_Menu();
-        am.setTabelMenu(username);
         am.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Btn_UpdateMenuMouseClicked

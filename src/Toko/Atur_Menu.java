@@ -26,18 +26,17 @@ public class Atur_Menu extends javax.swing.JFrame {
     Connection conn;
     Statement stm;
     ResultSet rs;
-    String username;
     public Atur_Menu() {
         initComponents();
         koneksi DB = new koneksi();
         DB.config();
         conn = DB.conn;
         stm = DB.stm;
+        
+        setTabelMenu();
     }
     
-    public void setTabelMenu(String username){
-        this.username = username;
-        
+    public void setTabelMenu(){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID Menu");
         model.addColumn("Nama Menu");
@@ -45,7 +44,7 @@ public class Atur_Menu extends javax.swing.JFrame {
         model.addColumn("Harga");
         tabelMenu.setModel(model);
         try{
-            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN user ON toko.id_user = user.id_user WHERE user.username = '"+this.username+"' AND menu.isdelete != 1");
+            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN user ON toko.id_user = user.id_user WHERE user.username = '"+toko_login.getUsername()+"' AND menu.isdelete != 1");
             while(rs.next()){
                 Object[] data = new Object[4];
                 data[0] = rs.getString("id_menu");
@@ -139,7 +138,6 @@ public class Atur_Menu extends javax.swing.JFrame {
     private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
         // TODO add your handling code here:
         Menu_Toko mt = new Menu_Toko();
-        mt.setData(username);
         mt.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_backMouseClicked
@@ -152,7 +150,6 @@ public class Atur_Menu extends javax.swing.JFrame {
     private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
         // TODO add your handling code here:
         Tambah_Menu tm = new Tambah_Menu();
-        tm.setData(username);
         tm.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_tambahMouseClicked
@@ -163,7 +160,7 @@ public class Atur_Menu extends javax.swing.JFrame {
             int row = tabelMenu.getSelectedRow();
             int idMenu = Integer.parseInt(String.valueOf(tabelMenu.getValueAt(row, 0)));
             Detail_Menu dm = new Detail_Menu();
-            dm.setData(idMenu, this.username);
+            dm.setData(idMenu);
             dm.setVisible(true);
             this.dispose();
         }else{

@@ -25,26 +25,14 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
     Connection conn;
     Statement stm;
     ResultSet rs;
-    int idUser;
-    String username;
     public Pengaturan_Akun() {
         initComponents();
         koneksi DB = new koneksi();
         DB.config();
         conn = DB.conn;
         stm = DB.stm;
-    }
-    
-    public void setData(String username){
-        tfUsername.setText(username);
-        this.username = username;
-        try{
-            rs = stm.executeQuery("SELECT * FROM user WHERE username='"+username+"'");
-            rs.next();
-            idUser = Integer.parseInt(rs.getString("id_user"));
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+        
+        tfUsername.setText(toko_login.getUsername());
     }
 
     /**
@@ -141,20 +129,20 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
         String passwordLama = tfPasswordLama.getText();
         String passwordBaru = tfPasswordBaru.getText();
         
-        if(!"".equals(username) && !"".equals(passwordLama) && !"".equals(passwordBaru)){
+        if(!"".equals(usernameBaru) && !"".equals(passwordLama) && !"".equals(passwordBaru)){
             try {
-                rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+usernameBaru+"' AND id_user !='"+idUser+"'");
+                rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+usernameBaru+"' AND id_user !='"+toko_login.getId_user()+"'");
                 if(rs.next()){
                     JOptionPane.showMessageDialog(null, "Username sudah digunakan!");
                 }else{
-                    rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+username+"' AND password='"+passwordLama+"'");
+                    rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+toko_login.getUsername()+"' AND password='"+passwordLama+"'");
                     if(rs.next()){
-                        int result = stm.executeUpdate("UPDATE user SET username = '"+usernameBaru+"', password = '"+passwordBaru+"' WHERE id_user='"+idUser+"'");
+                        int result = stm.executeUpdate("UPDATE user SET username = '"+usernameBaru+"', password = '"+passwordBaru+"' WHERE id_user='"+toko_login.getId_user()+"'");
                         if(result == 1){
                             JOptionPane.showMessageDialog(null, "Data berhasil di-update!");
                             
+                            toko_login.setUsername(usernameBaru);
                             Menu_Toko mt = new Menu_Toko();
-                            mt.setData(usernameBaru);
                             mt.setVisible(true);
                             this.dispose();
                         }else{

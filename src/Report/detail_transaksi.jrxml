@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="396" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="42" uuid="65d5a862-30a2-4f57-8c52-44764769e8f1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID_TRANSAKSI" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM transaksi t INNER JOIN user u ON t.ID_USER = u.ID_USER WHERE t.ID_TRANSAKSI = $P{ID_TRANSAKSI}]]>
+	</queryString>
+	<field name="ID_TRANSAKSI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_USER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_TRANSAKSI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JENIS_TRANSAKSI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="WAKTU_TRANSAKSI" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATUS_CHANGE_TIME" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATUS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="USERNAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PASSWORD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SALDO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LEVEL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="171" y="23" width="240" height="35" uuid="75be28e8-4e5b-4db0-870f-608243a1d70a"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DETAIL TRANSAKSI]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="152ca742-fcf5-4573-b931-e695d358f036"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ID TRANSAKSI]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="116" y="0" width="142" height="20" uuid="42ca1e76-acdc-4ae9-be51-cafa620d2ce0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID_TRANSAKSI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="35" width="100" height="20" uuid="f86273ac-2592-4fb9-86a0-1b92bb9e0229"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[USERNAME]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="116" y="35" width="142" height="20" uuid="5b8cb010-2f4a-406a-8edd-1632350611ca"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USERNAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="70" width="100" height="20" uuid="75412ce6-65d7-4e86-a623-45ecfd7d02bf"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[JENIS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="116" y="70" width="142" height="20" uuid="dd0fc1bb-7429-444e-bcff-8a3f519449ab"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JENIS_TRANSAKSI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="298" y="0" width="100" height="20" uuid="dd0670ad-4e4e-474b-be20-6bef26200280"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="446" y="0" width="110" height="20" uuid="b6163894-3582-44d1-b373-2e130fc81e13"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_TRANSAKSI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="298" y="35" width="100" height="20" uuid="a3ce8f41-6dd2-4aba-b3d0-a7f0f81d956e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[WAKTU]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="446" y="35" width="110" height="20" uuid="37b8a445-78b9-4df0-b418-0044b8765f33"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WAKTU_TRANSAKSI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="298" y="70" width="127" height="20" uuid="0e6743fb-7a72-4faa-a0ae-2208786dbb44"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[WAKTU KONFIRMASI]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="446" y="70" width="110" height="20" uuid="1d7f6709-02cd-4b37-bbaa-992ca541c57b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STATUS_CHANGE_TIME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="396" y="34" width="146" height="20" uuid="f55a66c8-ea72-47ea-9756-c706c880ab5d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Admin CashlessCanteen]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

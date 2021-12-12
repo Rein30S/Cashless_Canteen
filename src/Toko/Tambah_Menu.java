@@ -36,7 +36,6 @@ public class Tambah_Menu extends javax.swing.JFrame {
     Connection conn;
     Statement stm;
     ResultSet rs;
-    String username;
     String asalFile = "";
     public Tambah_Menu() {
         initComponents();
@@ -45,10 +44,6 @@ public class Tambah_Menu extends javax.swing.JFrame {
         conn = DB.conn;
         stm = DB.stm;
         rbTersedia.setSelected(true);
-    }
-    
-    public void setData(String username){
-        this.username = username;
     }
 
     private void clearText(){
@@ -181,7 +176,7 @@ public class Tambah_Menu extends javax.swing.JFrame {
         
         if(!"".equals(namaMenu) && !"".equals(deskripsi) && !"".equals(kategori) && !"".equals(harga) && !"".equals(statusTersedia) && !"".equals(asalFile)){
             try {
-                rs = stm.executeQuery("SELECT * FROM user INNER JOIN toko ON user.id_user = toko.id_user WHERE user.username = '"+username+"'");
+                rs = stm.executeQuery("SELECT * FROM user INNER JOIN toko ON user.id_user = toko.id_user WHERE user.username = '"+toko_login.getUsername()+"'");
                 rs.next();
                 int idToko = Integer.parseInt(rs.getString("id_toko"));
                 
@@ -191,7 +186,7 @@ public class Tambah_Menu extends javax.swing.JFrame {
                 Date date = new Date();
                 Random rand = new Random();
                 int namaFile = 1000+ rand.nextInt(9000);
-                String linkFile = "src\\gambar\\"+formatter.format(date)+namaFile+rs.getString("nama_toko")+"."+jenisFile;
+                String linkFile = "src\\gambar\\"+formatter.format(date)+namaFile+rs.getString("id_toko")+"."+jenisFile;
                 String link = linkFile.replace("\\", "\\\\");
                 stm.executeUpdate("INSERT INTO menu VALUES(NULL, '"+idToko+"', '"+namaMenu+"', '"+deskripsi+"','"+link+"', '"+kategori+"', '"+harga+"', '"+statusTersedia+"', '0')");
                 Files.copy(Paths.get(asalFile), Paths.get(linkFile));
@@ -229,7 +224,6 @@ public class Tambah_Menu extends javax.swing.JFrame {
     private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
         // TODO add your handling code here:
         Atur_Menu am = new Atur_Menu();
-        am.setTabelMenu(username);
         am.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_backMouseClicked

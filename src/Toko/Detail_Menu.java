@@ -42,7 +42,6 @@ public class Detail_Menu extends javax.swing.JFrame {
     int id;
     boolean isImageChanged = false;
     String asalFile = "";
-    String username;
     public Detail_Menu() {
         initComponents();
         initComponents();
@@ -55,13 +54,11 @@ public class Detail_Menu extends javax.swing.JFrame {
     
     private void pindahMenu(){
         Atur_Menu atur = new Atur_Menu();
-        atur.setTabelMenu(username);
         atur.setVisible(true);
         this.dispose();
     }
     
-    public void setData(int id, String username){
-        this.username = username;
+    public void setData(int id){
         this.id = id;
         try{
             rs = stm.executeQuery("SELECT * FROM menu WHERE id_menu = '"+id+"'");
@@ -235,7 +232,7 @@ public class Detail_Menu extends javax.swing.JFrame {
                 Date date = new Date();
                 Random rand = new Random();
                 int namaFile = 1000+ rand.nextInt(9000);
-                String linkFile = "src\\gambar\\"+formatter.format(date)+namaFile+rs.getString("nama_toko")+"."+jenisFile;
+                String linkFile = "src\\gambar\\"+formatter.format(date)+namaFile+rs.getString("id_toko")+"."+jenisFile;
                 String link = linkFile.replace("\\", "\\\\");
                 stm.executeUpdate("UPDATE menu SET nama_menu = '"+namaMenu+"', deskripsi = '"+deskripsi+"', gambar = '"+link+"', kategori='"+kategori+"', harga='"+harga+"', tersedia= '"+statusTersedia+"' WHERE id_menu = '"+id+"'");
                 
