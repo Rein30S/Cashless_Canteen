@@ -83,6 +83,13 @@ public class Menu_Toko extends javax.swing.JFrame {
         labelUsername.setText("jLabel1");
         getContentPane().add(labelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, -1, -1));
         getContentPane().add(Btn_Pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 240, 170));
+
+        Btn_TarikSaldo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Btn_TarikSaldo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_TarikSaldoMouseClicked(evt);
+            }
+        });
         getContentPane().add(Btn_TarikSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 240, 170));
         getContentPane().add(Btn_RiwayatPenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 240, 170));
 
@@ -126,6 +133,13 @@ public class Menu_Toko extends javax.swing.JFrame {
         am.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Btn_UpdateMenuMouseClicked
+
+    private void Btn_TarikSaldoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_TarikSaldoMouseClicked
+        // TODO add your handling code here:
+        Menu_Saldo ms = new Menu_Saldo();
+        ms.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_Btn_TarikSaldoMouseClicked
 
     /**
      * @param args the command line arguments

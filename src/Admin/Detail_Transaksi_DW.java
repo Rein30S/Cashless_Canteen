@@ -38,6 +38,7 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
     String status;
     int total_transaksi;
     int id_user;
+    String jenis_transaksi;
     public Detail_Transaksi_DW() {
         initComponents();
         koneksi DB = new koneksi();
@@ -63,6 +64,7 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
             this.status = rs.getString("status");
             this.id_user = rs.getInt("id_user");
             this.total_transaksi = rs.getInt("total_transaksi");
+            this.jenis_transaksi = rs.getString("jenis_transaksi");
             
             rs = stm.executeQuery("SELECT * FROM transaksi t INNER JOIN konfirmasi_transaksi k ON t.ID_TRANSAKSI = k.ID_TRANSAKSI INNER JOIN user u ON k.ID_USER = u.ID_USER WHERE t.ID_TRANSAKSI = '"+this.id_transaksi+"'");
             if(rs.next()){
@@ -301,15 +303,18 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
                     String currentDate = sdf.format(cal.getTime());
                     
                     stm.executeUpdate("UPDATE transaksi SET status_change_time = '"+currentDate+"', status='Berhasil' WHERE id_transaksi = '"+id_transaksi+"'");
-                    stm.executeUpdate("UPDATE user SET saldo = saldo + "+total_transaksi+" WHERE id_user = '"+id_user+"'");
                     stm.executeUpdate("INSERT INTO konfirmasi_transaksi(id_transaksi, id_user) VALUES('"+id_transaksi+"', '"+admin_login.getId_user()+"')");
+                    
+                    if("Deposit".equals(this.jenis_transaksi)){
+                        stm.executeUpdate("UPDATE user SET saldo = saldo + "+total_transaksi+" WHERE id_user = '"+id_user+"'");                        
+                    }
+                    
                     JOptionPane.showMessageDialog(null, "Berhasil dikonfirmasi");
                     setData(id_transaksi);
                 }
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(null, e);
             }
-            
         }else{
             JOptionPane.showMessageDialog(null, "Transaksi sudah selesai");
         }
@@ -327,6 +332,10 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String currentDate = sdf.format(cal.getTime());
                     
+                    stm.executeUpdate("INSERT INTO konfirmasi_transaksi(id_transaksi, id_user) VALUES('"+id_transaksi+"', '"+admin_login.getId_user()+"')");
+                    if("Withdraw".equals(this.jenis_transaksi)){
+                        stm.executeUpdate("UPDATE user SET saldo = saldo + "+total_transaksi+" WHERE id_user = '"+id_user+"'");
+                    }
                     stm.executeUpdate("UPDATE transaksi SET status_change_time = '"+currentDate+"', status='Ditolak' WHERE id_transaksi = '"+id_transaksi+"'");                    
                     JOptionPane.showMessageDialog(null, "Berhasil ditolak");
                     setData(id_transaksi);

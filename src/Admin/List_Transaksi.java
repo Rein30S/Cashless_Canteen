@@ -263,7 +263,7 @@ public class List_Transaksi extends javax.swing.JFrame {
             int row = tabelTransaksi.getSelectedRow();
             String jenisTransaksi = String.valueOf(tabelTransaksi.getValueAt(row, 2));
             
-            if(jenisTransaksi.equals("deposit")){
+            if(jenisTransaksi.equals("Deposit") || jenisTransaksi.equals("Withdraw")){
                 Detail_Transaksi_DW dt = new Detail_Transaksi_DW();
                     dt.setData(Integer.parseInt(String.valueOf(tabelTransaksi.getValueAt(row, 0))));
                     dt.setVisible(true);
