@@ -94,7 +94,7 @@ public class Atur_Menu extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabelMenu);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 217, 760, 260));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 760, 270));
 
         btn_back1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_back1.addMouseListener(new java.awt.event.MouseAdapter() {

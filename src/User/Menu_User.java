@@ -5,8 +5,9 @@
  */
 package User;
 
+import Login.user_login;
 import Login.LoginPage;
-import static User.user_login.saldo;
+import static Login.user_login.saldo;
 import javax.swing.JLabel;
 
 /**
