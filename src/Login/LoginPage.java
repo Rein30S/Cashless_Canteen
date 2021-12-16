@@ -134,6 +134,7 @@ public class LoginPage extends javax.swing.JFrame {
             if(rs.next()){
                 user_login.setsaldo(rs.getInt("saldo"));
                 user_login.setusername(rs.getString("username"));
+                user_login.setId_user(rs.getInt("id_user"));
                 String level = rs.getString("level");
                 if(level.equals("Admin")){
                     admin_login.setId_user(rs.getInt("id_user"));

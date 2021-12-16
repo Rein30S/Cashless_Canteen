@@ -6,7 +6,15 @@
 package User;
 
 import static User.user_login.saldo;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
 
 /**
  *
@@ -21,8 +29,15 @@ public class Menu_TopUp extends javax.swing.JFrame {
     int tambah_saldo = 0;
     int total = 0;
     
+    Connection conn;
+    Statement stm;
+    ResultSet rs;
     public Menu_TopUp() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        conn = DB.conn;
+        stm = DB.stm;
         
         int balance = user_login.getsaldo();
         String balanceS = Integer.toString(balance);
@@ -37,6 +52,11 @@ public class Menu_TopUp extends javax.swing.JFrame {
         username.setText(users);
         
     }
+    
+    private void resetTextTotal(){
+        total = 0;
+        txt_total.setText(String.valueOf(total));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +67,8 @@ public class Menu_TopUp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
         btn_back = new javax.swing.JLabel();
@@ -65,6 +87,22 @@ public class Menu_TopUp extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
+
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 50, 50));
+
         username.setFont(new java.awt.Font("Tekton Pro Ext", 1, 24)); // NOI18N
         username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 320, 40));
@@ -76,6 +114,7 @@ public class Menu_TopUp extends javax.swing.JFrame {
         });
         getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
 
+        btn_back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_backMouseClicked(evt);
@@ -86,6 +125,13 @@ public class Menu_TopUp extends javax.swing.JFrame {
         tm_saldo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tm_saldo.setText("0");
         getContentPane().add(tm_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 254, 110, -1));
+
+        btn_tambah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_tambah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_tambahMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(315, 513, 100, 36));
 
         btn_50000.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -121,12 +167,19 @@ public class Menu_TopUp extends javax.swing.JFrame {
         getContentPane().add(btn_5000, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 365, 147, 57));
 
         txt_total.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        txt_total.setText("0");
         getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 448, 120, 42));
 
         btn_hapus.setText("Hapus");
+        btn_hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_hapus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_hapusMouseClicked(evt);
+            }
+        });
+        btn_hapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hapusActionPerformed(evt);
             }
         });
         getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 100, 40));
@@ -180,9 +233,52 @@ public class Menu_TopUp extends javax.swing.JFrame {
 
     private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
         // TODO add your handling code here:
-        total = 0;
-        txt_total.setText(String.valueOf(total));
+        resetTextTotal();
     }//GEN-LAST:event_btn_hapusMouseClicked
+
+    private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_hapusActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        Menu_User back = new Menu_User();
+        back.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
+        // TODO add your handling code here:
+        if(total > 0){
+            int confirmed = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION);
+            
+            if(confirmed == JOptionPane.YES_OPTION){
+                try{
+                    Calendar cal = Calendar.getInstance();
+                    cal.getTime();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String currentDate = sdf.format(cal.getTime());
+                    int result = stm.executeUpdate("INSERT INTO transaksi(ID_USER, TOTAL_TRANSAKSI, JENIS_TRANSAKSI, WAKTU_TRANSAKSI, STATUS_CHANGE_TIME, STATUS) VALUES('"+user_login.getId_user()+"', '"+total+"', 'Deposit', '"+currentDate+"', '"+currentDate+"', 'Pending')");
+                    if(result == 1){
+                        JOptionPane.showMessageDialog(null, "Penambahan saldo berhasil diproses");
+                        resetTextTotal();
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Penambahan saldo gagal diproses");
+                    }
+                }catch(SQLException e){
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+                
+        }else{
+            JOptionPane.showMessageDialog(null, "Nominal top-up tidak boleh nol!");
+        }
+    }//GEN-LAST:event_btn_tambahMouseClicked
 
     /**
      * @param args the command line arguments
@@ -229,6 +325,8 @@ public class Menu_TopUp extends javax.swing.JFrame {
     private javax.swing.JLabel btn_close;
     private javax.swing.JButton btn_hapus;
     private javax.swing.JLabel btn_tambah;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel tm_saldo;
     private javax.swing.JLabel txt_total;
     private javax.swing.JLabel username;

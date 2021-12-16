@@ -66,6 +66,7 @@ public class Menu_User extends javax.swing.JFrame {
         username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 890, 40));
 
+        btn_topup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_topup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_topupMouseClicked(evt);
@@ -73,6 +74,7 @@ public class Menu_User extends javax.swing.JFrame {
         });
         getContentPane().add(btn_topup, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 250, 250));
 
+        btn_pesan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_pesan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_pesanMouseClicked(evt);
@@ -86,6 +88,7 @@ public class Menu_User extends javax.swing.JFrame {
 
         btn_logout.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btn_logout.setText("LOGOUT");
+        btn_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_logoutMouseClicked(evt);
@@ -93,6 +96,7 @@ public class Menu_User extends javax.swing.JFrame {
         });
         getContentPane().add(btn_logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 80, 30));
 
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);

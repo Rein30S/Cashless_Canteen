@@ -13,9 +13,18 @@ public class user_login {
     
     public static int saldo;
     public static String username;
+    public static int id_user;
     
     public static void setsaldo(int saldo){
         user_login.saldo = saldo;
+    }
+
+    public static int getId_user() {
+        return id_user;
+    }
+
+    public static void setId_user(int id_user) {
+        user_login.id_user = id_user;
     }
     
     public static int getsaldo(){
