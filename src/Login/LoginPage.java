@@ -6,6 +6,7 @@
 package Login;
 
 import User.Menu_User;
+import User.user_login;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,6 +27,8 @@ public class LoginPage extends javax.swing.JFrame {
     Connection conn;
     Statement stm;
     ResultSet rs;
+    static String Session = "";
+    public static String Session(){return Session;}
     
     public LoginPage() {
         initComponents();
@@ -128,6 +131,9 @@ public class LoginPage extends javax.swing.JFrame {
                 }else if(level.equals("Toko")){
                     JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai Owner toko");
                 }else if(level.equals("Pelanggan")){
+                    user_login.setId_user(rs.getString("id_user"));
+                    user_login.setsaldo(rs.getInt("saldo"));
+                    Session = UserText.getText();
                     Menu_User m = new Menu_User();
                     m.setVisible(true);
                     this.dispose();

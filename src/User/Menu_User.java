@@ -5,6 +5,8 @@
  */
 package User;
 
+import static User.user_login.saldo;
+
 /**
  *
  * @author ASUS
@@ -16,6 +18,12 @@ public class Menu_User extends javax.swing.JFrame {
      */
     public Menu_User() {
         initComponents();
+        
+        int balance = user_login.getsaldo();
+        String balanceS = Integer.toString(balance);
+        
+        String saldo1 = Integer.toString(saldo);
+        tm_saldo.setText(balanceS);
     }
 
     /**
@@ -27,31 +35,80 @@ public class Menu_User extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        salam = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
+        btn_pesan = new javax.swing.JLabel();
+        btn_topup = new javax.swing.JLabel();
+        btn_close = new javax.swing.JLabel();
+        tm_saldo = new javax.swing.JLabel();
+        template = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Page.png"))); // NOI18N
-        jLabel1.setNextFocusableComponent(this);
+        salam.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        salam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salam.setText("Selamat Datang");
+        salam.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(salam, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 900, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        username.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        username.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 900, 50));
 
-        setSize(new java.awt.Dimension(916, 639));
+        btn_pesan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pesanMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 250, 250));
+
+        btn_topup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_topupMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_topup, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 250, 250));
+
+        btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_closeMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 12, 40, 30));
+
+        tm_saldo.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        getContentPane().add(tm_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 93, 120, 30));
+
+        template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Page.png"))); // NOI18N
+        template.setNextFocusableComponent(this);
+        getContentPane().add(template, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
+
+        setSize(new java.awt.Dimension(900, 599));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
+        // TODO add your handling code here:
+        Menu_Pilih_Kantin pesan = new Menu_Pilih_Kantin();
+        pesan.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_pesanMouseClicked
+
+    private void btn_topupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_topupMouseClicked
+        // TODO add your handling code here:
+        Menu_TopUp topup = new Menu_TopUp();
+        topup.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_topupMouseClicked
+
+    private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btn_closeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -89,6 +146,12 @@ public class Menu_User extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel btn_close;
+    private javax.swing.JLabel btn_pesan;
+    private javax.swing.JLabel btn_topup;
+    private javax.swing.JLabel salam;
+    private javax.swing.JLabel template;
+    private javax.swing.JLabel tm_saldo;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }
