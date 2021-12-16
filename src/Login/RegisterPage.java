@@ -5,7 +5,6 @@
  */
 package Login;
 
-import java.awt.Color;
 import koneksi.koneksi;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -32,12 +31,6 @@ public class RegisterPage extends javax.swing.JFrame {
     Random random = new Random();
     public RegisterPage() {
         initComponents();
-        
-        Email.setBackground(new Color(0, 0, 0, 0));
-        Password.setBackground(new Color(0, 0, 0, 0));
-        NoTelp.setBackground(new Color(0,0,0,0));
-        Nama_Lengkap.setBackground(new Color(0, 0, 0, 0));
-        
         koneksi DB = new koneksi();
         DB.config();
         conn = DB.conn;
@@ -68,9 +61,9 @@ public class RegisterPage extends javax.swing.JFrame {
         Pegawai = new javax.swing.JRadioButton();
         Dosen = new javax.swing.JRadioButton();
         Mhs = new javax.swing.JRadioButton();
-        NoTelp = new javax.swing.JTextField();
-        Password = new javax.swing.JPasswordField();
+        Notelp = new javax.swing.JTextField();
         Email = new javax.swing.JTextField();
+        Password = new javax.swing.JPasswordField();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -101,7 +94,7 @@ public class RegisterPage extends javax.swing.JFrame {
                 CloseButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(CloseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(851, 10, 40, 40));
+        getContentPane().add(CloseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(868, 10, 23, 23));
 
         BackButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BackButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,7 +102,7 @@ public class RegisterPage extends javax.swing.JFrame {
                 BackButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(BackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
+        getContentPane().add(BackButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 23, 23));
 
         buttonGroup2.add(Perem);
         Perem.setOpaque(false);
@@ -119,39 +112,39 @@ public class RegisterPage extends javax.swing.JFrame {
         LK.setOpaque(false);
         getContentPane().add(LK, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 297, -1, -1));
 
-        Nama_Lengkap.setBorder(null);
         Nama_Lengkap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Nama_LengkapActionPerformed(evt);
             }
         });
-        getContentPane().add(Nama_Lengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 211, 290, -1));
+        getContentPane().add(Nama_Lengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 290, -1));
 
         buttonGroup1.add(Pegawai);
         Pegawai.setOpaque(false);
-        getContentPane().add(Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 418, -1, -1));
+        getContentPane().add(Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 422, -1, -1));
 
         buttonGroup1.add(Dosen);
         Dosen.setOpaque(false);
-        getContentPane().add(Dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 380, -1, -1));
+        getContentPane().add(Dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 384, -1, -1));
 
         buttonGroup1.add(Mhs);
         Mhs.setOpaque(false);
-        getContentPane().add(Mhs, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 345, -1, -1));
+        getContentPane().add(Mhs, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 348, -1, -1));
 
-        NoTelp.setBorder(null);
-        NoTelp.addActionListener(new java.awt.event.ActionListener() {
+        Notelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NoTelpActionPerformed(evt);
+                NotelpActionPerformed(evt);
             }
         });
-        getContentPane().add(NoTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 257, 180, -1));
-
-        Password.setBorder(null);
-        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 180, -1));
-
-        Email.setBorder(null);
+        getContentPane().add(Notelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 180, -1));
         getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 180, -1));
+
+        Password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 180, -1));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Register Page.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -160,9 +153,17 @@ public class RegisterPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void NotelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotelpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NotelpActionPerformed
+
     private void Nama_LengkapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nama_LengkapActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Nama_LengkapActionPerformed
+
+    private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PasswordActionPerformed
 
     private void ClearButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClearButtonMouseClicked
         // TODO add your handling code here:
@@ -186,7 +187,7 @@ public class RegisterPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         String email = Email.getText();
         String password = Password.getText();
-        String noTelp = NoTelp.getText();
+        String noTelp = Notelp.getText();
         String jenisJabatan = "Mahasiswa";
         if(Dosen.isSelected() == true){
             jenisJabatan = "Dosen";
@@ -236,10 +237,6 @@ public class RegisterPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Semua data harus diisi terlebih dahulu!");
         }
     }//GEN-LAST:event_SubmitButtonMouseClicked
-
-    private void NoTelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoTelpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NoTelpActionPerformed
     
     private void systemClose(){
         System.exit(0);
@@ -254,7 +251,7 @@ public class RegisterPage extends javax.swing.JFrame {
     private void clearMahasiswa(){
         Email.setText("");
         Password.setText("");
-        NoTelp.setText("");
+        Notelp.setText("");
         Mhs.setSelected(true);
         Nama_Lengkap.setText("");
         LK.setSelected(true);
@@ -305,7 +302,7 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JRadioButton LK;
     private javax.swing.JRadioButton Mhs;
     private javax.swing.JTextField Nama_Lengkap;
-    private javax.swing.JTextField NoTelp;
+    private javax.swing.JTextField Notelp;
     private javax.swing.JPasswordField Password;
     private javax.swing.JRadioButton Pegawai;
     private javax.swing.JRadioButton Perem;

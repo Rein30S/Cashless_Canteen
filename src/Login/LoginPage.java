@@ -6,11 +6,6 @@
 package Login;
 
 import User.Menu_User;
-import Admin.*;
-import Toko.Menu_Toko;
-import Toko.toko_login;
-import User.user_login;
-import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,11 +25,6 @@ public class LoginPage extends javax.swing.JFrame {
     Connection conn;
     Statement stm;
     ResultSet rs;
-    static String session = "";
-    
-    public static String session() {
-        return session;
-    }
     
     public LoginPage() {
         initComponents();
@@ -42,9 +32,6 @@ public class LoginPage extends javax.swing.JFrame {
         DB.config();
         conn = DB.conn;
         stm = DB.stm;
-        
-        UserText.setBackground(new Color(0, 0, 0, 0));
-        PassText.setBackground(new Color(0, 0, 0, 0));
     }
 
     /**
@@ -132,24 +119,12 @@ public class LoginPage extends javax.swing.JFrame {
             rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+username+"' AND password='"+password+"'");
             
             if(rs.next()){
-                user_login.setsaldo(rs.getInt("saldo"));
-                user_login.setusername(rs.getString("username"));
-                user_login.setId_user(rs.getInt("id_user"));
                 String level = rs.getString("level");
                 if(level.equals("Admin")){
-                    admin_login.setId_user(rs.getInt("id_user"));
-                    Menu_Admin ma = new Menu_Admin();
-                    ma.setVisible(true);
-                    this.dispose();
+                    JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai admin");
                 }else if(level.equals("Toko")){
-                    toko_login.setSaldo(rs.getInt("saldo"));
-                    toko_login.setUsername(rs.getString("username"));
-                    toko_login.setId_user(rs.getInt("id_user"));
-                    Menu_Toko mt = new Menu_Toko();
-                    mt.setVisible(true);
-                    this.dispose();
+                    JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai Owner toko");
                 }else if(level.equals("Pelanggan")){
-                    session = UserText.getText();
                     Menu_User m = new Menu_User();
                     m.setVisible(true);
                     this.dispose();

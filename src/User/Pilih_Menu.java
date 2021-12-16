@@ -5,8 +5,8 @@
  */
 package User;
 
-import Login.user_login;
-import static Login.user_login.saldo;
+import User.user_login;
+import static User.user_login.saldo;
 import java.awt.Color;
 import javax.swing.JLabel;
 

@@ -5,8 +5,7 @@
  */
 package User;
 
-import Login.user_login;
-import static Login.user_login.saldo;
+import User.user_login;
 import static User.user_login.saldo;
 import java.sql.Connection;
 import java.sql.ResultSet;
