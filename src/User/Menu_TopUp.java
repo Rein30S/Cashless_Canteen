@@ -5,7 +5,6 @@
  */
 package User;
 
-import User.user_login;
 import static User.user_login.saldo;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -169,7 +168,7 @@ public class Menu_TopUp extends javax.swing.JFrame {
 
         txt_total.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txt_total.setText("0");
-        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 448, 120, 42));
+        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 120, 42));
 
         btn_hapus.setText("Hapus");
         btn_hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

@@ -6,6 +6,7 @@
 package Login;
 
 import User.Menu_User;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +33,8 @@ public class LoginPage extends javax.swing.JFrame {
         DB.config();
         conn = DB.conn;
         stm = DB.stm;
+        UserText.setBackground(new Color(0, 0, 0, 0));
+        PassText.setBackground(new Color(0, 0, 0, 0));
     }
 
     /**

@@ -5,7 +5,7 @@
  */
 package Admin;
 
-import Toko.toko_login;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ import net.sf.jasperreports.engine.JasperReport;
  *
  * @author handy
  */
-public class Detail_Transaksi_DW extends javax.swing.JFrame {
+public class Konfirmasi_WD extends javax.swing.JFrame {
 
     /**
      * Creates new form Detail_Transaksi_DW
@@ -39,12 +39,20 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
     int total_transaksi;
     int id_user;
     String jenis_transaksi;
-    public Detail_Transaksi_DW() {
+    public Konfirmasi_WD() {
         initComponents();
         koneksi DB = new koneksi();
         DB.config();
         conn = DB.conn;
         stm = DB.stm;
+        txt_id.setBackground(new Color(0, 0, 0, 0));
+        txt_email.setBackground(new Color(0, 0, 0, 0));
+        txt_jenis.setBackground(new Color(0, 0, 0, 0));
+        txt_total.setBackground(new Color(0, 0, 0, 0));
+        txt_waktu.setBackground(new Color(0, 0, 0, 0));
+        txt_status.setBackground(new Color(0, 0, 0, 0));
+        txt_waktuperubahan.setBackground(new Color(0, 0, 0, 0));
+        txt_admin.setBackground(new Color(0, 0, 0, 0));
     }
     
     public void setData(int id_transaksi){
@@ -54,13 +62,13 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
             rs = stm.executeQuery("SELECT * FROM transaksi t INNER JOIN user u ON t.ID_USER = u.ID_USER WHERE t.ID_TRANSAKSI = '"+this.id_transaksi+"'");
             rs.next();
             
-            lbIdTransaksi.setText(rs.getString("id_transaksi"));
-            lbJenisTransaksi.setText(rs.getString("jenis_transaksi"));
-            lbStatus.setText(rs.getString("status"));
-            lbTotal.setText(rs.getString("total_transaksi"));
-            lbUsername.setText(rs.getString("username"));
-            lbWaktu.setText(rs.getString("waktu_transaksi"));
-            lbWaktuPerubahan.setText(rs.getString("STATUS_CHANGE_TIME"));
+            txt_id.setText(rs.getString("id_transaksi"));
+            txt_jenis.setText(rs.getString("jenis_transaksi"));
+            txt_status.setText(rs.getString("status"));
+            txt_total.setText(rs.getString("total_transaksi"));
+            txt_email.setText(rs.getString("username"));
+            txt_waktu.setText(rs.getString("waktu_transaksi"));
+            txt_waktuperubahan.setText(rs.getString("STATUS_CHANGE_TIME"));
             this.status = rs.getString("status");
             this.id_user = rs.getInt("id_user");
             this.total_transaksi = rs.getInt("total_transaksi");
@@ -68,9 +76,9 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
             
             rs = stm.executeQuery("SELECT * FROM transaksi t INNER JOIN konfirmasi_transaksi k ON t.ID_TRANSAKSI = k.ID_TRANSAKSI INNER JOIN user u ON k.ID_USER = u.ID_USER WHERE t.ID_TRANSAKSI = '"+this.id_transaksi+"'");
             if(rs.next()){
-                lbAdmin.setText(rs.getString("username"));
+                txt_admin.setText(rs.getString("username"));
             }else{
-                lbAdmin.setText("");
+                txt_admin.setText("");
             }            
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
@@ -86,208 +94,135 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        lbIdTransaksi = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        lbUsername = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        lbJenisTransaksi = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        lbTotal = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        lbWaktu = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        lbStatus = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        lbWaktuPerubahan = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        lbAdmin = new javax.swing.JLabel();
+        txt_admin = new javax.swing.JTextField();
+        txt_waktuperubahan = new javax.swing.JTextField();
+        txt_status = new javax.swing.JTextField();
+        txt_waktu = new javax.swing.JTextField();
+        txt_total = new javax.swing.JTextField();
+        txt_jenis = new javax.swing.JTextField();
+        txt_email = new javax.swing.JTextField();
+        txt_id = new javax.swing.JTextField();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Detail Transaksi");
-
-        jLabel2.setText("ID Transaksi");
-
-        lbIdTransaksi.setText("jLabel3");
-
-        jLabel4.setText("Username");
-
-        lbUsername.setText("jLabel5");
-
-        jLabel6.setText("Jenis");
-
-        lbJenisTransaksi.setText("jLabel7");
-
-        jLabel8.setText("Total");
-
-        lbTotal.setText("jLabel9");
-
-        jLabel10.setText("Waktu");
-
-        lbWaktu.setText("jLabel11");
-
-        jLabel12.setText("Status");
-
-        lbStatus.setText("jLabel13");
-
-        jLabel14.setText("Waktu Perubahan Status");
-
-        lbWaktuPerubahan.setText("jLabel15");
-
-        jLabel16.setText("Keluar");
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel16MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
 
-        jLabel17.setText("Kembali");
         jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel17MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
-        jLabel18.setText("Konfirmasi");
         jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel18MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 496, 102, 33));
 
-        jLabel19.setText("Tolak");
         jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel19MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(625, 495, 100, 34));
 
-        jLabel20.setText("Cetak Laporan");
         jLabel20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel20MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 495, 101, 35));
 
-        jLabel3.setText("Status diubah oleh");
+        txt_admin.setBorder(null);
+        txt_admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_adminActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 270, 140, -1));
 
-        lbAdmin.setText("jLabel5");
+        txt_waktuperubahan.setBorder(null);
+        txt_waktuperubahan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_waktuperubahanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_waktuperubahan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, 140, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel17)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbTotal))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbJenisTransaksi))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lbUsername))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(lbIdTransaksi)))
-                                .addGap(84, 84, 84)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbAdmin)
-                                    .addComponent(lbStatus)
-                                    .addComponent(lbWaktuPerubahan)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel19)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel20))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(68, 68, 68)
-                                .addComponent(lbWaktu)))
-                        .addContainerGap(34, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel16)
-                        .addGap(18, 18, 18))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lbIdTransaksi)
-                    .addComponent(jLabel12)
-                    .addComponent(lbStatus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lbUsername)
-                    .addComponent(jLabel14)
-                    .addComponent(lbWaktuPerubahan))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lbJenisTransaksi)
-                    .addComponent(jLabel3)
-                    .addComponent(lbAdmin))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(lbTotal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(lbWaktu))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel20))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel17)
-                .addGap(22, 22, 22))
-        );
+        txt_status.setBorder(null);
+        txt_status.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_statusActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 470, 200, -1));
 
-        pack();
+        txt_waktu.setBorder(null);
+        txt_waktu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_waktuActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_waktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 420, 200, -1));
+
+        txt_total.setBorder(null);
+        txt_total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_totalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 370, 200, -1));
+
+        txt_jenis.setBorder(null);
+        txt_jenis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_jenisActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_jenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 320, 200, -1));
+
+        txt_email.setBorder(null);
+        txt_email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_emailActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 270, 200, -1));
+
+        txt_id.setBorder(null);
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 220, 200, -1));
+
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Konfirmasi Penarikan.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
+
+        setSize(new java.awt.Dimension(900, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
@@ -383,6 +318,38 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel20MouseClicked
 
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_idActionPerformed
+
+    private void txt_emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_emailActionPerformed
+
+    private void txt_jenisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_jenisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_jenisActionPerformed
+
+    private void txt_totalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_totalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_totalActionPerformed
+
+    private void txt_waktuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_waktuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_waktuActionPerformed
+
+    private void txt_statusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_statusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_statusActionPerformed
+
+    private void txt_waktuperubahanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_waktuperubahanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_waktuperubahanActionPerformed
+
+    private void txt_adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_adminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_adminActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -400,46 +367,39 @@ public class Detail_Transaksi_DW extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Detail_Transaksi_DW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Konfirmasi_WD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Detail_Transaksi_DW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Konfirmasi_WD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Detail_Transaksi_DW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Konfirmasi_WD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Detail_Transaksi_DW.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Konfirmasi_WD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Detail_Transaksi_DW().setVisible(true);
+                new Konfirmasi_WD().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel BG;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lbAdmin;
-    private javax.swing.JLabel lbIdTransaksi;
-    private javax.swing.JLabel lbJenisTransaksi;
-    private javax.swing.JLabel lbStatus;
-    private javax.swing.JLabel lbTotal;
-    private javax.swing.JLabel lbUsername;
-    private javax.swing.JLabel lbWaktu;
-    private javax.swing.JLabel lbWaktuPerubahan;
+    private javax.swing.JTextField txt_admin;
+    private javax.swing.JTextField txt_email;
+    private javax.swing.JTextField txt_id;
+    private javax.swing.JTextField txt_jenis;
+    private javax.swing.JTextField txt_status;
+    private javax.swing.JTextField txt_total;
+    private javax.swing.JTextField txt_waktu;
+    private javax.swing.JTextField txt_waktuperubahan;
     // End of variables declaration//GEN-END:variables
 }

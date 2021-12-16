@@ -264,7 +264,7 @@ public class List_Transaksi extends javax.swing.JFrame {
             String jenisTransaksi = String.valueOf(tabelTransaksi.getValueAt(row, 2));
             
             if(jenisTransaksi.equals("Deposit") || jenisTransaksi.equals("Withdraw")){
-                Detail_Transaksi_DW dt = new Detail_Transaksi_DW();
+                Konfirmasi_WD dt = new Konfirmasi_WD();
                     dt.setData(Integer.parseInt(String.valueOf(tabelTransaksi.getValueAt(row, 0))));
                     dt.setVisible(true);
                     this.dispose();
