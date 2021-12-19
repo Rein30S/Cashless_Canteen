@@ -61,42 +61,42 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
                 kantin1MouseClicked(evt);
             }
         });
-        getContentPane().add(kantin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 170, 180));
+        getContentPane().add(kantin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 155, 183, 185));
 
         kantin2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin2MouseClicked(evt);
             }
         });
-        getContentPane().add(kantin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 170, 180));
+        getContentPane().add(kantin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 155, 183, 185));
 
         kantin3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin3MouseClicked(evt);
             }
         });
-        getContentPane().add(kantin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 170, 180));
+        getContentPane().add(kantin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 155, 183, 185));
 
         kantin4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin4MouseClicked(evt);
             }
         });
-        getContentPane().add(kantin4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, 180, 180));
+        getContentPane().add(kantin4, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 350, 183, 185));
 
         kantin5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin5MouseClicked(evt);
             }
         });
-        getContentPane().add(kantin5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 360, 180, 170));
+        getContentPane().add(kantin5, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 350, 183, 185));
 
         kantin6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin6MouseClicked(evt);
             }
         });
-        getContentPane().add(kantin6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, 170, 170));
+        getContentPane().add(kantin6, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 350, 183, 185));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Kantin.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
