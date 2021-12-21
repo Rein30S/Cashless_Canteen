@@ -8,28 +8,38 @@ package User;
 import User.user_login;
 import static User.user_login.saldo;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import koneksi.koneksi;
 /**
  *
  * @author Ajeng Niarti
  */
 public class Pilih_Menu extends javax.swing.JFrame {
     int nilai= 0;
-
+    Connection con;
+    Statement stm;
+    ResultSet rs;
+    String sql;
+    
     /**
      * Creates new form Pilih_Menu
      */
     public Pilih_Menu() {
         initComponents();
+        tampil_data();
         
         int balance = user_login.getsaldo();
         String balanceS = Integer.toString(balance);
         
         String saldo1 = Integer.toString(saldo);
         tm_saldo.setText(balanceS);
-        
-}
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +52,9 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
         btn_close = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_menu = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_pesan = new javax.swing.JTable();
         btn_hapus = new javax.swing.JLabel();
         btn_tambah = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -57,7 +69,6 @@ public class Pilih_Menu extends javax.swing.JFrame {
         btn_cancel = new javax.swing.JLabel();
         btn_makanan = new javax.swing.JLabel();
         btn_minuman = new javax.swing.JLabel();
-        tm_pesanan = new javax.swing.JLabel();
         template = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +83,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
         });
         getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 30, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_menu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -91,16 +102,52 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        tbl_menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_menuMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbl_menu);
+        if (tbl_menu.getColumnModel().getColumnCount() > 0) {
+            tbl_menu.getColumnModel().getColumn(0).setResizable(false);
+            tbl_menu.getColumnModel().getColumn(1).setResizable(false);
+            tbl_menu.getColumnModel().getColumn(2).setResizable(false);
+            tbl_menu.getColumnModel().getColumn(3).setResizable(false);
         }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 360, 250));
+
+        tbl_pesan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nama Menu", "Jumlah Pesanan", "Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tbl_pesan);
+        if (tbl_pesan.getColumnModel().getColumnCount() > 0) {
+            tbl_pesan.getColumnModel().getColumn(0).setResizable(false);
+            tbl_pesan.getColumnModel().getColumn(1).setResizable(false);
+            tbl_pesan.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 570, 100));
         getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 150, 30));
+
+        btn_tambah.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_tambahMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 160, 30));
 
         jButton2.setText("-");
@@ -121,12 +168,18 @@ public class Pilih_Menu extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(824, 229, 40, 30));
 
+        txt_total.setEditable(false);
+        txt_total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_total.setBorder(null);
-        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 160, 40));
+        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 170, 40));
 
+        txt_menu.setEditable(false);
+        txt_menu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_menu.setBorder(null);
         getContentPane().add(txt_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 160, 30));
 
+        txt_harga.setEditable(false);
+        txt_harga.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_harga.setBorder(null);
         txt_harga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +188,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
         });
         getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 160, 34));
 
+        txt_jml.setEditable(false);
         txt_jml.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_jml.setText("0");
         txt_jml.setBorder(null);
@@ -160,7 +214,6 @@ public class Pilih_Menu extends javax.swing.JFrame {
         getContentPane().add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 525, 140, 35));
         getContentPane().add(btn_makanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 90, 82));
         getContentPane().add(btn_minuman, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 90, 89));
-        getContentPane().add(tm_pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 466, 540, 110));
 
         template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Pesan.png"))); // NOI18N
         getContentPane().add(template, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 0, 900, 600));
@@ -169,6 +222,37 @@ public class Pilih_Menu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tampil_data(){
+        
+        koneksi DB = new koneksi();
+        DB.config();
+        con = DB.conn;
+        stm = DB.stm;
+        
+        DefaultTableModel table_data = new DefaultTableModel();
+        table_data.addColumn("Nama Menu");
+        table_data.addColumn("Deskripsi");
+        table_data.addColumn("Harga");
+        table_data.addColumn("Gambar");
+        tbl_menu.setModel(table_data);
+        
+        try{
+            rs = stm.executeQuery("SELECT * FROM menu");
+            while (rs.next()){
+                Object[] data = new Object[4];
+                data[0] = rs.getString("nama_menu");
+                data[1] = rs.getString("deskripsi");
+                data[2] = rs.getString("harga");
+                data[3] = rs.getString("gambar");
+                table_data.addRow(data);
+                tbl_menu.setModel(table_data);
+                }
+            rs.close();
+            }
+            catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error!");
+        }
+    }
     private void btn_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelMouseClicked
         // TODO add your handling code here:
         Menu_User back = new Menu_User();
@@ -188,25 +272,58 @@ public class Pilih_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_hargaActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
-        int nilai1 = ++nilai;
-        String nilai2 = Integer.toString(nilai1);
+        // TODO add your handling code here
+        ++nilai;
         
-        txt_jml.setText(nilai2);
+        String harga = txt_harga.getText();
+        int hargai = Integer.parseInt(harga);
+        String nilai1 = Integer.toString(nilai);
+        
+        txt_jml.setText(nilai1);
+        int total = nilai * hargai;
+        String totals = Integer.toString(total);
+        txt_total.setText(totals);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        int nilai1 = --nilai;
-        String nilai2 = Integer.toString(nilai1);
+        --nilai;
+        txt_harga.getText();
+        String nilai1 = Integer.toString(nilai);
         
-        txt_jml.setText(nilai2);
+        txt_jml.setText(nilai1);
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btn_closeMouseClicked
+
+    private void tbl_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_menuMouseClicked
+        // TODO add your handling code here:  
+        int baris = tbl_menu.rowAtPoint(evt.getPoint());
+        String nama_menu = tbl_menu.getValueAt(baris,0).toString();
+        txt_menu.setText(nama_menu);
+        String harga = tbl_menu.getValueAt(baris, 2).toString();
+        txt_harga.setText(harga);
+        nilai = 1;
+        String nilais = Integer.toString(nilai);
+        txt_jml.setText(nilais);
+        txt_total.setText(harga);
+    }//GEN-LAST:event_tbl_menuMouseClicked
+
+    private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
+        // TODO add your handling code here:
+        String menu   = txt_menu.getText();
+        String jumlah = txt_jml.getText();
+        String total  = txt_total.getText();
+
+        Object[] row = {menu, jumlah, total};
+
+        DefaultTableModel model = (DefaultTableModel) tbl_pesan.getModel();
+    
+        model.addRow(row);
+    }//GEN-LAST:event_btn_tambahMouseClicked
 
     /**
      * @param args the command line arguments
@@ -254,10 +371,11 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tbl_menu;
+    private javax.swing.JTable tbl_pesan;
     private javax.swing.JLabel template;
     private javax.swing.JLabel tm_memesan;
-    private javax.swing.JLabel tm_pesanan;
     private javax.swing.JLabel tm_saldo;
     private javax.swing.JTextField txt_harga;
     private javax.swing.JTextField txt_jml;

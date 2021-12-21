@@ -24,6 +24,8 @@ public class Menu_User extends javax.swing.JFrame {
         
         String saldo1 = Integer.toString(saldo);
         tm_saldo.setText(balanceS);
+        
+        
     }
 
     /**
