@@ -5,6 +5,8 @@
  */
 package Login;
 
+import Admin.Menu_Admin;
+import Toko.Menu_Toko;
 import User.Menu_User;
 import User.user_login;
 import java.awt.Color;
@@ -127,9 +129,13 @@ public class LoginPage extends javax.swing.JFrame {
             if(rs.next()){
                 String level = rs.getString("level");
                 if(level.equals("Admin")){
-                    JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai admin");
+                    Menu_Admin a = new Menu_Admin();
+                    a.setVisible(true);
+                    this.dispose();
                 }else if(level.equals("Toko")){
-                    JOptionPane.showMessageDialog(null, "Anda berhasil login sebagai Owner toko");
+                    Menu_Toko t = new Menu_Toko();
+                    t.setVisible(true);
+                    this.dispose();
                 }else if(level.equals("Pelanggan")){
                     user_login.setId_user(rs.getString("id_user"));
                     user_login.setsaldo(rs.getInt("saldo"));
