@@ -183,7 +183,7 @@ public class Menu_Saldo extends javax.swing.JFrame {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String currentDate = sdf.format(cal.getTime());
                     
-                    int rs = stm.executeUpdate("INSERT INTO transaksi(id_user, total_transaksi, jenis_transaksi, waktu_transaksi, status_change_time, status) VALUES('"+toko_login.getId_user()+"', '"+nominal+"', 'Withdraw', '"+currentDate+"', '"+currentDate+"', 'Pending')");
+                    int rs = stm.executeUpdate("INSERT INTO transaksi(id_user, total_transaksi, jenis_transaksi, waktu_transaksi, status_change_time, status) VALUES('"+toko_login.getId_user()+"', '"+saldo+"', 'Withdraw', '"+currentDate+"', '"+currentDate+"', 'Pending')");
                     int rs2 = stm.executeUpdate("UPDATE user SET saldo = saldo + "+saldo+" WHERE id_user = '"+toko_login.getId_user()+"'");
                     toko_login.setSaldo(toko_login.getSaldo() + saldo);
                     if(rs == 1 && rs2 == 1){
