@@ -65,7 +65,11 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
             txt_id.setText(rs.getString("id_transaksi"));
             txt_jenis.setText(rs.getString("jenis_transaksi"));
             txt_status.setText(rs.getString("status"));
-            txt_total.setText(rs.getString("total_transaksi"));
+            if(Integer.parseInt(rs.getString("total_transaksi")) < 0){
+                txt_total.setText(String.valueOf(Integer.parseInt(rs.getString("total_transaksi")) * -1));
+            }else{
+                txt_total.setText(rs.getString("total_transaksi"));
+            }
             txt_email.setText(rs.getString("username"));
             txt_waktu.setText(rs.getString("waktu_transaksi"));
             txt_waktuperubahan.setText(rs.getString("STATUS_CHANGE_TIME"));

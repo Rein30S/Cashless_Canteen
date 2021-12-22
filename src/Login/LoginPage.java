@@ -6,7 +6,9 @@
 package Login;
 
 import Admin.Menu_Admin;
+import Admin.admin_login;
 import Toko.Menu_Toko;
+import Toko.toko_login;
 import User.Menu_User;
 import User.user_login;
 import java.awt.Color;
@@ -129,10 +131,15 @@ public class LoginPage extends javax.swing.JFrame {
             if(rs.next()){
                 String level = rs.getString("level");
                 if(level.equals("Admin")){
+                    admin_login.setId_user(Integer.parseInt(rs.getString("id_user")));
+                    admin_login.setUsername(username);
                     Menu_Admin a = new Menu_Admin();
                     a.setVisible(true);
                     this.dispose();
                 }else if(level.equals("Toko")){
+                    toko_login.setId_user(Integer.parseInt(rs.getString("id_user")));
+                    toko_login.setSaldo(Integer.parseInt(rs.getString("saldo")));
+                    toko_login.setUsername(username);
                     Menu_Toko t = new Menu_Toko();
                     t.setVisible(true);
                     this.dispose();

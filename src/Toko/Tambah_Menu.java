@@ -203,16 +203,17 @@ public class Tambah_Menu extends javax.swing.JFrame {
     private void btn_ubahgambarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ubahgambarMouseClicked
         // TODO add your handling code here:
         JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        asalFile = f.getAbsolutePath();
-        try{
-            BufferedImage img = ImageIO.read(new File(asalFile));
-            Image resizedImage = img.getScaledInstance(lbl_gambar.getWidth(), lbl_gambar.getHeight(), Image.SCALE_SMOOTH);
-            ImageIcon icon = new ImageIcon(resizedImage);
-            lbl_gambar.setIcon(icon);
-        }catch(IOException e){
-            JOptionPane.showMessageDialog(null, e);
+        if(chooser.showOpenDialog(null) != JFileChooser.CANCEL_OPTION){
+            File f = chooser.getSelectedFile();
+            asalFile = f.getAbsolutePath();
+            try{
+                BufferedImage img = ImageIO.read(new File(asalFile));
+                Image resizedImage = img.getScaledInstance(lbl_gambar.getWidth(), lbl_gambar.getHeight(), Image.SCALE_SMOOTH);
+                ImageIcon icon = new ImageIcon(resizedImage);
+                lbl_gambar.setIcon(icon);   
+            }catch(IOException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }//GEN-LAST:event_btn_ubahgambarMouseClicked
 

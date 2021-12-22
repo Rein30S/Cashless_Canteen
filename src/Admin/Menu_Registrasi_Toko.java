@@ -82,7 +82,7 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
                 tfUsernameTokoActionPerformed(evt);
             }
         });
-        getContentPane().add(tfUsernameToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 490, 30));
+        getContentPane().add(tfUsernameToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 490, 30));
 
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {

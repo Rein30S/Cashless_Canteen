@@ -171,7 +171,8 @@ public class Menu_Saldo extends javax.swing.JFrame {
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
         String nominal = tfNominalTarik.getText();
-        int minSaldo = Integer.parseInt(nominal);
+        int saldo = Integer.parseInt(nominal);
+        saldo *= -1;
         if(!"".equals(nominal)){
             if(Integer.parseInt(nominal) > toko_login.getSaldo()){
                 JOptionPane.showMessageDialog(null, "Saldo yang Anda miliki tidak cukup untuk melakukan penarikan!");
@@ -183,8 +184,8 @@ public class Menu_Saldo extends javax.swing.JFrame {
                     String currentDate = sdf.format(cal.getTime());
                     
                     int rs = stm.executeUpdate("INSERT INTO transaksi(id_user, total_transaksi, jenis_transaksi, waktu_transaksi, status_change_time, status) VALUES('"+toko_login.getId_user()+"', '"+nominal+"', 'Withdraw', '"+currentDate+"', '"+currentDate+"', 'Pending')");
-                    int rs2 = stm.executeUpdate("UPDATE user SET saldo = saldo - "+nominal+" WHERE id_user = '"+toko_login.getId_user()+"'");
-                    toko_login.setSaldo(toko_login.getSaldo() - minSaldo);
+                    int rs2 = stm.executeUpdate("UPDATE user SET saldo = saldo + "+saldo+" WHERE id_user = '"+toko_login.getId_user()+"'");
+                    toko_login.setSaldo(toko_login.getSaldo() + saldo);
                     if(rs == 1 && rs2 == 1){
                         JOptionPane.showMessageDialog(null, "Penarikan saldo sedang diproses");
                         clearData();

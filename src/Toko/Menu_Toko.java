@@ -81,7 +81,7 @@ public class Menu_Toko extends javax.swing.JFrame {
 
         labelUsername.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         labelUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(labelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 92, 220, 30));
+        getContentPane().add(labelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 220, 30));
         getContentPane().add(Btn_Pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 240, 170));
 
         Btn_TarikSaldo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
