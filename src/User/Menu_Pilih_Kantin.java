@@ -14,6 +14,7 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
     /**
      * Creates new form Menu_Pilih_Kantin
      */
+    static String kantin=null;
     public Menu_Pilih_Kantin() {
         initComponents();
     }
@@ -107,6 +108,7 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     private void kantin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin1MouseClicked
         // TODO add your handling code here:
+        kantin = "1";
         Pilih_Menu kantin1 = new Pilih_Menu();
         kantin1.setVisible(true);
         this.dispose();
@@ -114,6 +116,7 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     private void kantin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin2MouseClicked
         // TODO add your handling code here:
+        kantin = "2";
         Pilih_Menu kantin2 = new Pilih_Menu();
         kantin2.setVisible(true);
         this.dispose();
@@ -121,6 +124,7 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     private void kantin3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin3MouseClicked
         // TODO add your handling code here:
+        kantin = "3";
         Pilih_Menu kantin3 = new Pilih_Menu();
         kantin3.setVisible(true);
         this.dispose();
@@ -140,6 +144,7 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     private void kantin4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin4MouseClicked
         // TODO add your handling code here:
+        kantin = "4";
         Pilih_Menu kantin4 = new Pilih_Menu();
         kantin4.setVisible(true);
         this.dispose();
@@ -147,6 +152,7 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     private void kantin5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin5MouseClicked
         // TODO add your handling code here:
+        kantin = "5";
         Pilih_Menu kantin5 = new Pilih_Menu();
         kantin5.setVisible(true);
         this.dispose();
@@ -154,6 +160,7 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     private void kantin6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin6MouseClicked
         // TODO add your handling code here:
+        kantin = "6";
         Pilih_Menu kantin6 = new Pilih_Menu();
         kantin6.setVisible(true);
         this.dispose();

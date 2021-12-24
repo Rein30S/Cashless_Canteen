@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +27,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
     Statement stm;
     ResultSet rs;
     String sql;
+    Random random = new Random();
     
     /**
      * Creates new form Pilih_Menu
@@ -212,6 +214,12 @@ public class Pilih_Menu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 525, 140, 35));
+
+        btn_makanan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_makananMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_makanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 90, 82));
         getContentPane().add(btn_minuman, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 90, 89));
 
@@ -237,7 +245,8 @@ public class Pilih_Menu extends javax.swing.JFrame {
         tbl_menu.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT * FROM menu");
+            String kantin = Menu_Pilih_Kantin.kantin;
+            rs = stm.executeQuery("SELECT * FROM menu where kategori = 'makanan' and id_toko ="+kantin);
             while (rs.next()){
                 Object[] data = new Object[4];
                 data[0] = rs.getString("nama_menu");
@@ -262,6 +271,36 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
     private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
         // TODO add your handling code here:
+       try{
+            koneksi DB = new koneksi();
+            DB.config();
+            con = DB.conn;
+            stm = DB.stm;
+            int f = tbl_pesan.getRowCount();
+                for (int baris = 0; baris < f; baris++) {
+                    int id_detail_pembelian = 1;
+                    int id_pembelian = 1;
+                    String id_menu = tbl_pesan.getModel().getValueAt(baris, 1).toString();
+                    int id_menu_i = Integer.parseInt(id_menu);
+                    String jumlah = tbl_pesan.getModel().getValueAt(baris, 2).toString();
+                    int jumlah_i = Integer.parseInt(jumlah);
+                    int harga_satuan = 0;
+                    String subtotal = tbl_pesan.getModel().getValueAt(baris, 3).toString();
+                    int subtotal_i = Integer.parseInt(subtotal);
+                    sql = "INSERT INTO DETAIL_PEMBELIAN VALUES('" 
+                            + id_detail_pembelian + "','"
+                            + id_pembelian + "','"
+                            + id_menu_i + "','" 
+                            + jumlah_i + "','" 
+                            + harga_satuan + "','" 
+                            + subtotal_i +  "')"; 
+                }
+            stm.executeUpdate(sql);
+                
+        }catch (Exception e) {
+
+        }
+        
         Menu_User mu = new Menu_User();
         mu.setVisible(true);
         this.dispose();
@@ -324,6 +363,11 @@ public class Pilih_Menu extends javax.swing.JFrame {
     
         model.addRow(row);
     }//GEN-LAST:event_btn_tambahMouseClicked
+
+    private void btn_makananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_makananMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btn_makananMouseClicked
 
     /**
      * @param args the command line arguments
