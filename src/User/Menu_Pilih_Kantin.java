@@ -5,6 +5,14 @@
  */
 package User;
 
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
+
 /**
  *
  * @author ASUS
@@ -15,10 +23,71 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
      * Creates new form Menu_Pilih_Kantin
      */
     static String kantin=null;
+    Connection conn;
+    Statement stm;
+    ResultSet rs;
+    int[] isAvailable = new int[6];
     public Menu_Pilih_Kantin() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        conn = DB.conn;
+        stm = DB.stm;
+        for(int i = 0; i < 6; i++){
+            isAvailable[i] = 1;
+        }
+        cekKantin();
     }
-
+    
+    private void cekKantin(){
+        try {
+            rs = stm.executeQuery("SELECT blok.id_blok FROM toko RIGHT JOIN blok ON toko.id_blok = blok.id_blok WHERE toko.id_blok IS NULL");
+            
+            while(rs.next()){
+                if(rs.getInt("id_blok") == 1){
+                    isAvailable[0] = 0;
+                    kantin1.setText("Tidak Tersedia");
+                    kantin1.setOpaque(true);
+                    kantin1.setBackground(new Color(0,0,0,150));
+                }else if(rs.getInt("id_blok") == 2){
+                    isAvailable[1] = 0;
+                    kantin2.setText("Tidak Tersedia");
+                    kantin2.setOpaque(true);
+                    kantin2.setBackground(new Color(0,0,0,150));
+                }else if(rs.getInt("id_blok") == 3){
+                    isAvailable[2] = 0;
+                    kantin3.setText("Tidak Tersedia");
+                    kantin3.setOpaque(true);
+                    kantin3.setBackground(new Color(0,0,0,150));
+                }else if(rs.getInt("id_blok") == 4){
+                    isAvailable[3] = 0;
+                    kantin4.setText("Tidak Tersedia");
+                    kantin4.setOpaque(true);
+                    kantin4.setBackground(new Color(0,0,0,150));
+                }else if(rs.getInt("id_blok") == 5){
+                    isAvailable[4] = 0;
+                    kantin5.setText("Tidak Tersedia");
+                    kantin5.setOpaque(true);
+                    kantin5.setBackground(new Color(0,0,0,150));
+                }else if(rs.getInt("id_blok") == 6){
+                    isAvailable[5] = 0;
+                    kantin6.setText("Tidak Tersedia");
+                    kantin6.setOpaque(true);
+                    kantin6.setBackground(new Color(0,0,0,150));
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    private boolean cekAda(int index){
+        if(isAvailable[index] == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +112,7 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -50,6 +120,7 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         });
         getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(858, 12, 30, 30));
 
+        btn_back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_backMouseClicked(evt);
@@ -57,6 +128,10 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 50, 50));
 
+        kantin1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        kantin1.setForeground(new java.awt.Color(255, 255, 255));
+        kantin1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kantin1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kantin1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin1MouseClicked(evt);
@@ -64,6 +139,10 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         });
         getContentPane().add(kantin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 155, 183, 185));
 
+        kantin2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        kantin2.setForeground(new java.awt.Color(255, 255, 255));
+        kantin2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kantin2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kantin2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin2MouseClicked(evt);
@@ -71,6 +150,10 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         });
         getContentPane().add(kantin2, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 155, 183, 185));
 
+        kantin3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        kantin3.setForeground(new java.awt.Color(255, 255, 255));
+        kantin3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kantin3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kantin3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin3MouseClicked(evt);
@@ -78,6 +161,10 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         });
         getContentPane().add(kantin3, new org.netbeans.lib.awtextra.AbsoluteConstraints(555, 155, 183, 185));
 
+        kantin4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        kantin4.setForeground(new java.awt.Color(255, 255, 255));
+        kantin4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kantin4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kantin4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin4MouseClicked(evt);
@@ -85,6 +172,10 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         });
         getContentPane().add(kantin4, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 350, 183, 185));
 
+        kantin5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        kantin5.setForeground(new java.awt.Color(255, 255, 255));
+        kantin5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kantin5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kantin5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin5MouseClicked(evt);
@@ -92,6 +183,10 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
         });
         getContentPane().add(kantin5, new org.netbeans.lib.awtextra.AbsoluteConstraints(357, 350, 183, 185));
 
+        kantin6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        kantin6.setForeground(new java.awt.Color(255, 255, 255));
+        kantin6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kantin6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kantin6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kantin6MouseClicked(evt);
@@ -108,26 +203,38 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     private void kantin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin1MouseClicked
         // TODO add your handling code here:
-        kantin = "1";
-        Pilih_Menu kantin1 = new Pilih_Menu();
-        kantin1.setVisible(true);
-        this.dispose();
+        if(cekAda(0)){
+            kantin = "1";
+            Pilih_Menu kantin1 = new Pilih_Menu();
+            kantin1.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Kantin tidak tersedia!");
+        }
     }//GEN-LAST:event_kantin1MouseClicked
 
     private void kantin2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin2MouseClicked
         // TODO add your handling code here:
-        kantin = "2";
-        Pilih_Menu kantin2 = new Pilih_Menu();
-        kantin2.setVisible(true);
-        this.dispose();
+        if(cekAda(1)){
+            kantin = "2";
+            Pilih_Menu kantin2 = new Pilih_Menu();
+            kantin2.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Kantin tidak tersedia!");
+        }
     }//GEN-LAST:event_kantin2MouseClicked
 
     private void kantin3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin3MouseClicked
         // TODO add your handling code here:
-        kantin = "3";
-        Pilih_Menu kantin3 = new Pilih_Menu();
-        kantin3.setVisible(true);
-        this.dispose();
+        if(cekAda(2)){
+            kantin = "3";
+            Pilih_Menu kantin3 = new Pilih_Menu();
+            kantin3.setVisible(true);
+            this.dispose();    
+        }else{
+            JOptionPane.showMessageDialog(null, "Kantin tidak tersedia!");
+        }
     }//GEN-LAST:event_kantin3MouseClicked
 
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
@@ -144,26 +251,38 @@ public class Menu_Pilih_Kantin extends javax.swing.JFrame {
 
     private void kantin4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin4MouseClicked
         // TODO add your handling code here:
-        kantin = "4";
-        Pilih_Menu kantin4 = new Pilih_Menu();
-        kantin4.setVisible(true);
-        this.dispose();
+        if(cekAda(3)){
+            kantin = "4";
+            Pilih_Menu kantin4 = new Pilih_Menu();
+            kantin4.setVisible(true);
+            this.dispose(); 
+        }else{
+            JOptionPane.showMessageDialog(null, "Kantin tidak tersedia!");
+        }
     }//GEN-LAST:event_kantin4MouseClicked
 
     private void kantin5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin5MouseClicked
         // TODO add your handling code here:
-        kantin = "5";
-        Pilih_Menu kantin5 = new Pilih_Menu();
-        kantin5.setVisible(true);
-        this.dispose();
+        if(cekAda(4)){
+            kantin = "5";
+            Pilih_Menu kantin5 = new Pilih_Menu();
+            kantin5.setVisible(true);
+            this.dispose();            
+        }else{
+            JOptionPane.showMessageDialog(null, "Kantin tidak tersedia!");
+        }
     }//GEN-LAST:event_kantin5MouseClicked
 
     private void kantin6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kantin6MouseClicked
         // TODO add your handling code here:
-        kantin = "6";
-        Pilih_Menu kantin6 = new Pilih_Menu();
-        kantin6.setVisible(true);
-        this.dispose();
+        if(cekAda(5)){
+            kantin = "6";
+            Pilih_Menu kantin6 = new Pilih_Menu();
+            kantin6.setVisible(true);
+            this.dispose();            
+        }else{
+            JOptionPane.showMessageDialog(null, "Kantin tidak tersedia!");
+        }
     }//GEN-LAST:event_kantin6MouseClicked
 
     /**

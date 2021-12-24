@@ -7,13 +7,11 @@ package User;
 
 import User.user_login;
 import static User.user_login.saldo;
-import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Random;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
@@ -78,6 +76,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -93,7 +92,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Nama Menu", "Deskripsi", "Harga", "Gambar"
+                "ID Menu", "Nama Menu", "Deskripsi", "Harga"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -124,11 +123,11 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nama Menu", "Jumlah Pesanan", "Total"
+                "ID Menu", "Nama Menu", "Jumlah Pesanan", "Harga", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -140,11 +139,14 @@ public class Pilih_Menu extends javax.swing.JFrame {
             tbl_pesan.getColumnModel().getColumn(0).setResizable(false);
             tbl_pesan.getColumnModel().getColumn(1).setResizable(false);
             tbl_pesan.getColumnModel().getColumn(2).setResizable(false);
+            tbl_pesan.getColumnModel().getColumn(3).setResizable(false);
+            tbl_pesan.getColumnModel().getColumn(4).setResizable(false);
         }
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 570, 100));
         getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 150, 30));
 
+        btn_tambah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_tambah.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_tambahMouseClicked(evt);
@@ -208,6 +210,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
         });
         getContentPane().add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, 140, 35));
 
+        btn_cancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_cancelMouseClicked(evt);
@@ -238,21 +241,21 @@ public class Pilih_Menu extends javax.swing.JFrame {
         stm = DB.stm;
         
         DefaultTableModel table_data = new DefaultTableModel();
+        table_data.addColumn("ID Menu");
         table_data.addColumn("Nama Menu");
         table_data.addColumn("Deskripsi");
         table_data.addColumn("Harga");
-        table_data.addColumn("Gambar");
         tbl_menu.setModel(table_data);
         
         try{
             String kantin = Menu_Pilih_Kantin.kantin;
-            rs = stm.executeQuery("SELECT * FROM menu where kategori = 'makanan' and id_toko ="+kantin);
+            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN blok ON toko.id_blok = blok.id_blok where kategori = 'makanan' and toko.id_blok ="+kantin);
             while (rs.next()){
                 Object[] data = new Object[4];
-                data[0] = rs.getString("nama_menu");
-                data[1] = rs.getString("deskripsi");
-                data[2] = rs.getString("harga");
-                data[3] = rs.getString("gambar");
+                data[0] = rs.getString("id_menu");
+                data[1] = rs.getString("nama_menu");
+                data[2] = rs.getString("deskripsi");
+                data[3] = rs.getString("harga");
                 table_data.addRow(data);
                 tbl_menu.setModel(table_data);
                 }
@@ -264,7 +267,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
     }
     private void btn_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelMouseClicked
         // TODO add your handling code here:
-        Menu_User back = new Menu_User();
+        Menu_Pilih_Kantin back = new Menu_Pilih_Kantin();
         back.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_cancelMouseClicked
@@ -312,25 +315,39 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here
-        ++nilai;
+        if(tbl_menu.getSelectionModel().isSelectionEmpty() == false){
+            ++nilai;
         
-        String harga = txt_harga.getText();
-        int hargai = Integer.parseInt(harga);
-        String nilai1 = Integer.toString(nilai);
-        
-        txt_jml.setText(nilai1);
-        int total = nilai * hargai;
-        String totals = Integer.toString(total);
-        txt_total.setText(totals);
+            String harga = txt_harga.getText();
+            int hargai = Integer.parseInt(harga);
+            String nilai1 = Integer.toString(nilai);
+
+            txt_jml.setText(nilai1);
+            int total = nilai * hargai;
+            String totals = Integer.toString(total);
+            txt_total.setText(totals);
+        }else{
+            JOptionPane.showMessageDialog(null, "Anda harus memilih menu terlebih dahulu!");
+        }
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        --nilai;
-        txt_harga.getText();
-        String nilai1 = Integer.toString(nilai);
-        
-        txt_jml.setText(nilai1);
+        if(tbl_menu.getSelectionModel().isSelectionEmpty() == false){
+            if(nilai > 0){
+                --nilai;
+                String harga = txt_harga.getText();
+                int hargai = Integer.parseInt(harga);
+                String nilai1 = Integer.toString(nilai);
+
+                txt_jml.setText(nilai1);
+                int total = nilai * hargai;
+                String totals = Integer.toString(total);
+                txt_total.setText(totals);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Anda harus memilih menu terlebih dahulu!");
+        }        
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
@@ -341,9 +358,9 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private void tbl_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_menuMouseClicked
         // TODO add your handling code here:  
         int baris = tbl_menu.rowAtPoint(evt.getPoint());
-        String nama_menu = tbl_menu.getValueAt(baris,0).toString();
+        String nama_menu = tbl_menu.getValueAt(baris,1).toString();
         txt_menu.setText(nama_menu);
-        String harga = tbl_menu.getValueAt(baris, 2).toString();
+        String harga = tbl_menu.getValueAt(baris, 3).toString();
         txt_harga.setText(harga);
         nilai = 1;
         String nilais = Integer.toString(nilai);
@@ -353,15 +370,26 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
     private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
         // TODO add your handling code here:
-        String menu   = txt_menu.getText();
-        String jumlah = txt_jml.getText();
-        String total  = txt_total.getText();
+        if(tbl_menu.getSelectionModel().isSelectionEmpty() == false){
+            if(Integer.parseInt(txt_jml.getText()) > 0){
+                int baris = tbl_menu.rowAtPoint(evt.getPoint());
+                String id_menu = tbl_menu.getValueAt(baris,0).toString();
+                String menu   = txt_menu.getText();
+                String jumlah = String.valueOf(nilai);
+                String harga = txt_harga.getText();
+                String total  = txt_total.getText();
 
-        Object[] row = {menu, jumlah, total};
+                Object[] row = {id_menu, menu, jumlah, harga, total};
 
-        DefaultTableModel model = (DefaultTableModel) tbl_pesan.getModel();
-    
-        model.addRow(row);
+                DefaultTableModel model = (DefaultTableModel) tbl_pesan.getModel();
+
+                model.addRow(row);
+            }else{
+                JOptionPane.showMessageDialog(null, "Jumlah pesanan harus lebih dari 0!");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Anda harus memilih menu terlebih dahulu!");
+        }  
     }//GEN-LAST:event_btn_tambahMouseClicked
 
     private void btn_makananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_makananMouseClicked

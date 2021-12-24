@@ -28,7 +28,6 @@ public class Detail_User extends javax.swing.JFrame {
     int id;
     public Detail_User() {
         initComponents();
-        initComponents();
         koneksi DB = new koneksi();
         DB.config();
         conn = DB.conn;

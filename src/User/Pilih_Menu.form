@@ -28,6 +28,11 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JLabel" name="btn_close">
+      <Properties>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_closeMouseClicked"/>
       </Events>
@@ -53,10 +58,10 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
+                <Column editable="false" title="ID Menu" type="java.lang.Object"/>
                 <Column editable="false" title="Nama Menu" type="java.lang.Object"/>
                 <Column editable="false" title="Deskripsi" type="java.lang.Object"/>
                 <Column editable="false" title="Harga" type="java.lang.Object"/>
-                <Column editable="false" title="Gambar" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -108,14 +113,26 @@
         <Component class="javax.swing.JTable" name="tbl_pesan">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="0">
+              <Table columnCount="5" rowCount="0">
+                <Column editable="false" title="ID Menu" type="java.lang.Object"/>
                 <Column editable="false" title="Nama Menu" type="java.lang.Object"/>
                 <Column editable="false" title="Jumlah Pesanan" type="java.lang.Object"/>
+                <Column editable="false" title="Harga" type="java.lang.Object"/>
                 <Column editable="false" title="Total" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
@@ -148,6 +165,11 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="btn_tambah">
+      <Properties>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_tambahMouseClicked"/>
       </Events>
@@ -280,6 +302,11 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="btn_cancel">
+      <Properties>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_cancelMouseClicked"/>
       </Events>
