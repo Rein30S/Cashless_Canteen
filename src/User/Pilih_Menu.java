@@ -6,12 +6,22 @@
 package User;
 
 import User.user_login;
-import static User.user_login.saldo;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
@@ -25,21 +35,25 @@ public class Pilih_Menu extends javax.swing.JFrame {
     Statement stm;
     ResultSet rs;
     String sql;
-    Random random = new Random();
-    
+    Map<String, String> dataGambar = new HashMap();
+    int totalBelanja = 0;
+    String kantin = Menu_Pilih_Kantin.kantin;
     /**
      * Creates new form Pilih_Menu
      */
     public Pilih_Menu() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        con = DB.conn;
+        stm = DB.stm;
         tampil_data();
         
         int balance = user_login.getsaldo();
         String balanceS = Integer.toString(balance);
         
-        String saldo1 = Integer.toString(saldo);
         tm_saldo.setText(balanceS);
-        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,6 +69,10 @@ public class Pilih_Menu extends javax.swing.JFrame {
         tbl_menu = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_pesan = new javax.swing.JTable();
+        lbl_image = new javax.swing.JLabel();
+        clearText = new javax.swing.JLabel();
+        lbTotal = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         btn_hapus = new javax.swing.JLabel();
         btn_tambah = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -107,6 +125,9 @@ public class Pilih_Menu extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_menuMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tbl_menuMouseEntered(evt);
+            }
         });
         jScrollPane1.setViewportView(tbl_menu);
         if (tbl_menu.getColumnModel().getColumnCount() > 0) {
@@ -123,7 +144,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Menu", "Nama Menu", "Jumlah Pesanan", "Harga", "Total"
+                "ID Menu", "Nama Menu", "Harga", "Jumlah Pesanan", "Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -132,6 +153,11 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tbl_pesan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_pesanMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tbl_pesan);
@@ -144,6 +170,30 @@ public class Pilih_Menu extends javax.swing.JFrame {
         }
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 570, 100));
+        getContentPane().add(lbl_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 100, 110));
+
+        clearText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clearText.setText("Clear");
+        clearText.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        clearText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clearTextMouseClicked(evt);
+            }
+        });
+        getContentPane().add(clearText, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, 160, 30));
+
+        lbTotal.setText("jLabel2");
+        getContentPane().add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, -1, -1));
+
+        jLabel1.setText("Total:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, -1));
+
+        btn_hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_hapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_hapusMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 150, 30));
 
         btn_tambah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -203,6 +253,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
         tm_saldo.setText("0");
         getContentPane().add(tm_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 90, 80, 30));
 
+        btn_pesan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_pesan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_pesanMouseClicked(evt);
@@ -218,12 +269,23 @@ public class Pilih_Menu extends javax.swing.JFrame {
         });
         getContentPane().add(btn_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 525, 140, 35));
 
+        btn_makanan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_makanan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_makananMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_makananMouseEntered(evt);
+            }
         });
         getContentPane().add(btn_makanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 90, 82));
+
+        btn_minuman.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_minuman.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_minumanMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_minuman, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 90, 89));
 
         template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Pesan.png"))); // NOI18N
@@ -234,12 +296,6 @@ public class Pilih_Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tampil_data(){
-        
-        koneksi DB = new koneksi();
-        DB.config();
-        con = DB.conn;
-        stm = DB.stm;
-        
         DefaultTableModel table_data = new DefaultTableModel();
         table_data.addColumn("ID Menu");
         table_data.addColumn("Nama Menu");
@@ -248,8 +304,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
         tbl_menu.setModel(table_data);
         
         try{
-            String kantin = Menu_Pilih_Kantin.kantin;
-            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN blok ON toko.id_blok = blok.id_blok where kategori = 'makanan' and toko.id_blok ="+kantin);
+            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN blok ON toko.id_blok = blok.id_blok where kategori = 'Makanan' and toko.id_blok ="+kantin);
             while (rs.next()){
                 Object[] data = new Object[4];
                 data[0] = rs.getString("id_menu");
@@ -258,13 +313,68 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 data[3] = rs.getString("harga");
                 table_data.addRow(data);
                 tbl_menu.setModel(table_data);
-                }
-            rs.close();
+                dataGambar.put(rs.getString("id_menu"), rs.getString("gambar"));
             }
-            catch (SQLException e) {
+            rs.close();
+        }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error!");
         }
+        lbTotal.setText(String.valueOf(totalBelanja));
     }
+    
+    private void setGambar(int baris, int jenis){
+        try {
+            BufferedImage img;
+            if(jenis == 1){
+                img = ImageIO.read(new File(dataGambar.get((String)tbl_menu.getValueAt(baris, 0))));
+            }else{
+                img = ImageIO.read(new File(dataGambar.get((String)tbl_pesan.getValueAt(baris, 0))));
+            }
+            Image resizedImage = img.getScaledInstance(lbl_image.getWidth(), lbl_image.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon icon = new ImageIcon(resizedImage);
+            lbl_image.setText("");
+            lbl_image.setIcon(icon);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+    private void hitungTotal(){
+        int totalRow = tbl_pesan.getRowCount();
+        
+        if(totalRow > 0){
+            totalBelanja = 0;
+            for(int i = 0; i < totalRow; i++){
+                totalBelanja = totalBelanja + Integer.parseInt(String.valueOf(tbl_pesan.getValueAt(i, 4)));
+                lbTotal.setText(String.valueOf(totalBelanja));
+            }
+        }else{
+            totalBelanja = 0;
+            lbTotal.setText(String.valueOf(totalBelanja));
+        }
+    }
+    
+    private void clear(int jenis){
+        txt_menu.setText("");
+        txt_harga.setText("");
+        txt_jml.setText("");
+        nilai = 0;
+        tbl_pesan.clearSelection();
+        tbl_menu.clearSelection();
+        txt_total.setText("");
+        lbl_image.setIcon(null);
+        
+        if(jenis == 1){
+            totalBelanja = 0;
+            lbTotal.setText(String.valueOf(totalBelanja));
+            int totalBaris = tbl_pesan.getRowCount();
+            DefaultTableModel model = (DefaultTableModel) this.tbl_pesan.getModel();
+            for(int i = totalBaris - 1; i >= 0; i--){
+                model.removeRow(i);
+            }
+        }
+    }
+    
     private void btn_cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cancelMouseClicked
         // TODO add your handling code here:
         Menu_Pilih_Kantin back = new Menu_Pilih_Kantin();
@@ -275,38 +385,56 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private void btn_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pesanMouseClicked
         // TODO add your handling code here:
        try{
-            koneksi DB = new koneksi();
-            DB.config();
-            con = DB.conn;
-            stm = DB.stm;
             int f = tbl_pesan.getRowCount();
-                for (int baris = 0; baris < f; baris++) {
-                    int id_detail_pembelian = 1;
-                    int id_pembelian = 1;
-                    String id_menu = tbl_pesan.getModel().getValueAt(baris, 1).toString();
-                    int id_menu_i = Integer.parseInt(id_menu);
-                    String jumlah = tbl_pesan.getModel().getValueAt(baris, 2).toString();
-                    int jumlah_i = Integer.parseInt(jumlah);
-                    int harga_satuan = 0;
-                    String subtotal = tbl_pesan.getModel().getValueAt(baris, 3).toString();
-                    int subtotal_i = Integer.parseInt(subtotal);
-                    sql = "INSERT INTO DETAIL_PEMBELIAN VALUES('" 
-                            + id_detail_pembelian + "','"
-                            + id_pembelian + "','"
-                            + id_menu_i + "','" 
-                            + jumlah_i + "','" 
-                            + harga_satuan + "','" 
-                            + subtotal_i +  "')"; 
+            if(f > 0){
+                if(user_login.getsaldo() >= totalBelanja){
+                    
+                    //Get Waktu//
+                    Calendar cal = Calendar.getInstance();
+                    cal.getTime();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String currentDate = sdf.format(cal.getTime());
+                    //End Get Waktu//
+                    
+                    //Insert Transaksi//
+                    PreparedStatement pstm = con.prepareStatement("INSERT INTO transaksi(id_user, total_transaksi, jenis_transaksi, waktu_transaksi, status_change_time, status) VALUES('"+user_login.getId_user()+"', '"+(-totalBelanja)+"', 'Pembelian', '"+currentDate+"', '"+currentDate+"', 'Pending')", Statement.RETURN_GENERATED_KEYS);
+                    pstm.executeUpdate();
+                    rs = pstm.getGeneratedKeys();
+                    rs.next();
+                    int id_transaksi = rs.getInt(1);
+                    //End Insert Transaksi//
+                    
+                    //Insert Pembelian//
+                    rs = stm.executeQuery("SELECT toko.id_toko FROM toko INNER JOIN blok ON toko.id_blok = blok.id_blok WHERE blok.id_blok = '"+kantin+"'");
+                    rs.next();
+                    pstm = con.prepareStatement("INSERT INTO pembelian(id_transaksi, id_toko) VALUES('"+id_transaksi+"', '"+rs.getString("id_toko")+"')", Statement.RETURN_GENERATED_KEYS);
+                    pstm.executeUpdate();
+                    rs = pstm.getGeneratedKeys();
+                    rs.next();
+                    int id_pembelian = rs.getInt(1);
+                    System.out.println(id_pembelian);
+                    //End Insert Pembelian//
+                    for (int baris = 0; baris < f; baris++) {
+                        String id_menu = tbl_pesan.getModel().getValueAt(baris, 0).toString();
+                        String jumlah = tbl_pesan.getModel().getValueAt(baris, 3).toString();
+                        String harga_satuan = tbl_pesan.getModel().getValueAt(baris, 2).toString();
+                        String subtotal = tbl_pesan.getModel().getValueAt(baris, 4).toString();
+                        stm.executeUpdate("INSERT INTO detail_pembelian(id_pembelian, id_menu, jumlah, harga_satuan, subtotal) VALUES('"+id_pembelian+"', '"+id_menu+"', '"+jumlah+"', '"+harga_satuan+"', '"+subtotal+"')");
+                    }
+                    stm.executeUpdate("UPDATE user SET saldo = saldo - '"+totalBelanja+"' WHERE id_user = '"+user_login.getId_user()+"'");
+                    user_login.setsaldo(user_login.getsaldo() - totalBelanja);
+                    tm_saldo.setText(String.valueOf(user_login.getsaldo()));
+                    JOptionPane.showMessageDialog(null, "Pembelian berhasil diproses");
+                    clear(1);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Saldo Anda tidak cukup!");
                 }
-            stm.executeUpdate(sql);
-                
-        }catch (Exception e) {
-
+            }else{
+                JOptionPane.showMessageDialog(null, "Anda belum memasukkan menu!");
+            }
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-        
-        Menu_User mu = new Menu_User();
-        mu.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_btn_pesanMouseClicked
 
     private void txt_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_hargaActionPerformed
@@ -315,7 +443,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here
-        if(tbl_menu.getSelectionModel().isSelectionEmpty() == false){
+        if(tbl_menu.getSelectionModel().isSelectionEmpty() == false || tbl_pesan.getSelectionModel().isSelectionEmpty() == false){
             ++nilai;
         
             String harga = txt_harga.getText();
@@ -333,7 +461,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        if(tbl_menu.getSelectionModel().isSelectionEmpty() == false){
+        if(tbl_menu.getSelectionModel().isSelectionEmpty() == false || tbl_pesan.getSelectionModel().isSelectionEmpty() == false){
             if(nilai > 0){
                 --nilai;
                 String harga = txt_harga.getText();
@@ -357,6 +485,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
     private void tbl_menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_menuMouseClicked
         // TODO add your handling code here:  
+        tbl_pesan.clearSelection();
         int baris = tbl_menu.rowAtPoint(evt.getPoint());
         String nama_menu = tbl_menu.getValueAt(baris,1).toString();
         txt_menu.setText(nama_menu);
@@ -366,24 +495,40 @@ public class Pilih_Menu extends javax.swing.JFrame {
         String nilais = Integer.toString(nilai);
         txt_jml.setText(nilais);
         txt_total.setText(harga);
+        setGambar(baris, 1);
+        
     }//GEN-LAST:event_tbl_menuMouseClicked
 
     private void btn_tambahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tambahMouseClicked
         // TODO add your handling code here:
-        if(tbl_menu.getSelectionModel().isSelectionEmpty() == false){
+        if(tbl_menu.getSelectionModel().isSelectionEmpty() == false || tbl_pesan.getSelectionModel().isSelectionEmpty() == false){
             if(Integer.parseInt(txt_jml.getText()) > 0){
-                int baris = tbl_menu.rowAtPoint(evt.getPoint());
-                String id_menu = tbl_menu.getValueAt(baris,0).toString();
+                int baris;
+                String id_menu;
+                if(tbl_menu.getSelectionModel().isSelectionEmpty()){
+                    baris = tbl_pesan.getSelectedRow();
+                    id_menu = tbl_pesan.getValueAt(baris, 0).toString();
+                }else{
+                    baris = tbl_menu.getSelectedRow();
+                    id_menu = tbl_menu.getValueAt(baris,0).toString();
+                }
+
                 String menu   = txt_menu.getText();
-                String jumlah = String.valueOf(nilai);
                 String harga = txt_harga.getText();
+                String jumlah = String.valueOf(nilai);
                 String total  = txt_total.getText();
-
-                Object[] row = {id_menu, menu, jumlah, harga, total};
-
+                
+                for(int i = 0; i < tbl_pesan.getRowCount(); i++){
+                    if(tbl_pesan.getValueAt(i, 0).equals(id_menu)){
+                        DefaultTableModel model = (DefaultTableModel) this.tbl_pesan.getModel();
+                        model.removeRow(i);
+                    }
+                }
+                
+                Object[] row = {id_menu, menu, harga, jumlah, total};
                 DefaultTableModel model = (DefaultTableModel) tbl_pesan.getModel();
-
                 model.addRow(row);
+                hitungTotal();
             }else{
                 JOptionPane.showMessageDialog(null, "Jumlah pesanan harus lebih dari 0!");
             }
@@ -394,8 +539,98 @@ public class Pilih_Menu extends javax.swing.JFrame {
 
     private void btn_makananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_makananMouseClicked
         // TODO add your handling code here:
+        DefaultTableModel table_data = new DefaultTableModel();
+        table_data.addColumn("ID Menu");
+        table_data.addColumn("Nama Menu");
+        table_data.addColumn("Deskripsi");
+        table_data.addColumn("Harga");
+        tbl_menu.setModel(table_data);
         
+        try{
+            String kantin = Menu_Pilih_Kantin.kantin;
+            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN blok ON toko.id_blok = blok.id_blok where kategori = 'makanan' and toko.id_blok ="+kantin);
+            while (rs.next()){
+                Object[] data = new Object[4];
+                data[0] = rs.getString("id_menu");
+                data[1] = rs.getString("nama_menu");
+                data[2] = rs.getString("deskripsi");
+                data[3] = rs.getString("harga");
+                table_data.addRow(data);
+                tbl_menu.setModel(table_data);
+                dataGambar.put(rs.getString("id_menu"), rs.getString("gambar"));
+            }
+            rs.close();
+            }
+            catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_btn_makananMouseClicked
+
+    private void btn_minumanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_minumanMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel table_data = new DefaultTableModel();
+        table_data.addColumn("ID Menu");
+        table_data.addColumn("Nama Menu");
+        table_data.addColumn("Deskripsi");
+        table_data.addColumn("Harga");
+        tbl_menu.setModel(table_data);
+        
+        try{
+            String kantin = Menu_Pilih_Kantin.kantin;
+            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN blok ON toko.id_blok = blok.id_blok where kategori = 'Minuman' and toko.id_blok ="+kantin);
+            while (rs.next()){
+                Object[] data = new Object[4];
+                data[0] = rs.getString("id_menu");
+                data[1] = rs.getString("nama_menu");
+                data[2] = rs.getString("deskripsi");
+                data[3] = rs.getString("harga");
+                table_data.addRow(data);
+                tbl_menu.setModel(table_data);
+                dataGambar.put(rs.getString("id_menu"), rs.getString("gambar"));
+            }
+            rs.close();
+            }
+            catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_minumanMouseClicked
+
+    private void btn_makananMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_makananMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_makananMouseEntered
+
+    private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
+        // TODO add your handling code here:
+        if(tbl_pesan.getSelectionModel().isSelectionEmpty() == false){
+            DefaultTableModel model = (DefaultTableModel) this.tbl_pesan.getModel();
+            model.removeRow(tbl_pesan.getSelectedRow());
+            hitungTotal();
+            clear(0);
+        }else{
+            JOptionPane.showMessageDialog(null, "Anda harus memilih pesanan yang akan dihapus terlebih dahulu");
+        }
+    }//GEN-LAST:event_btn_hapusMouseClicked
+
+    private void tbl_pesanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_pesanMouseClicked
+        // TODO add your handling code here:
+        tbl_menu.clearSelection();
+        int row = tbl_pesan.getSelectedRow();
+        txt_menu.setText((String) tbl_pesan.getValueAt(row, 1));
+        txt_harga.setText((String) tbl_pesan.getValueAt(row, 2));
+        txt_jml.setText((String) tbl_pesan.getValueAt(row, 3));
+        txt_total.setText((String) tbl_pesan.getValueAt(row, 4));
+        nilai = Integer.parseInt(tbl_pesan.getValueAt(row, 3).toString());
+        setGambar(row, 2);
+    }//GEN-LAST:event_tbl_pesanMouseClicked
+
+    private void tbl_menuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_menuMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl_menuMouseEntered
+
+    private void clearTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTextMouseClicked
+        // TODO add your handling code here:
+        clear(1);
+    }//GEN-LAST:event_clearTextMouseClicked
 
     /**
      * @param args the command line arguments
@@ -440,10 +675,14 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel btn_minuman;
     private javax.swing.JLabel btn_pesan;
     private javax.swing.JLabel btn_tambah;
+    private javax.swing.JLabel clearText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lbTotal;
+    private javax.swing.JLabel lbl_image;
     private javax.swing.JTable tbl_menu;
     private javax.swing.JTable tbl_pesan;
     private javax.swing.JLabel template;
