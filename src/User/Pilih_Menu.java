@@ -72,7 +72,6 @@ public class Pilih_Menu extends javax.swing.JFrame {
         lbl_image = new javax.swing.JLabel();
         clearText = new javax.swing.JLabel();
         lbTotal = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         btn_hapus = new javax.swing.JLabel();
         btn_tambah = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -169,24 +168,20 @@ public class Pilih_Menu extends javax.swing.JFrame {
             tbl_pesan.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 470, 570, 100));
-        getContentPane().add(lbl_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 100, 110));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 430, 120));
+        getContentPane().add(lbl_image, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 150, 110));
 
         clearText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        clearText.setText("Clear");
         clearText.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         clearText.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 clearTextMouseClicked(evt);
             }
         });
-        getContentPane().add(clearText, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 420, 160, 30));
+        getContentPane().add(clearText, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 410, 150, 30));
 
-        lbTotal.setText("jLabel2");
-        getContentPane().add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, -1, -1));
-
-        jLabel1.setText("Total:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, -1));
+        lbTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, 130, 30));
 
         btn_hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_hapus.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -194,7 +189,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 btn_hapusMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 380, 150, 30));
+        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 370, 150, 30));
 
         btn_tambah.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_tambah.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -202,7 +197,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 btn_tambahMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 380, 160, 30));
+        getContentPane().add(btn_tambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 160, 30));
 
         jButton2.setText("-");
         jButton2.setBorder(null);
@@ -211,7 +206,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 jButton2MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 228, 40, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 40, 30));
 
         jButton1.setText("+");
         jButton1.setBorder(null);
@@ -220,17 +215,17 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(824, 229, 40, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 200, 40, 30));
 
         txt_total.setEditable(false);
         txt_total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_total.setBorder(null);
-        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 300, 170, 40));
+        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 270, 170, 40));
 
         txt_menu.setEditable(false);
         txt_menu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_menu.setBorder(null);
-        getContentPane().add(txt_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 160, 30));
+        getContentPane().add(txt_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 196, 160, 30));
 
         txt_harga.setEditable(false);
         txt_harga.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -240,14 +235,14 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 txt_hargaActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 160, 34));
+        getContentPane().add(txt_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 270, 160, 34));
 
         txt_jml.setEditable(false);
         txt_jml.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_jml.setText("0");
         txt_jml.setBorder(null);
-        getContentPane().add(txt_jml, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 70, 30));
-        getContentPane().add(tm_memesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 200, 360, 230));
+        getContentPane().add(txt_jml, new org.netbeans.lib.awtextra.AbsoluteConstraints(749, 196, 70, 30));
+        getContentPane().add(tm_memesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 160, 360, 270));
 
         tm_saldo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tm_saldo.setText("0");
@@ -678,7 +673,6 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel clearText;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbTotal;
