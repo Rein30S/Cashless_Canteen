@@ -163,6 +163,9 @@ public class List_Transaksi extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -273,6 +276,10 @@ public class List_Transaksi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Anda belum memilih data pada tabel!");
         }
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel4MouseEntered
 
     /**
      * @param args the command line arguments
