@@ -5,8 +5,6 @@
  */
 package User;
 
-import static User.user_login.saldo;
-
 /**
  *
  * @author ASUS
@@ -21,10 +19,11 @@ public class Menu_User extends javax.swing.JFrame {
         
         int balance = user_login.getsaldo();
         String balanceS = Integer.toString(balance);
-        
-        String saldo1 = Integer.toString(saldo);
         tm_saldo.setText(balanceS);
         
+        
+       
+        lbl_username.setText(user_login.username);
         
     }
 
@@ -38,7 +37,7 @@ public class Menu_User extends javax.swing.JFrame {
     private void initComponents() {
 
         salam = new javax.swing.JLabel();
-        username = new javax.swing.JLabel();
+        lbl_username = new javax.swing.JLabel();
         btn_pesan = new javax.swing.JLabel();
         btn_topup = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
@@ -56,10 +55,10 @@ public class Menu_User extends javax.swing.JFrame {
         salam.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(salam, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 900, 50));
 
-        username.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        username.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 900, 50));
+        lbl_username.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        lbl_username.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_username.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(lbl_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 900, 50));
 
         btn_pesan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -151,9 +150,9 @@ public class Menu_User extends javax.swing.JFrame {
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel btn_pesan;
     private javax.swing.JLabel btn_topup;
+    private javax.swing.JLabel lbl_username;
     private javax.swing.JLabel salam;
     private javax.swing.JLabel template;
     private javax.swing.JLabel tm_saldo;
-    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

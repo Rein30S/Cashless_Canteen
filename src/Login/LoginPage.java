@@ -31,6 +31,7 @@ public class LoginPage extends javax.swing.JFrame {
     Connection conn;
     Statement stm;
     ResultSet rs;
+    ResultSet rsp;
     static String Session = "";
     public static String Session(){return Session;}
     
@@ -144,6 +145,7 @@ public class LoginPage extends javax.swing.JFrame {
                     t.setVisible(true);
                     this.dispose();
                 }else if(level.equals("Pelanggan")){
+                    user_login.setusername(rs.getString("username"));
                     user_login.setId_user(rs.getString("id_user"));
                     user_login.setsaldo(rs.getInt("saldo"));
                     Session = UserText.getText();

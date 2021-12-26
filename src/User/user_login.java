@@ -14,23 +14,24 @@ public class user_login {
     public static int saldo;
     public static String username;
     public static String id_user;
+    public static String nama;
     
     public static void setsaldo(int saldo){
         user_login.saldo = saldo;
     }
-
+    
+     public static int getsaldo(){
+        return saldo;
+    }
+     
+     public static void setId_user(String id_user) {
+        user_login.id_user = id_user;
+    }
+     
     public static String getId_user() {
         return id_user;
     }
 
-    public static void setId_user(String id_user) {
-        user_login.id_user = id_user;
-    }
-    
-    public static int getsaldo(){
-        return saldo;
-    }
-    
     public static void setusername(String username){
         user_login.username = username;
     }
@@ -38,5 +39,14 @@ public class user_login {
     public static String getusername(){
         return username;
     }
+    
+    public static void setnama(String nama){
+        user_login.nama = nama;
+    } 
+     
+    public static String getnama(){
+        return nama;
+    }
+   
     
 }
