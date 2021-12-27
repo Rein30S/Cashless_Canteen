@@ -75,7 +75,7 @@
     <Component class="javax.swing.JLabel" name="labelUsername">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="2"/>
+          <Font name="Tahoma" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
       </Properties>
