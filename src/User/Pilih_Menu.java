@@ -80,7 +80,6 @@ public class Pilih_Menu extends javax.swing.JFrame {
         txt_menu = new javax.swing.JTextField();
         txt_harga = new javax.swing.JTextField();
         txt_jml = new javax.swing.JTextField();
-        tm_memesan = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
         btn_pesan = new javax.swing.JLabel();
         btn_cancel = new javax.swing.JLabel();
@@ -242,7 +241,6 @@ public class Pilih_Menu extends javax.swing.JFrame {
         txt_jml.setText("0");
         txt_jml.setBorder(null);
         getContentPane().add(txt_jml, new org.netbeans.lib.awtextra.AbsoluteConstraints(749, 196, 70, 30));
-        getContentPane().add(tm_memesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 160, 360, 270));
 
         tm_saldo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tm_saldo.setText("0");
@@ -680,7 +678,6 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private javax.swing.JTable tbl_menu;
     private javax.swing.JTable tbl_pesan;
     private javax.swing.JLabel template;
-    private javax.swing.JLabel tm_memesan;
     private javax.swing.JLabel tm_saldo;
     private javax.swing.JTextField txt_harga;
     private javax.swing.JTextField txt_jml;

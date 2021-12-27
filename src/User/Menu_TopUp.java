@@ -72,6 +72,7 @@ public class Menu_TopUp extends javax.swing.JFrame {
         username = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
         btn_back = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
         btn_tambah = new javax.swing.JLabel();
         btn_50000 = new javax.swing.JLabel();
@@ -79,7 +80,6 @@ public class Menu_TopUp extends javax.swing.JFrame {
         btn_10000 = new javax.swing.JLabel();
         btn_5000 = new javax.swing.JLabel();
         txt_total = new javax.swing.JLabel();
-        btn_hapus = new javax.swing.JButton();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,6 +121,13 @@ public class Menu_TopUp extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 100, 40));
+
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 450, 107, 40));
 
         tm_saldo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         tm_saldo.setText("0");
@@ -170,20 +177,6 @@ public class Menu_TopUp extends javax.swing.JFrame {
         txt_total.setText("0");
         getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 120, 42));
 
-        btn_hapus.setText("Hapus");
-        btn_hapus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_hapus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_hapusMouseClicked(evt);
-            }
-        });
-        btn_hapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_hapusActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btn_hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 100, 40));
-
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Top-Up Menu.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
@@ -231,15 +224,6 @@ public class Menu_TopUp extends javax.swing.JFrame {
         txt_total.setText(String.valueOf(total));
     }//GEN-LAST:event_btn_50000MouseClicked
 
-    private void btn_hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_hapusMouseClicked
-        // TODO add your handling code here:
-        resetTextTotal();
-    }//GEN-LAST:event_btn_hapusMouseClicked
-
-    private void btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapusActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_hapusActionPerformed
-
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         System.exit(0);
@@ -279,6 +263,11 @@ public class Menu_TopUp extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nominal top-up tidak boleh nol!");
         }
     }//GEN-LAST:event_btn_tambahMouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        resetTextTotal();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -323,10 +312,10 @@ public class Menu_TopUp extends javax.swing.JFrame {
     private javax.swing.JLabel btn_50000;
     private javax.swing.JLabel btn_back;
     private javax.swing.JLabel btn_close;
-    private javax.swing.JButton btn_hapus;
     private javax.swing.JLabel btn_tambah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel tm_saldo;
     private javax.swing.JLabel txt_total;
     private javax.swing.JLabel username;
