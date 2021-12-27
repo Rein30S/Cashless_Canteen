@@ -5,6 +5,8 @@
  */
 package User;
 
+import Login.LoginPage;
+
 /**
  *
  * @author ASUS
@@ -42,6 +44,7 @@ public class Menu_User extends javax.swing.JFrame {
         btn_topup = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
         template = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +87,13 @@ public class Menu_User extends javax.swing.JFrame {
         tm_saldo.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         getContentPane().add(tm_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 93, 120, 30));
 
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 150, 40));
+
         template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Page.png"))); // NOI18N
         template.setNextFocusableComponent(this);
         getContentPane().add(template, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
@@ -110,6 +120,13 @@ public class Menu_User extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btn_closeMouseClicked
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+    LoginPage logout = new LoginPage();
+    logout.setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_logoutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -151,6 +168,7 @@ public class Menu_User extends javax.swing.JFrame {
     private javax.swing.JLabel btn_pesan;
     private javax.swing.JLabel btn_topup;
     private javax.swing.JLabel lbl_username;
+    private javax.swing.JLabel logout;
     private javax.swing.JLabel salam;
     private javax.swing.JLabel template;
     private javax.swing.JLabel tm_saldo;

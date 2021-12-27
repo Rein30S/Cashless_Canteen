@@ -54,6 +54,14 @@ public class Pilih_Menu extends javax.swing.JFrame {
         
         tm_saldo.setText(balanceS);
     }
+    
+    private void clearText(){
+        txt_menu.setText("");
+        txt_jml.setText("0");
+        txt_harga.setText("");
+        txt_total.setText("");
+        lbl_image.setIcon(null);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -350,7 +358,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
     private void clear(int jenis){
         txt_menu.setText("");
         txt_harga.setText("");
-        txt_jml.setText("");
+        txt_jml.setText("0");
         nilai = 0;
         tbl_pesan.clearSelection();
         tbl_menu.clearSelection();
@@ -522,6 +530,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
                 DefaultTableModel model = (DefaultTableModel) tbl_pesan.getModel();
                 model.addRow(row);
                 hitungTotal();
+                clearText();
             }else{
                 JOptionPane.showMessageDialog(null, "Jumlah pesanan harus lebih dari 0!");
             }
@@ -599,6 +608,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
             model.removeRow(tbl_pesan.getSelectedRow());
             hitungTotal();
             clear(0);
+            
         }else{
             JOptionPane.showMessageDialog(null, "Anda harus memilih pesanan yang akan dihapus terlebih dahulu");
         }
