@@ -31,9 +31,10 @@ public class List_Transaksi extends javax.swing.JFrame {
         DB.config();
         conn = DB.conn;
         stm = DB.stm;
+        setData(5);
     }
     
-    private void buttonListener(int kode){
+    private void setData(int kode){
         String value = tfCari.getText();
         
         DefaultTableModel model = new DefaultTableModel();
@@ -47,8 +48,7 @@ public class List_Transaksi extends javax.swing.JFrame {
         
         if(kode == 1){            
             try{
-                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u "
-                        + "INNER JOIN transaksi t ON u.ID_USER = t.ID_USER LEFT JOIN pembelian p ON t.ID_TRANSAKSI = p.ID_TRANSAKSI WHERE u.USERNAME = '"+value+"' OR p.ID_TOKO = '"+value+"' ORDER BY waktu_transaksi ASC");
+                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER LEFT JOIN pembelian p ON t.ID_TRANSAKSI = p.ID_TRANSAKSI LEFT JOIN toko ON p.ID_TOKO = toko.ID_TOKO LEFT JOIN user ON toko.ID_USER = user.ID_USER WHERE u.USERNAME LIKE '"+value+"' OR toko.NAMA_TOKO LIKE '"+value+"' OR user.USERNAME LIKE '"+value+"' ORDER BY waktu_transaksi DESC");
                 while(rs.next()){
                     Object[] data = new Object[6];
                     data[0] = rs.getString("id_transaksi");
@@ -65,7 +65,7 @@ public class List_Transaksi extends javax.swing.JFrame {
             }
         }else if(kode == 2){
             try{
-                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER WHERE u.USERNAME = '"+value+"' AND t.JENIS_TRANSAKSI = 'deposit' ORDER BY waktu_transaksi ASC");
+                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER INNER JOIN pelanggan ON u.id_user = pelanggan.id_user WHERE (u.USERNAME LIKE '"+value+"' OR pelanggan.nama_pelanggan LIKE '"+value+"') AND t.JENIS_TRANSAKSI = 'Deposit' ORDER BY waktu_transaksi DSC");
                 while(rs.next()){
                     Object[] data = new Object[6];
                     data[0] = rs.getString("id_transaksi");
@@ -81,7 +81,56 @@ public class List_Transaksi extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, e);
             }            
         }else if(kode == 3){
-            
+            try{
+                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER INNER JOIN toko ON u.id_user = toko.id_user WHERE (u.USERNAME LIKE '"+value+"' OR toko.nama_toko LIKE '"+value+"') AND t.JENIS_TRANSAKSI = 'Withdraw' ORDER BY waktu_transaksi DSC");
+                while(rs.next()){
+                    Object[] data = new Object[6];
+                    data[0] = rs.getString("id_transaksi");
+                    data[1] = rs.getString("username");
+                    data[2] = rs.getString("jenis_transaksi");
+                    data[3] = rs.getString("total_transaksi");
+                    data[4] = rs.getString("waktu_transaksi");
+                    data[5] = rs.getString("status");
+                    model.addRow(data);
+                    tabelTransaksi.setModel(model);
+                }
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            } 
+        }else if(kode == 4){
+            try{
+                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER LEFT JOIN pembelian p ON t.ID_TRANSAKSI = p.ID_TRANSAKSI LEFT JOIN toko ON p.ID_TOKO = toko.ID_TOKO LEFT JOIN user ON toko.ID_USER = user.ID_USER WHERE (u.USERNAME LIKE '"+value+"' OR toko.NAMA_TOKO LIKE '"+value+"' OR user.USERNAME LIKE '"+value+"') AND t.JENIS_TRANSAKSI = 'Pembelian' ORDER BY waktu_transaksi DESC");
+                while(rs.next()){
+                    Object[] data = new Object[6];
+                    data[0] = rs.getString("id_transaksi");
+                    data[1] = rs.getString("username");
+                    data[2] = rs.getString("jenis_transaksi");
+                    data[3] = rs.getString("total_transaksi");
+                    data[4] = rs.getString("waktu_transaksi");
+                    data[5] = rs.getString("status");
+                    model.addRow(data);
+                    tabelTransaksi.setModel(model);
+                }
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }else if(kode == 5){
+            try{
+                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER LEFT JOIN pembelian p ON t.ID_TRANSAKSI = p.ID_TRANSAKSI LEFT JOIN toko ON p.ID_TOKO = toko.ID_TOKO LEFT JOIN user ON toko.ID_USER = user.ID_USER ORDER BY waktu_transaksi DESC");
+                while(rs.next()){
+                    Object[] data = new Object[6];
+                    data[0] = rs.getString("id_transaksi");
+                    data[1] = rs.getString("username");
+                    data[2] = rs.getString("jenis_transaksi");
+                    data[3] = rs.getString("total_transaksi");
+                    data[4] = rs.getString("waktu_transaksi");
+                    data[5] = rs.getString("status");
+                    model.addRow(data);
+                    tabelTransaksi.setModel(model);
+                }
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }
     
@@ -94,11 +143,11 @@ public class List_Transaksi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelTransaksi = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tfCari = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelTransaksi = new javax.swing.JTable();
         btn_setor_tunai = new javax.swing.JLabel();
         btn_penarikan = new javax.swing.JLabel();
         btn_pembelian = new javax.swing.JLabel();
@@ -108,6 +157,21 @@ public class List_Transaksi extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tabelTransaksi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tabelTransaksi);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 670, 220));
 
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,23 +197,6 @@ public class List_Transaksi extends javax.swing.JFrame {
         });
         getContentPane().add(tfCari, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 243, 570, 20));
 
-        tabelTransaksi.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID Transaksi", "Username", "Jenis Transaksi", "Total", "Waktu", "Status"
-            }
-        ));
-        tabelTransaksi.setPreferredSize(new java.awt.Dimension(450, 75));
-        tabelTransaksi.setRowHeight(20);
-        jScrollPane1.setViewportView(tabelTransaksi);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 670, 220));
-
         btn_setor_tunai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_setor_tunai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -159,9 +206,19 @@ public class List_Transaksi extends javax.swing.JFrame {
         getContentPane().add(btn_setor_tunai, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 225, 90, 90));
 
         btn_penarikan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_penarikan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_penarikanMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_penarikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 90, 90));
 
         btn_pembelian.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pembelianMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 416, 90, 90));
 
         btn_detail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -176,9 +233,6 @@ public class List_Transaksi extends javax.swing.JFrame {
         btn_cari.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_cariMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
             }
         });
         getContentPane().add(btn_cari, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 240, 84, 26));
@@ -203,12 +257,12 @@ public class List_Transaksi extends javax.swing.JFrame {
 
     private void btn_cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cariMouseClicked
         // TODO add your handling code here:
-        buttonListener(1);
+        setData(1);
     }//GEN-LAST:event_btn_cariMouseClicked
 
     private void btn_setor_tunaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_setor_tunaiMouseClicked
         // TODO add your handling code here:
-        buttonListener(2);
+        setData(2);
     }//GEN-LAST:event_btn_setor_tunaiMouseClicked
 
     private void btn_detailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_detailMouseClicked
@@ -219,9 +273,11 @@ public class List_Transaksi extends javax.swing.JFrame {
             
             if(jenisTransaksi.equals("Deposit") || jenisTransaksi.equals("Withdraw")){
                 Konfirmasi_WD dt = new Konfirmasi_WD();
-                    dt.setData(Integer.parseInt(String.valueOf(tabelTransaksi.getValueAt(row, 0))));
-                    dt.setVisible(true);
-                    this.dispose();
+                dt.setData(Integer.parseInt(String.valueOf(tabelTransaksi.getValueAt(row, 0))));
+                dt.setVisible(true);
+                this.dispose();
+            }else if(jenisTransaksi.equals("Pembelian")){
+                
             }
         }else{
             JOptionPane.showMessageDialog(null, "Anda belum memilih data pada tabel!");
@@ -235,6 +291,16 @@ public class List_Transaksi extends javax.swing.JFrame {
     private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel4MouseEntered
+
+    private void btn_penarikanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penarikanMouseClicked
+        // TODO add your handling code here:
+        setData(3);
+    }//GEN-LAST:event_btn_penarikanMouseClicked
+
+    private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
+        // TODO add your handling code here:
+        setData(4);
+    }//GEN-LAST:event_btn_pembelianMouseClicked
 
     /**
      * @param args the command line arguments
@@ -281,7 +347,7 @@ public class List_Transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel btn_setor_tunai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabelTransaksi;
     private javax.swing.JTextField tfCari;
     // End of variables declaration//GEN-END:variables
