@@ -47,7 +47,8 @@ public class List_Transaksi extends javax.swing.JFrame {
         
         if(kode == 1){            
             try{
-                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER LEFT JOIN pembelian p ON t.ID_TRANSAKSI = p.ID_TRANSAKSI WHERE u.USERNAME = '"+value+"' OR p.ID_TOKO = '"+value+"' ORDER BY waktu_transaksi ASC");
+                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u "
+                        + "INNER JOIN transaksi t ON u.ID_USER = t.ID_USER LEFT JOIN pembelian p ON t.ID_TRANSAKSI = p.ID_TRANSAKSI WHERE u.USERNAME = '"+value+"' OR p.ID_TOKO = '"+value+"' ORDER BY waktu_transaksi ASC");
                 while(rs.next()){
                     Object[] data = new Object[6];
                     data[0] = rs.getString("id_transaksi");

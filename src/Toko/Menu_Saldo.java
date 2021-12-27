@@ -5,6 +5,7 @@
  */
 package Toko;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,10 +34,12 @@ public class Menu_Saldo extends javax.swing.JFrame {
         conn = DB.conn;
         stm = DB.stm;
         setData();
+        tfNominalTarik.setBackground(new Color(0, 0, 0, 0));
     }
 
     private void setData(){
-        lbSaldo.setText(String.valueOf(toko_login.getSaldo()));
+        String saldo = String.valueOf(toko_login.getSaldo());
+        lbSaldo.setText ("Rp " + saldo);
     }
     
     private void clearData(){
@@ -54,121 +57,80 @@ public class Menu_Saldo extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         lbSaldo = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         tfNominalTarik = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        Btn_tarik = new javax.swing.JLabel();
+        btn_back = new javax.swing.JLabel();
+        btn_exit = new javax.swing.JLabel();
+        BG = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
+        jLabel3.setText("jLabel3");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Menu Saldo");
+        lbSaldo.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
+        lbSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lbSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 270, 405, 73));
 
-        jLabel2.setText("Jumlah Saldo  Rp.");
-
-        lbSaldo.setText("jLabel3");
-
-        jLabel4.setText("Jumlah Penarikan");
-
-        jLabel5.setText("Tarik");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+        tfNominalTarik.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tfNominalTarik.setBorder(null);
+        tfNominalTarik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNominalTarikActionPerformed(evt);
             }
         });
+        getContentPane().add(tfNominalTarik, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 385, 340, 20));
 
-        jLabel6.setText("Kembali");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        Btn_tarik.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Btn_tarik.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                Btn_tarikMouseClicked(evt);
             }
         });
+        getContentPane().add(Btn_tarik, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 426, 125, 40));
 
-        jLabel7.setText("Keluar");
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                btn_backMouseClicked(evt);
             }
         });
+        getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addComponent(jLabel2)
-                .addGap(43, 43, 43)
-                .addComponent(lbSaldo)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)))
-                .addGap(24, 24, 24))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(181, 181, 181)
-                .addComponent(jLabel4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(tfNominalTarik, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel5)))
-                .addContainerGap(188, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(lbSaldo))
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tfNominalTarik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(25, 25, 25))
-        );
+        btn_exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_exitMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
 
-        pack();
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Tarik Saldo.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
+
+        setSize(new java.awt.Dimension(900, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
         // TODO add your handling code here:
         Menu_Toko mt = new Menu_Toko();
         mt.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel6MouseClicked
+    }//GEN-LAST:event_btn_backMouseClicked
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void btn_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseClicked
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jLabel7MouseClicked
+    }//GEN-LAST:event_btn_exitMouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void Btn_tarikMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_tarikMouseClicked
         // TODO add your handling code here:
         String nominal = tfNominalTarik.getText();
         int saldo = Integer.parseInt(nominal);
@@ -197,7 +159,11 @@ public class Menu_Saldo extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Nominal tidak boleh kosong");
         }
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_Btn_tarikMouseClicked
+
+    private void tfNominalTarikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNominalTarikActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNominalTarikActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,12 +201,11 @@ public class Menu_Saldo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel BG;
+    private javax.swing.JLabel Btn_tarik;
+    private javax.swing.JLabel btn_back;
+    private javax.swing.JLabel btn_exit;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lbSaldo;
     private javax.swing.JTextField tfNominalTarik;

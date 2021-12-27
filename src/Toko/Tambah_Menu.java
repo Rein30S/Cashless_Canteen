@@ -80,6 +80,8 @@ public class Tambah_Menu extends javax.swing.JFrame {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -153,7 +155,7 @@ public class Tambah_Menu extends javax.swing.JFrame {
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Tambah_Menu.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        setSize(new java.awt.Dimension(916, 639));
+        setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -191,7 +193,9 @@ public class Tambah_Menu extends javax.swing.JFrame {
                 stm.executeUpdate("INSERT INTO menu VALUES(NULL, '"+idToko+"', '"+namaMenu+"', '"+deskripsi+"','"+link+"', '"+kategori+"', '"+harga+"', '"+statusTersedia+"', '0')");
                 Files.copy(Paths.get(asalFile), Paths.get(linkFile));
                 JOptionPane.showMessageDialog(null, "Menu berhasil diinput");
-                clearText();
+                Atur_Menu am = new Atur_Menu();
+                am.setVisible(true);
+                this.dispose();
             } catch (SQLException | IOException ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
