@@ -65,7 +65,7 @@ public class List_Transaksi extends javax.swing.JFrame {
             }
         }else if(kode == 2){
             try{
-                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER INNER JOIN pelanggan ON u.id_user = pelanggan.id_user WHERE (u.USERNAME LIKE '"+value+"' OR pelanggan.nama_pelanggan LIKE '"+value+"') AND t.JENIS_TRANSAKSI = 'Deposit' ORDER BY waktu_transaksi DSC");
+                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER INNER JOIN pelanggan ON u.id_user = pelanggan.id_user WHERE (u.USERNAME LIKE '"+value+"' OR pelanggan.nama_pelanggan LIKE '"+value+"') AND t.JENIS_TRANSAKSI = 'Deposit' ORDER BY waktu_transaksi DESC");
                 while(rs.next()){
                     Object[] data = new Object[6];
                     data[0] = rs.getString("id_transaksi");
@@ -82,7 +82,7 @@ public class List_Transaksi extends javax.swing.JFrame {
             }            
         }else if(kode == 3){
             try{
-                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER INNER JOIN toko ON u.id_user = toko.id_user WHERE (u.USERNAME LIKE '"+value+"' OR toko.nama_toko LIKE '"+value+"') AND t.JENIS_TRANSAKSI = 'Withdraw' ORDER BY waktu_transaksi DSC");
+                rs = stm.executeQuery("SELECT t.id_transaksi, u.username, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status FROM user u INNER JOIN transaksi t ON u.ID_USER = t.ID_USER INNER JOIN toko ON u.id_user = toko.id_user WHERE (u.USERNAME LIKE '"+value+"' OR toko.nama_toko LIKE '"+value+"') AND t.JENIS_TRANSAKSI = 'Withdraw' ORDER BY waktu_transaksi DESC");
                 while(rs.next()){
                     Object[] data = new Object[6];
                     data[0] = rs.getString("id_transaksi");
@@ -277,7 +277,10 @@ public class List_Transaksi extends javax.swing.JFrame {
                 dt.setVisible(true);
                 this.dispose();
             }else if(jenisTransaksi.equals("Pembelian")){
-                
+                Detail_Pembelian dp = new Detail_Pembelian();
+                dp.setData(Integer.parseInt(String.valueOf(tabelTransaksi.getValueAt(row, 0))));
+                dp.setVisible(true);
+                this.dispose();
             }
         }else{
             JOptionPane.showMessageDialog(null, "Anda belum memilih data pada tabel!");
