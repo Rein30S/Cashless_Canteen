@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
 
 /**
@@ -35,7 +37,6 @@ public class Detail_User extends javax.swing.JFrame {
     }
     
     public void setData(int id){
-        this.id = id;
         try{
             rs = stm.executeQuery("SELECT * FROM pelanggan INNER JOIN user ON pelanggan.id_user = user.id_user WHERE pelanggan.id_pelanggan = '"+id+"'");
             rs.next();
@@ -44,8 +45,26 @@ public class Detail_User extends javax.swing.JFrame {
             labelTanggalLahir.setText(rs.getString("tgl_lahir_pelanggan"));
             labelSaldo.setText("saldo");
             labelLevel.setText("level");
+            this.id = rs.getInt("id_user");
             
-            rs.close();
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("ID Transaksi");
+            model.addColumn("Jenis Transaksi");
+            model.addColumn("Total");
+            model.addColumn("Waktu");
+            model.addColumn("Status");
+            tbTransaksi.setModel(model);
+            rs = stm.executeQuery("SELECT * FROM transaksi WHERE id_user = '"+this.id+"' ORDER BY waktu_transaksi DESC");
+            while(rs.next()){
+                Object[] data = new Object[5];
+                data[0] = rs.getString("id_transaksi");
+                data[1] = rs.getString("jenis_transaksi");
+                data[2] = rs.getString("total_transaksi");
+                data[3] = rs.getString("waktu_transaksi");
+                data[4] = rs.getString("status");
+                model.addRow(data);
+                tbTransaksi.setModel(model);
+            }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -60,8 +79,8 @@ public class Detail_User extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbTransaksi = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         labelLevel = new javax.swing.JLabel();
         labelSaldo = new javax.swing.JLabel();
@@ -77,7 +96,7 @@ public class Detail_User extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -88,12 +107,16 @@ public class Detail_User extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(300, 65));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tbTransaksi);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 380, 310));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 380, 300));
 
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 98, 30));
 
         labelLevel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -152,6 +175,33 @@ public class Detail_User extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        try{
+            stm.executeUpdate("UPDATE user SET isdelete = 1 WHERE id_user = '"+id+"'");
+
+            rs = stm.executeQuery("SELECT * FROM transaksi INNER JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi WHERE transaksi.id_user = '"+id+"' AND jenis_transaksi = 'Pembelian' AND transaksi.status = 'Pending'");
+            ArrayList<Integer> id_pembelian = new ArrayList();
+            while(rs.next()){
+                id_pembelian.add(rs.getInt("id_pembelian"));
+            }
+            
+            for(int i = 0; i < id_pembelian.size(); i++){
+                stm.executeUpdate("DELETE FROM detail_pembelian WHERE id_pembelian = '"+id_pembelian.get(i)+"'");
+                stm.executeUpdate("DELETE FROM pembelian WHERE id_pembelian = '"+id_pembelian.get(i)+"'");
+            }
+ 
+            stm.executeUpdate("DELETE FROM transaksi WHERE id_user = '"+id+"' AND status = 'Pending'");
+            JOptionPane.showMessageDialog(null, "User berhasil dihapus");
+            ListUser lu = new ListUser();
+            lu.setVisible(true);
+            this.dispose();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+            
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -192,12 +242,12 @@ public class Detail_User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelJenisKelamin;
     private javax.swing.JLabel labelLevel;
     private javax.swing.JLabel labelNama;
     private javax.swing.JLabel labelSaldo;
     private javax.swing.JLabel labelTanggalLahir;
+    private javax.swing.JTable tbTransaksi;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
@@ -25,7 +26,7 @@ public class Detail_Toko extends javax.swing.JFrame {
     Connection conn;
     Statement stm;
     ResultSet rs;
-    int id;
+    int id, id_toko;
     public Detail_Toko() {
         initComponents();
         koneksi DB = new koneksi();
@@ -35,17 +36,17 @@ public class Detail_Toko extends javax.swing.JFrame {
     }
     
     public void setData(int id){
-        this.id = id;
         try{
             rs = stm.executeQuery("SELECT * FROM toko INNER JOIN user ON toko.id_user = user.id_user WHERE toko.id_toko ='"+id+"'");
             rs.next();
             labelNamaPemilik.setText(rs.getString("nama_pemilik_toko"));
             labelNamaToko.setText(rs.getString("nama_toko"));
             labelSaldo.setText(rs.getString("saldo"));
+            this.id = rs.getInt("id_user");
+            this.id_toko = id;
             
             int blok = Integer.parseInt(rs.getString("id_blok"));
-            
-            rs = stm.executeQuery("SELECT * FROM blok LEFT JOIN toko ON blok.ID_BLOK = toko.ID_BLOK WHERE toko.ID_BLOK IS NULL OR blok.ID_BLOK ="+blok+" ORDER BY blok.id_blok ASC");
+            rs = stm.executeQuery("SELECT * FROM blok LEFT JOIN toko ON blok.ID_BLOK = toko.ID_BLOK WHERE (toko.ID_BLOK IS NULL OR blok.ID_BLOK ="+blok+") AND blok.id_blok != 0 ORDER BY blok.id_blok ASC");
             
             cbBlok.removeAllItems();
             
@@ -61,29 +62,45 @@ public class Detail_Toko extends javax.swing.JFrame {
             }
             
             DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("ID Menu");
             model.addColumn("Nama Menu");
             model.addColumn("Kategori");
             model.addColumn("Harga");
             model.addColumn("Tersedia");
             tabelMenu.setModel(model);
             
-            try{
-                rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko WHERE toko.id_toko ='"+id+"'");
-                while(rs.next()){
-                    Object[] data = new Object[4];
-                    data[0] = rs.getString("nama_menu");
-                    data[1] = rs.getString("kategori");
-                    data[2] = rs.getString("harga");
-                    data[3] = rs.getString("tersedia");
-                    model.addRow(data);
-                    tabelMenu.setModel(model);
-                }
-                rs.close();
-            }catch(SQLException e){
-                JOptionPane.showMessageDialog(null, e);
+            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko WHERE toko.id_toko ='"+id+"'");
+            while(rs.next()){
+                Object[] data = new Object[5];
+                data[0] = rs.getString("id_menu");
+                data[1] = rs.getString("nama_menu");
+                data[2] = rs.getString("kategori");
+                data[3] = rs.getString("harga");
+                data[4] = rs.getString("tersedia");
+                model.addRow(data);
+                tabelMenu.setModel(model);
             }
+                
+            DefaultTableModel model2 = new DefaultTableModel();
+            model2.addColumn("ID Transaksi");
+            model2.addColumn("Jenis Transaksi");
+            model2.addColumn("Total");
+            model2.addColumn("Waktu");
+            model2.addColumn("Status");
+            tbTransaksi.setModel(model2);
             
-        }catch(SQLException e){
+            rs = stm.executeQuery("SELECT * FROM transaksi LEFT JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi LEFT JOIN toko ON pembelian.id_toko = toko.id_toko WHERE transaksi.id_transaksi = '"+id+"' OR toko.id_toko = '"+id+"'");
+            while(rs.next()){
+                Object[] data = new Object[5];
+                data[0] = rs.getString("id_transaksi");
+                data[1] = rs.getString("jenis_transaksi");
+                data[2] = rs.getString("total_transaksi");
+                data[3] = rs.getString("waktu_transaksi");
+                data[4] = rs.getString("status");
+                model2.addRow(data);
+                tbTransaksi.setModel(model2);
+            }
+        }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
     }
@@ -97,12 +114,13 @@ public class Detail_Toko extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelMenu = new javax.swing.JTable();
         cbBlok = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelMenu = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbTransaksi = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         labelSaldo = new javax.swing.JLabel();
@@ -113,6 +131,14 @@ public class Detail_Toko extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 100, 30));
+
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -120,6 +146,9 @@ public class Detail_Toko extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 220, 100, 30));
+
+        cbBlok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cbBlok, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 227, 130, -1));
 
         tabelMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,14 +161,11 @@ public class Detail_Toko extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tabelMenu);
+        jScrollPane3.setViewportView(tabelMenu);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 350, 190));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 350, 190));
 
-        cbBlok.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cbBlok, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 227, 130, -1));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -150,7 +176,7 @@ public class Detail_Toko extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tbTransaksi);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(482, 330, 350, 190));
 
@@ -219,6 +245,40 @@ public class Detail_Toko extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        try{
+            stm.executeUpdate("UPDATE user SET isdelete = 1 WHERE id_user = '"+id+"'");
+            stm.executeUpdate("UPDATE toko SET id_blok = 0 WHERE id_user = '"+this.id+"'");
+            rs = stm.executeQuery("SELECT * FROM pembelian INNER JOIN transaksi ON pembelian.id_transaksi = transaksi.id_transaksi WHERE pembelian.id_toko = '"+id_toko+"' AND transaksi.jenis_transaksi = 'Pembelian' AND transaksi.status = 'Pending'");
+            ArrayList<Integer> id_pembelian = new ArrayList();
+            ArrayList<Integer> id_user = new ArrayList();
+            ArrayList<Integer> saldo = new ArrayList();
+            ArrayList<Integer> id_transaksi = new ArrayList();
+            while(rs.next()){
+                id_pembelian.add(rs.getInt("id_pembelian"));
+                id_user.add(rs.getInt("id_user"));
+                saldo.add(-rs.getInt("total_transaksi"));
+                id_transaksi.add(rs.getInt("id_transaksi"));
+            }
+            
+            for(int i = 0; i < id_pembelian.size(); i ++){
+                stm.executeUpdate("DELETE FROM detail_pembelian WHERE id_pembelian = '"+id_pembelian.get(i)+"'");
+                stm.executeUpdate("UPDATE user SET saldo = saldo + '"+saldo.get(i)+"' WHERE id_user = '"+id_user.get(i)+"'");
+                stm.executeUpdate("DELETE FROM pembelian WHERE id_toko = '"+this.id_toko+"'");
+                stm.executeUpdate("DELETE FROM transaksi WHERE id_transaksi = '"+id_transaksi.get(i)+"'");
+            }
+            
+            stm.executeUpdate("DELETE FROM transaksi WHERE id_user = '"+id+"' AND status = 'Pending'");
+            JOptionPane.showMessageDialog(null, "Toko berhasil dihapus");
+            ListToko lt = new ListToko();
+            lt.setVisible(true);
+            this.dispose();
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jLabel4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -260,12 +320,13 @@ public class Detail_Toko extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel labelNamaPemilik;
     private javax.swing.JLabel labelNamaToko;
     private javax.swing.JLabel labelSaldo;
     private javax.swing.JTable tabelMenu;
+    private javax.swing.JTable tbTransaksi;
     // End of variables declaration//GEN-END:variables
 }

@@ -42,7 +42,7 @@ public class ListToko extends javax.swing.JFrame {
         model.addColumn("Nama Pemilik");
         tabelToko.setModel(model);
         try{
-            rs = stm.executeQuery("SELECT * FROM toko ORDER BY id_blok");
+            rs = stm.executeQuery("SELECT * FROM toko INNER JOIN user ON toko.id_user = user.id_user WHERE user.isdelete = 0 ORDER BY id_blok ASC");
             while(rs.next()){
                 Object[] data = new Object[4];
                 data[0] = rs.getString("id_toko");

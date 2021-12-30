@@ -74,7 +74,7 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
         });
         getContentPane().add(tfNamaPemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 500, 30));
 
-        cbNomorKantin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Toko 1", "Toko 2", "Toko 3", "Toko 4", "Toko 5", "Toko 6" }));
+        cbNomorKantin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
         getContentPane().add(cbNomorKantin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 500, 30));
 
         tfUsernameToko.addActionListener(new java.awt.event.ActionListener() {
@@ -205,7 +205,7 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
     
     private void fillCb(){
         try{
-            rs = stm.executeQuery("SELECT * FROM blok LEFT JOIN toko ON blok.ID_BLOK = toko.ID_BLOK WHERE toko.ID_BLOK IS NULL");
+            rs = stm.executeQuery("SELECT * FROM blok LEFT JOIN toko ON blok.ID_BLOK = toko.ID_BLOK WHERE toko.ID_BLOK IS NULL AND blok.id_blok != 0");
             
             cbNomorKantin.removeAllItems();
             while(rs.next()){

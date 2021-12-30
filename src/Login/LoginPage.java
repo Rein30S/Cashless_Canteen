@@ -127,7 +127,7 @@ public class LoginPage extends javax.swing.JFrame {
             String username = UserText.getText();
             String password = PassText.getText();
             
-            rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+username+"' AND password='"+password+"'");
+            rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+username+"' AND password='"+password+"' AND isdelete = 0");
             
             if(rs.next()){
                 String level = rs.getString("level");

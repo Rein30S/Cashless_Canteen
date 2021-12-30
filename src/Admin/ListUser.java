@@ -44,7 +44,7 @@ public class ListUser extends javax.swing.JFrame {
         tabelUser.setModel(model);
         
         try{
-            rs = stm.executeQuery("SELECT * FROM pelanggan INNER JOIN user ON pelanggan.id_user = user.id_user ORDER BY id_pelanggan");
+            rs = stm.executeQuery("SELECT * FROM pelanggan INNER JOIN user ON pelanggan.id_user = user.id_user AND user.isdelete = 0 ORDER BY id_pelanggan");
             while(rs.next()){
                 Object[] data = new Object[5];
                 data[0] = rs.getString("id_pelanggan");
