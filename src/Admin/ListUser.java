@@ -130,8 +130,8 @@ public class ListUser extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        Menu_Atur_Toko mat = new Menu_Atur_Toko();
-        mat.setVisible(true);
+        Menu_Admin ma = new Menu_Admin();
+        ma.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 

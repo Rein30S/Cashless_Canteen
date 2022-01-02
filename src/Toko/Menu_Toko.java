@@ -82,6 +82,12 @@ public class Menu_Toko extends javax.swing.JFrame {
         labelUsername.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         getContentPane().add(labelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 220, 30));
+
+        Btn_Pesanan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_PesananMouseClicked(evt);
+            }
+        });
         getContentPane().add(Btn_Pesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 240, 170));
 
         Btn_TarikSaldo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -140,6 +146,13 @@ public class Menu_Toko extends javax.swing.JFrame {
         ms.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Btn_TarikSaldoMouseClicked
+
+    private void Btn_PesananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_PesananMouseClicked
+        // TODO add your handling code here:
+        Konfirmasi_Pesanan_Toko kp = new Konfirmasi_Pesanan_Toko();
+        kp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_Btn_PesananMouseClicked
 
     /**
      * @param args the command line arguments
