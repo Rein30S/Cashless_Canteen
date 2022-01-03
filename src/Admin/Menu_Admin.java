@@ -6,6 +6,12 @@
 package Admin;
 
 import Login.LoginPage;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import koneksi.koneksi;
 
 /**
  *
@@ -16,10 +22,29 @@ public class Menu_Admin extends javax.swing.JFrame {
     /**
      * Creates new form Menu_Admin
      */
+    
+    Connection con;
+    Statement stm;
+    ResultSet rs;
     public Menu_Admin() {
         initComponents();
+        koneksi DB = new koneksi();
+        DB.config();
+        con = DB.conn;
+        stm = DB.stm;
+        setNama();
     }
-
+    
+    private void setNama(){
+        try{
+            rs = stm.executeQuery("SELECT * FROM user INNER JOIN admin ON user.id_user = admin.id_user WHERE user.id_user = '"+admin_login.getId_user()+"'");
+            rs.next();
+            lbUsername.setText(rs.getString("nama_admin"));
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +54,8 @@ public class Menu_Admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
+        lbUsername = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -40,6 +67,15 @@ public class Menu_Admin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText("Selamat Datang");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, -1, -1));
+
+        lbUsername.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbUsername.setText("jLabel9");
+        getContentPane().add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 97, 240, 30));
 
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -178,5 +214,7 @@ public class Menu_Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lbUsername;
     // End of variables declaration//GEN-END:variables
 }
