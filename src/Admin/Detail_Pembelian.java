@@ -81,19 +81,10 @@ public class Detail_Pembelian extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelMenu = new javax.swing.JTable();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        btn_close = new javax.swing.JLabel();
+        btn_back = new javax.swing.JLabel();
         lbIdTransaksi = new javax.swing.JLabel();
         lbEmail = new javax.swing.JLabel();
         lbTotal = new javax.swing.JLabel();
@@ -102,26 +93,12 @@ public class Detail_Pembelian extends javax.swing.JFrame {
         lbWaktuPerubahan = new javax.swing.JLabel();
         lbIdToko = new javax.swing.JLabel();
         lbNamaToko = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Detail Pembelian");
-
-        jLabel2.setText("ID Transaksi");
-
-        jLabel3.setText("Email");
-
-        jLabel4.setText("Total");
-
-        jLabel5.setText("Waktu");
-
-        jLabel6.setText("Status");
-
-        jLabel7.setText("Waktu Perubahan Status");
-
-        jLabel8.setText("Nama Toko");
-
-        jLabel9.setText("ID Toko");
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabelMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,148 +125,73 @@ public class Detail_Pembelian extends javax.swing.JFrame {
             tabelMenu.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jLabel10.setText("Keluar");
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 780, 150));
+
+        btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                btn_closeMouseClicked(evt);
             }
         });
+        getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(855, 15, 30, 30));
 
-        jLabel11.setText("Kembali");
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                btn_backMouseClicked(evt);
             }
         });
+        getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
+        lbIdTransaksi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbIdTransaksi.setText("jLabel13");
+        getContentPane().add(lbIdTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 223, 180, -1));
 
+        lbEmail.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbEmail.setText("jLabel14");
+        getContentPane().add(lbEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 265, 180, -1));
 
+        lbTotal.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbTotal.setText("jLabel15");
+        getContentPane().add(lbTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 305, 180, -1));
 
+        lbWaktu.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbWaktu.setText("jLabel16");
+        getContentPane().add(lbWaktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 347, 180, -1));
 
+        lbStatus.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbStatus.setText("jLabel18");
+        getContentPane().add(lbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(675, 223, 145, -1));
 
+        lbWaktuPerubahan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbWaktuPerubahan.setText("jLabel19");
+        getContentPane().add(lbWaktuPerubahan, new org.netbeans.lib.awtextra.AbsoluteConstraints(675, 266, 145, -1));
 
+        lbIdToko.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbIdToko.setText("jLabel20");
+        getContentPane().add(lbIdToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(675, 305, 145, -1));
 
+        lbNamaToko.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbNamaToko.setText("jLabel21");
+        getContentPane().add(lbNamaToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(675, 347, 145, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addGap(25, 25, 25))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbIdTransaksi)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel6)
-                                        .addGap(115, 115, 115))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbEmail)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel7)
-                                        .addGap(26, 26, 26)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbWaktuPerubahan)
-                                    .addComponent(lbStatus)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbTotal)
-                                    .addComponent(lbWaktu))
-                                .addGap(150, 150, 150)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel8))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbIdToko, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbNamaToko, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(94, 94, 94))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel10)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6)
-                    .addComponent(lbIdTransaksi)
-                    .addComponent(lbStatus))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7)
-                    .addComponent(lbEmail)
-                    .addComponent(lbWaktuPerubahan))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel9)
-                    .addComponent(lbTotal)
-                    .addComponent(lbIdToko))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel8)
-                    .addComponent(lbWaktu)
-                    .addComponent(lbNamaToko))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jLabel11)
-                .addContainerGap())
-        );
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Detail Pembelian.png"))); // NOI18N
+        jLabel12.setText("jLabel12");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
-        pack();
+        setSize(new java.awt.Dimension(900, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+    private void btn_closeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_closeMouseClicked
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_jLabel10MouseClicked
+    }//GEN-LAST:event_btn_closeMouseClicked
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
         // TODO add your handling code here:
         List_Transaksi lt = new List_Transaksi();
         lt.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel11MouseClicked
+    }//GEN-LAST:event_btn_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -327,17 +229,9 @@ public class Detail_Pembelian extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel btn_back;
+    private javax.swing.JLabel btn_close;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbEmail;
     private javax.swing.JLabel lbIdToko;

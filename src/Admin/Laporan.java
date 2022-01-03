@@ -60,20 +60,10 @@ public class Laporan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         cbBulan = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
         tfTahun = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -84,227 +74,122 @@ public class Laporan extends javax.swing.JFrame {
         lbTotalTopUp = new javax.swing.JLabel();
         lbTotalPenarikan = new javax.swing.JLabel();
         lbTotalSaldo = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         lbPengguna = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         lbToko = new javax.swing.JLabel();
+        BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Laporan");
-
-        jLabel2.setText("Keluar");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 11, 40, 40));
 
-        jLabel3.setText("Kembali");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 549, 40, 40));
 
-        jLabel4.setText("Cetak");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
         });
-
-        jLabel5.setText("Jumlah Penjualan");
-
-        jLabel6.setText("Jumlah Top Up");
-
-        jLabel7.setText("Jumlah Penarikan");
-
-        jLabel8.setText("Total Penjualan");
-
-        jLabel9.setText("Total Top Up");
-
-        jLabel10.setText("Total Penarikan");
-
-        jLabel12.setText("Total saldo user");
-
-        jLabel13.setText("Bulan");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 497, 105, 34));
 
         cbBulan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
+        cbBulan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbBulanActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbBulan, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 100, 30));
 
-        jLabel14.setText("Tahun");
-
+        tfTahun.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        tfTahun.setBorder(null);
         tfTahun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfTahunActionPerformed(evt);
             }
         });
+        getContentPane().add(tfTahun, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 223, 73, -1));
 
-        jLabel15.setText("Tampilkan");
         jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel15MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 497, 105, 34));
 
-        jLabel16.setText("Clear");
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel16MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(618, 497, 105, 34));
 
+        lbJmlPenjualan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lbJmlPenjualan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbJmlPenjualan.setText("jLabel17");
+        getContentPane().add(lbJmlPenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 150, 20));
 
+        lbJumlahTopUp.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lbJumlahTopUp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbJumlahTopUp.setText("jLabel18");
+        getContentPane().add(lbJumlahTopUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 150, 20));
 
+        lbJmlPenarikan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lbJmlPenarikan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbJmlPenarikan.setText("jLabel19");
+        getContentPane().add(lbJmlPenarikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 150, 20));
 
+        lbTotalPenjualan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lbTotalPenjualan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTotalPenjualan.setText("jLabel20");
+        getContentPane().add(lbTotalPenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 405, 150, 20));
 
+        lbTotalTopUp.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lbTotalTopUp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTotalTopUp.setText("jLabel21");
+        getContentPane().add(lbTotalTopUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 445, 150, 20));
 
+        lbTotalPenarikan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lbTotalPenarikan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTotalPenarikan.setText("jLabel22");
+        getContentPane().add(lbTotalPenarikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(671, 280, 150, 20));
 
+        lbTotalSaldo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lbTotalSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTotalSaldo.setText("jLabel24");
+        getContentPane().add(lbTotalSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 320, 150, 20));
 
-        jLabel11.setText("Jumlah Pengguna");
-
+        lbPengguna.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lbPengguna.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbPengguna.setText("jLabel17");
+        getContentPane().add(lbPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 360, 150, 20));
 
-        jLabel18.setText("Jumlah Toko");
-
+        lbToko.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        lbToko.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbToko.setText("jLabel19");
+        getContentPane().add(lbToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 405, 150, 20));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel16)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(55, 55, 55))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lbJumlahTopUp))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbBulan, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbJmlPenjualan))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbTotalPenjualan)
-                                    .addComponent(lbJmlPenarikan)
-                                    .addComponent(lbTotalTopUp))))
-                        .addGap(88, 88, 88)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfTahun, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbTotalPenarikan))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel18))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbToko)
-                                    .addComponent(lbPengguna)
-                                    .addComponent(lbTotalSaldo)))))
-                    .addComponent(jLabel9))
-                .addContainerGap(127, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(cbBulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(tfTahun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel10)
-                    .addComponent(lbJmlPenjualan)
-                    .addComponent(lbTotalPenarikan))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lbJumlahTopUp)
-                    .addComponent(jLabel12)
-                    .addComponent(lbTotalSaldo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(lbJmlPenarikan)
-                    .addComponent(jLabel11)
-                    .addComponent(lbPengguna))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(lbTotalPenjualan)
-                    .addComponent(jLabel18)
-                    .addComponent(lbToko))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(lbTotalTopUp))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
-                .addGap(10, 10, 10)
-                .addComponent(jLabel3)
-                .addContainerGap())
-        );
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Laporan.png"))); // NOI18N
+        getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
-        pack();
+        setSize(new java.awt.Dimension(900, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfTahunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTahunActionPerformed
@@ -483,6 +368,10 @@ public class Laporan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel4MouseClicked
 
+    private void cbBulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBulanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbBulanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -519,24 +408,13 @@ public class Laporan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BG;
     private javax.swing.JComboBox<String> cbBulan;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lbJmlPenarikan;
     private javax.swing.JLabel lbJmlPenjualan;
     private javax.swing.JLabel lbJumlahTopUp;
