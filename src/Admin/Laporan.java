@@ -331,32 +331,46 @@ public class Laporan extends javax.swing.JFrame {
             bulan1 = bulan;
             tahun1 = String.valueOf(tahun);
             int month;
-            if(bulan.equals("Januari")){
-                month = 1;
-            }else if(bulan.equals("Februari")){
-                month = 2;
-            }else if(bulan.equals("Maret")){
-                month = 3;
-            }else if(bulan.equals("April")){
-                month = 4;
-            }else if(bulan.equals("Mei")){
-                month = 5;
-            }else if(bulan.equals("Juni")){
-                month = 6;
-            }else if(bulan.equals("Juli")){
-                month = 7;
-            }else if(bulan.equals("Agustus")){
-                month = 8;
-            }else if(bulan.equals("September")){
-                month = 9;
-            }else if(bulan.equals("Oktober")){
-                month = 10;
-            }else if(bulan.equals("November")){
-                month = 11;
-            }else if(bulan.equals("Desember")){
-                month = 12;
-            }else{
-                month = 0;
+            switch (bulan) {
+                case "Januari":
+                    month = 1;
+                    break;
+                case "Februari":
+                    month = 2;
+                    break;
+                case "Maret":
+                    month = 3;
+                    break;
+                case "April":
+                    month = 4;
+                    break;
+                case "Mei":
+                    month = 5;
+                    break;
+                case "Juni":
+                    month = 6;
+                    break;
+                case "Juli":
+                    month = 7;
+                    break;
+                case "Agustus":
+                    month = 8;
+                    break;
+                case "September":
+                    month = 9;
+                    break;
+                case "Oktober":
+                    month = 10;
+                    break;
+                case "November":
+                    month = 11;
+                    break;
+                case "Desember":
+                    month = 12;
+                    break;
+                default:
+                    month = 0;
+                    break;
             }
             try{
                 if(month != 0){

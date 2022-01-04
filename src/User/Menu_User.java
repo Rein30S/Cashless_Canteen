@@ -38,6 +38,7 @@ public class Menu_User extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         salam = new javax.swing.JLabel();
         lbl_username = new javax.swing.JLabel();
         btn_pesan = new javax.swing.JLabel();
@@ -52,6 +53,15 @@ public class Menu_User extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setText("Akun");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 140, -1, -1));
+
         salam.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         salam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         salam.setText("Selamat Datang");
@@ -63,6 +73,7 @@ public class Menu_User extends javax.swing.JFrame {
         lbl_username.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(lbl_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 900, 50));
 
+        btn_pesan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_pesan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_pesanMouseClicked(evt);
@@ -70,6 +81,7 @@ public class Menu_User extends javax.swing.JFrame {
         });
         getContentPane().add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 250, 250));
 
+        btn_topup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_topup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_topupMouseClicked(evt);
@@ -77,6 +89,7 @@ public class Menu_User extends javax.swing.JFrame {
         });
         getContentPane().add(btn_topup, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 250, 250));
 
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -87,6 +100,7 @@ public class Menu_User extends javax.swing.JFrame {
         tm_saldo.setFont(new java.awt.Font("Times New Roman", 0, 36)); // NOI18N
         getContentPane().add(tm_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 93, 120, 30));
 
+        logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logoutMouseClicked(evt);
@@ -128,6 +142,13 @@ public class Menu_User extends javax.swing.JFrame {
     this.dispose();
     }//GEN-LAST:event_logoutMouseClicked
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        Pengaturan_Akun pa = new Pengaturan_Akun();
+        pa.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -167,6 +188,7 @@ public class Menu_User extends javax.swing.JFrame {
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel btn_pesan;
     private javax.swing.JLabel btn_topup;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl_username;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel salam;

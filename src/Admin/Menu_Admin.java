@@ -74,7 +74,6 @@ public class Menu_Admin extends javax.swing.JFrame {
 
         lbUsername.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lbUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lbUsername.setText("jLabel9");
         getContentPane().add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 97, 240, 30));
 
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

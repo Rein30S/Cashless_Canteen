@@ -129,7 +129,7 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
         String passwordLama = tfPasswordLama.getText();
         String passwordBaru = tfPasswordBaru.getText();
         
-        if(!"".equals(usernameBaru) && !"".equals(passwordLama) && !"".equals(passwordBaru)){
+        if(!"".equals(usernameBaru) && !"".equals(passwordLama)){
             try {
                 rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+usernameBaru+"' AND id_user !='"+toko_login.getId_user()+"'");
                 if(rs.next()){
@@ -137,7 +137,12 @@ public class Pengaturan_Akun extends javax.swing.JFrame {
                 }else{
                     rs = stm.executeQuery("SELECT * FROM user WHERE username = '"+toko_login.getUsername()+"' AND password='"+passwordLama+"'");
                     if(rs.next()){
-                        int result = stm.executeUpdate("UPDATE user SET username = '"+usernameBaru+"', password = '"+passwordBaru+"' WHERE id_user='"+toko_login.getId_user()+"'");
+                        int result = stm.executeUpdate("UPDATE user SET username = '"+usernameBaru+"' WHERE id_user='"+toko_login.getId_user()+"'");
+                        
+                        if(!"".equals(passwordBaru)){
+                            stm.executeUpdate("UPDATE user SET password = '"+passwordBaru+"' WHERE id_user='"+toko_login.getId_user()+"'");
+                        }
+                        
                         if(result == 1){
                             JOptionPane.showMessageDialog(null, "Data berhasil di-update!");
                             
