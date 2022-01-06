@@ -584,7 +584,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
         
         try{
             String kantin = Menu_Pilih_Kantin.kantin;
-            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN blok ON toko.id_blok = blok.id_blok where kategori = 'Minuman' and toko.id_blok ="+kantin);
+            rs = stm.executeQuery("SELECT * FROM menu INNER JOIN toko ON menu.id_toko = toko.id_toko INNER JOIN blok ON toko.id_blok = blok.id_blok where kategori = 'Minuman' and toko.id_blok ='"+kantin+"' and menu.isdelete = 0 and tersedia = 1");
             while (rs.next()){
                 Object[] data = new Object[4];
                 data[0] = rs.getString("id_menu");
