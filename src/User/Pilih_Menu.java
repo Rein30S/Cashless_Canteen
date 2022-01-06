@@ -232,6 +232,11 @@ public class Pilih_Menu extends javax.swing.JFrame {
         txt_menu.setEditable(false);
         txt_menu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_menu.setBorder(null);
+        txt_menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_menuActionPerformed(evt);
+            }
+        });
         getContentPane().add(txt_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 196, 160, 30));
 
         txt_harga.setEditable(false);
@@ -420,7 +425,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
                         String jumlah = tbl_pesan.getModel().getValueAt(baris, 3).toString();
                         String harga_satuan = tbl_pesan.getModel().getValueAt(baris, 2).toString();
                         String subtotal = tbl_pesan.getModel().getValueAt(baris, 4).toString();
-                        stm.executeUpdate("INSERT INTO detail_pembelian(id_pembelian, id_menu, jumlah, harga_satuan, subtotal) VALUES('"+id_pembelian+"', '"+id_menu+"', '"+jumlah+"', '"+harga_satuan+"', '"+subtotal+"')");
+                        stm.executeUpdate("INSERT INTO detail_pembelian(id_pembelian, id_menu, jumlah, harga_satuan, subtotal, status) VALUES('"+id_pembelian+"', '"+id_menu+"', '"+jumlah+"', '"+harga_satuan+"', '"+subtotal+"', 'Menunggu')");
                     }
                     stm.executeUpdate("UPDATE user SET saldo = saldo - '"+totalBelanja+"' WHERE id_user = '"+user_login.getId_user()+"'");
                     user_login.setsaldo(user_login.getsaldo() - totalBelanja);
@@ -634,6 +639,10 @@ public class Pilih_Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         clear(1);
     }//GEN-LAST:event_clearTextMouseClicked
+
+    private void txt_menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_menuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_menuActionPerformed
 
     /**
      * @param args the command line arguments

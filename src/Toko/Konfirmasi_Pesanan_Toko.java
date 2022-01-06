@@ -41,9 +41,7 @@ public class Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
         DefaultTableModel table_data = new DefaultTableModel();
         table_data.addColumn("Id Transaksi");
         table_data.addColumn("Nama User");
-        table_data.addColumn("Nama Menu");
-        table_data.addColumn("Jumlah");
-        table_data.addColumn("Total");
+        table_data.addColumn("Total Transaksi");
         table_data.addColumn("Waktu Pesan");
         tbl_transaksi.setModel(table_data);
         
@@ -118,15 +116,16 @@ public class Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
+        tbl_transaksi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tbl_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID Transaksi", "Nama User", "Nama Menu", "Jumlah", "Total", "Waktu Pesan"
+                "ID Transaksi", "Nama User", "Total Transaksi", "Waktu Transaksi"
             }
         ));
         tbl_transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,7 +135,7 @@ public class Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_transaksi);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 760, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, 770, 270));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Konfirmasi Pesanan.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
@@ -164,12 +163,23 @@ public class Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
     private void btn_prosesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_prosesMouseClicked
         // TODO add your handling code here:
         if(tbl_transaksi.getSelectionModel().isSelectionEmpty() == false){
+            try{
             int row = tbl_transaksi.getSelectedRow();
-            int id_transaksi = Integer.parseInt(String.valueOf(tbl_transaksi.getValueAt(row, 0)));
+            String id_transaksi = tbl_transaksi.getValueAt(row, 0).toString();
             String nama_user = tbl_transaksi.getValueAt(row, 1).toString();
+            PreparedStatement pstm;
+            pstm = con.prepareStatement("UPDATE transaksi set Status = 'Dilihat oleh Toko', Status_Change_Time = CURRENT_TIME"
+                    + " WHERE id_transaksi = '" + id_transaksi + "'", Statement.RETURN_GENERATED_KEYS);
+            pstm.executeUpdate();
+            rs = pstm.getGeneratedKeys();
+            rs.next();
             Detail_Konfirmasi_Pesanan_Toko d = new Detail_Konfirmasi_Pesanan_Toko();
             d.set_data(id_transaksi, nama_user);
             d.setVisible(true);
+            this.dispose();
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null,"Error!");
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Silahkan pilih pesanan terlebih dahulu!");
         }
@@ -182,7 +192,7 @@ public class Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
                 int row = tbl_transaksi.getSelectedRow();
                 int id_transaksi = Integer.parseInt(String.valueOf(tbl_transaksi.getValueAt(row, 0)));
                 PreparedStatement pstm; 
-                pstm = con.prepareStatement("UPDATE transaksi set Status = 'Ditunda oleh Toko' "
+                pstm = con.prepareStatement("UPDATE transaksi set Status = 'Ditunda oleh Toko', Status_Change_Time = CURRENT_TIME "
                         + "WHERE id_transaksi = '" + id_transaksi + "'", Statement.RETURN_GENERATED_KEYS);
                 pstm.executeUpdate();
                 rs = pstm.getGeneratedKeys();

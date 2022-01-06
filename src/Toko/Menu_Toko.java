@@ -97,6 +97,12 @@ public class Menu_Toko extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Btn_TarikSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 240, 170));
+
+        Btn_RiwayatPenjualan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Btn_RiwayatPenjualanMouseClicked(evt);
+            }
+        });
         getContentPane().add(Btn_RiwayatPenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 240, 170));
 
         Btn_UpdateMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -153,6 +159,13 @@ public class Menu_Toko extends javax.swing.JFrame {
         kp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Btn_PesananMouseClicked
+
+    private void Btn_RiwayatPenjualanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Btn_RiwayatPenjualanMouseClicked
+        // TODO add your handling code here:
+        Riwayat_Pesanan_Toko rp = new Riwayat_Pesanan_Toko();
+        rp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_Btn_RiwayatPenjualanMouseClicked
 
     /**
      * @param args the command line arguments
