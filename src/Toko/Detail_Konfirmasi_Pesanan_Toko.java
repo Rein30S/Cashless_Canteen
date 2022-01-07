@@ -7,7 +7,6 @@ package Toko;
 
 import java.awt.Color;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +27,7 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
     Statement stm;
     ResultSet rs;
     String sql;
-    
+    int id_user;
     public Detail_Konfirmasi_Pesanan_Toko() {
         initComponents();
         koneksi DB = new koneksi();
@@ -46,43 +45,39 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
 
     public void set_data(String id, String nama){
         DefaultTableModel table_data = new DefaultTableModel();
-        table_data.addColumn("Id Transaksi");
-        table_data.addColumn("Id Pembelian");
-        table_data.addColumn("Nama Pemesan");
+        table_data.addColumn("ID Menu");
         table_data.addColumn("Nama Menu");
+        table_data.addColumn("Harga");
         table_data.addColumn("Jumlah");
         table_data.addColumn("Total");
-        table_data.addColumn("Waktu Pesan");
         tbl_transaksi.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT t.id_transaksi, dp.id_detail_pembelian, pl.nama_pelanggan, m.nama_menu, dp.jumlah, dp.subtotal, t.waktu_transaksi"
-                    + " FROM pembelian p"
-                    + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
-                    + " JOIN detail_pembelian dp ON dp.id_pembelian = p.id_pembelian"
-                    + " JOIN menu m ON m.id_menu = dp.id_menu"
-                    + " JOIN user u ON u.id_user = t.id_user"
-                    + " JOIN pelanggan pl ON pl.id_user = u.id_user "
-                    + " WHERE p.id_toko = (SELECT id_toko FROM toko WHERE id_user = '" + toko_login.id_user + "')"
-                    + " AND t.id_user = (SELECT id_user FROM pelanggan WHERE nama_pelanggan = '" + nama + "')"
-                    + " AND t.id_transaksi = '" + id + "'"
-                    + " AND dp.status = 'Menunggu'");
+            rs = stm.executeQuery("SELECT * FROM transaksi INNER JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi INNER JOIN detail_pembelian ON pembelian.id_pembelian = detail_pembelian.id_pembelian INNER JOIN menu ON detail_pembelian.id_menu = menu.id_menu WHERE transaksi.id_transaksi = '"+id+"'");
             while (rs.next()){
                 Object[] data = new Object[7];
-                data[0] = rs.getString("id_transaksi");
-                data[1] = rs.getString("id_detail_pembelian");
-                data[2] = rs.getString("nama_pelanggan");
-                data[3] = rs.getString("nama_menu");
+                data[0] = rs.getString("id_menu");
+                data[1] = rs.getString("nama_menu");
+                data[3] = rs.getString("harga_satuan");
                 data[4] = rs.getString("jumlah");
                 data[5] = rs.getString("subtotal");
-                data[6] = rs.getString("waktu_Transaksi");
                 table_data.addRow(data);
                 tbl_transaksi.setModel(table_data);
             }
+            rs = stm.executeQuery("SELECT * FROM transaksi INNER JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi WHERE transaksi.id_transaksi = '"+id+"'");
+            rs.next();
+            txt_id_transaksi.setText(rs.getString("id_transaksi"));
+            txt_id_pembelian.setText(rs.getString("id_pembelian"));
+            txt_nama_user.setText(nama);
+            txt_total.setText(String.valueOf(-rs.getInt("total_transaksi")));
+            txt_waktu_pesan.setText(rs.getString("waktu_transaksi"));
+            this.id_user = rs.getInt("id_user");
+            
             rs.close();
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        
     }
     
     private void bersih(){
@@ -93,6 +88,12 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
         txt_jumlah.setText("");
         txt_total.setText("");
         txt_waktu_pesan.setText("");
+    }
+    
+    private void kembali(){                        
+        Menu_Toko t = new Menu_Toko();
+        t.setVisible(true);
+        this.dispose();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -212,18 +213,21 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_backMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_backMouseEntered(evt);
+            }
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
         tbl_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID Transaksi", " ID Detail Pembelian", "Nama User", "Nama Menu", "Jumlah", "Total", "Waktu Pesan"
+                "ID Menu", "Nama Menu", "Harga", "Jumlah", "Total"
             }
         ));
         tbl_transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -254,28 +258,11 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
 
     private void tbl_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_transaksiMouseClicked
         // TODO add your handling code here:
-        int baris = tbl_transaksi.rowAtPoint(evt.getPoint());
-        String id_transaksi = tbl_transaksi.getValueAt(baris,0).toString();
-        txt_id_transaksi.setText(id_transaksi);
-        String id_detail_pembelian = tbl_transaksi.getValueAt(baris, 1).toString();
-        txt_id_pembelian.setText(id_detail_pembelian);
-        String nama_user = tbl_transaksi.getValueAt(baris, 2).toString();
-        txt_nama_user.setText(nama_user);
-        String nama_menu = tbl_transaksi.getValueAt(baris, 3).toString();
-        txt_nama_menu.setText(nama_menu);
-        String jumlah = tbl_transaksi.getValueAt(baris, 4).toString();
-        txt_jumlah.setText(jumlah);
-        String total = tbl_transaksi.getValueAt(baris, 5).toString();
-        txt_total.setText(total);
-        String waktu_pesan = tbl_transaksi.getValueAt(baris, 6).toString();
-        txt_waktu_pesan.setText(waktu_pesan);
     }//GEN-LAST:event_tbl_transaksiMouseClicked
 
     private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
         // TODO add your handling code here:
-        Menu_Toko t = new Menu_Toko();
-        t.setVisible(true);
-        this.dispose();
+        kembali();
     }//GEN-LAST:event_btn_backMouseClicked
 
     private void txt_id_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_transaksiActionPerformed
@@ -288,52 +275,32 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
 
     private void btn_terimaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_terimaMouseClicked
         // TODO add your handling code here:
-        String id = txt_id_transaksi.getText();
-        String id_dp = txt_id_pembelian.getText();
-        String nama = txt_nama_user.getText();
-        String menu = txt_nama_menu.getText();
-        String jumlah = txt_jumlah.getText();
-        String total = txt_total.getText();
-        String waktu = txt_waktu_pesan.getText();
-        
-         if(!"".equals(id) && !"".equals(id_dp) && !"".equals(nama) && !"".equals(menu) && !"".equals(jumlah) && !"".equals(total) && !"".equals(waktu)){
-             try{
-                 stm.executeUpdate("UPDATE detail_pembelian set status = 'Diterima'"
-                         + "WHERE id_detail_pembelian = '" + id_dp + "'");
-                 JOptionPane.showMessageDialog(null, "Pesanan Diterima!");
-                 bersih();
-                 set_data(id, nama);
-             }catch(SQLException e){
-                 JOptionPane.showMessageDialog(null, "ERROR!");
-             }
-         }
+        int confirmed = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION);
+        if(confirmed == JOptionPane.YES_OPTION){
+            try{
+                stm.executeUpdate("UPDATE transaksi SET status = 'Berhasil' WHERE id_transaksi = '"+txt_id_transaksi.getText()+"'");
+                stm.executeUpdate("UPDATE user SET saldo = saldo + '"+Integer.parseInt(txt_total.getText())+"' WHERE id_user = '"+toko_login.getId_user()+"'");
+                toko_login.setSaldo(toko_login.getSaldo()+Integer.parseInt(txt_total.getText()));
+                JOptionPane.showMessageDialog(null, "Transaksi berhasil disetujui");
+                kembali();
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
     }//GEN-LAST:event_btn_terimaMouseClicked
 
     private void btn_tolakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tolakMouseClicked
         // TODO add your handling code here:
-        String id = txt_id_transaksi.getText();
-        String id_dp = txt_id_pembelian.getText();
-        String nama = txt_nama_user.getText();
-        String menu = txt_nama_menu.getText();
-        String jumlah = txt_jumlah.getText();
-        String total = txt_total.getText();
-        String waktu = txt_waktu_pesan.getText();
-        if(!"".equals(id) && !"".equals(id_dp) && !"".equals(nama) && !"".equals(menu) && !"".equals(jumlah) && !"".equals(total) && !"".equals(waktu)){
-            try{ 
-                stm.executeUpdate("UPDATE detail_pembelian set status = 'Ditolak' "
-                        + "WHERE id_detail_pembelian = '"+ id_dp + "'");
-                stm.executeUpdate("UPDATE transaksi set total_transaksi = (SELECT total_transaksi FROM transaksi WHERE id_transaksi = '" + id + "') + '" + total + "'"
-                        + "WHERE id_transaksi = '"+ id + "'");
-                stm.executeUpdate("UPDATE user SET saldo = (SELECT saldo FROM user WHERE id_user = (SELECT id_user FROM pelanggan WHERE nama_pelanggan = '"+ nama +"')) + '" + total + "'"
-                        + "WHERE id_user = (SELECT id_user FROM pelanggan WHERE nama_pelanggan = '" + nama + "')");
-                        JOptionPane.showMessageDialog(null, "Pesanan ditolak!");
-                        bersih();
-                        set_data(id,nama);
-            }catch (SQLException e) {
+        int confirmed = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION);
+        if(confirmed == JOptionPane.YES_OPTION){
+            try{
+                stm.executeUpdate("UPDATE transaksi SET status = 'Ditolak' WHERE id_transaksi = '"+txt_id_transaksi.getText()+"'");
+                stm.executeUpdate("UPDATE user SET saldo = saldo + '"+Integer.parseInt(txt_total.getText())+"' WHERE id_user = '"+this.id_user+"'");
+                JOptionPane.showMessageDialog(null, "Transaksi berhasil ditolak");
+                kembali();
+            }catch(SQLException e){
                 JOptionPane.showMessageDialog(null, e);
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Silahkan pilih menu terlebih dahulu!");
         }
     }//GEN-LAST:event_btn_tolakMouseClicked
 
@@ -344,6 +311,10 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
     private void txt_id_pembelianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_pembelianActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_id_pembelianActionPerformed
+
+    private void btn_backMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_backMouseEntered
 
     /**
      * @param args the command line arguments

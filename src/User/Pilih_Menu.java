@@ -425,7 +425,7 @@ public class Pilih_Menu extends javax.swing.JFrame {
                         String jumlah = tbl_pesan.getModel().getValueAt(baris, 3).toString();
                         String harga_satuan = tbl_pesan.getModel().getValueAt(baris, 2).toString();
                         String subtotal = tbl_pesan.getModel().getValueAt(baris, 4).toString();
-                        stm.executeUpdate("INSERT INTO detail_pembelian(id_pembelian, id_menu, jumlah, harga_satuan, subtotal, status) VALUES('"+id_pembelian+"', '"+id_menu+"', '"+jumlah+"', '"+harga_satuan+"', '"+subtotal+"', 'Menunggu')");
+                        stm.executeUpdate("INSERT INTO detail_pembelian(id_pembelian, id_menu, jumlah, harga_satuan, subtotal) VALUES('"+id_pembelian+"', '"+id_menu+"', '"+jumlah+"', '"+harga_satuan+"', '"+subtotal+"')");
                     }
                     stm.executeUpdate("UPDATE user SET saldo = saldo - '"+totalBelanja+"' WHERE id_user = '"+user_login.getId_user()+"'");
                     user_login.setsaldo(user_login.getsaldo() - totalBelanja);

@@ -51,12 +51,12 @@ public class Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
                     + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi "
                     + " JOIN user u ON u.id_user = t.id_user"
                     + " JOIN pelanggan pl ON pl.id_user = u.id_user"
-                    + " WHERE p.id_toko = (SELECT id_toko FROM toko WHERE id_user = '" +toko_login.id_user+ "')");
+                    + " WHERE p.id_toko = (SELECT id_toko FROM toko WHERE id_user = '" +toko_login.id_user+ "' AND t.status = 'Pending' ORDER BY waktu_transaksi DESC)");
             while (rs.next()){
                 Object[] data = new Object[4];
                 data[0] = rs.getString("id_transaksi");
                 data[1] = rs.getString("nama_pelanggan");
-                data[2] = rs.getString("total_transaksi");
+                data[2] = String.valueOf(-rs.getInt("total_transaksi"));
                 data[3] = rs.getString("Waktu_Transaksi");
                 table_data.addRow(data);
                 tbl_transaksi.setModel(table_data);
@@ -163,23 +163,13 @@ public class Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
     private void btn_prosesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_prosesMouseClicked
         // TODO add your handling code here:
         if(tbl_transaksi.getSelectionModel().isSelectionEmpty() == false){
-            try{
             int row = tbl_transaksi.getSelectedRow();
             String id_transaksi = tbl_transaksi.getValueAt(row, 0).toString();
             String nama_user = tbl_transaksi.getValueAt(row, 1).toString();
-            PreparedStatement pstm;
-            pstm = con.prepareStatement("UPDATE transaksi set Status = 'Dilihat oleh Toko', Status_Change_Time = CURRENT_TIME"
-                    + " WHERE id_transaksi = '" + id_transaksi + "'", Statement.RETURN_GENERATED_KEYS);
-            pstm.executeUpdate();
-            rs = pstm.getGeneratedKeys();
-            rs.next();
             Detail_Konfirmasi_Pesanan_Toko d = new Detail_Konfirmasi_Pesanan_Toko();
             d.set_data(id_transaksi, nama_user);
             d.setVisible(true);
             this.dispose();
-            }catch (SQLException e){
-                JOptionPane.showMessageDialog(null,"Error!");
-            }
         }else{
             JOptionPane.showMessageDialog(null, "Silahkan pilih pesanan terlebih dahulu!");
         }
