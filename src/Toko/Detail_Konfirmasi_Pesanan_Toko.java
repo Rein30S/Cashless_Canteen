@@ -80,16 +80,6 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
         
     }
     
-    private void bersih(){
-        txt_id_transaksi.setText("");
-        txt_id_pembelian.setText("");
-        txt_nama_user.setText("");
-        txt_nama_menu.setText("");
-        txt_jumlah.setText("");
-        txt_total.setText("");
-        txt_waktu_pesan.setText("");
-    }
-    
     private void kembali(){                        
         Menu_Toko t = new Menu_Toko();
         t.setVisible(true);
