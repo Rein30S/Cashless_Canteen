@@ -156,6 +156,8 @@ public class List_Transaksi extends javax.swing.JFrame {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabelTransaksi.setModel(new javax.swing.table.DefaultTableModel(
@@ -240,7 +242,8 @@ public class List_Transaksi extends javax.swing.JFrame {
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Daftar Transaksi.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
-        setBounds(0, 0, 916, 639);
+        setSize(new java.awt.Dimension(900, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

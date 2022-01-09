@@ -114,8 +114,6 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -225,7 +223,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Konfirmasi Penarikan.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
-        setSize(new java.awt.Dimension(900, 600));
+        setSize(new java.awt.Dimension(916, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
