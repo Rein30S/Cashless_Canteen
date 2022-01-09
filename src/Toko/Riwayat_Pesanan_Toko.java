@@ -269,31 +269,25 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel table_data = new DefaultTableModel();
         table_data.addColumn("Id Transaksi");
-        table_data.addColumn("Nama User");
         table_data.addColumn("Total Penarikan");
         table_data.addColumn("Tanggal Penarikan");
         table_data.addColumn("Status");
         tbl_pesanan.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.total_transaksi, t.waktu_transaksi, t.status"
-                    + " FROM detail_pembelian dp"
-                    + " JOIN menu m ON m.id_menu = dp.id_menu"
-                    + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
-                    + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
+            rs = stm.executeQuery("SELECT t.id_transaksi, t.total_transaksi, t.waktu_transaksi, t.status" 
+                    + " FROM transaksi t" 
                     + " JOIN user u ON u.id_user = t.id_user"
-                    + " JOIN pelanggan pl ON pl.id_user = t.id_user"
-                    + " WHERE p.id_toko = (SELECT id_toko FROM toko WHERE id_user = '" + toko_login.id_user + "')"
-                    + " AND t.jenis_transaksi = 'Penarikan'"
+                    + " WHERE t.id_user = '" + toko_login.id_user + "'"
+                    + " AND t.jenis_transaksi = 'withdraw'"
                     + " ORDER BY t.waktu_transaksi DESC");
             
             while(rs.next()){
                 Object[] data = new Object[5];
                 data[0] = rs.getString("id_transaksi");
-                data[1] = rs.getString("nama_toko");
-                data[2] = rs.getString("total_transaksi");
-                data[3] = rs.getString("waktu_transaksi");
-                data[4] = rs.getString("status");
+                data[1] = rs.getString("total_transaksi");
+                data[2] = rs.getString("waktu_transaksi");
+                data[3] = rs.getString("status");
                 table_data.addRow(data);
                 tbl_pesanan.setModel(table_data);
             }
