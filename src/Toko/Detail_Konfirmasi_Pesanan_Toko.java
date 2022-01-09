@@ -40,12 +40,11 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
         txt_nama_menu.setBackground(new Color(0, 0, 0, 0));
         txt_jumlah.setBackground(new Color(0, 0, 0, 0));
         txt_total.setBackground(new Color(0, 0, 0, 0));
-        txt_waktu_pesan.setBackground(new Color(0, 0, 0, 0));
     }
 
     public void set_data(String id, String nama){
         DefaultTableModel table_data = new DefaultTableModel();
-        table_data.addColumn("ID Menu");
+        table_data.addColumn("Id pembelian");
         table_data.addColumn("Nama Menu");
         table_data.addColumn("Harga");
         table_data.addColumn("Jumlah");
@@ -55,29 +54,32 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
         try{
             rs = stm.executeQuery("SELECT * FROM transaksi INNER JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi INNER JOIN detail_pembelian ON pembelian.id_pembelian = detail_pembelian.id_pembelian INNER JOIN menu ON detail_pembelian.id_menu = menu.id_menu WHERE transaksi.id_transaksi = '"+id+"'");
             while (rs.next()){
-                Object[] data = new Object[7];
-                data[0] = rs.getString("id_menu");
+                Object[] data = new Object[5];
+                data[0] = rs.getString("id_pembelian");
                 data[1] = rs.getString("nama_menu");
-                data[3] = rs.getString("harga_satuan");
-                data[4] = rs.getString("jumlah");
-                data[5] = rs.getString("subtotal");
+                data[2] = rs.getString("harga_satuan");
+                data[3] = rs.getString("jumlah");
+                data[4] = rs.getString("subtotal");
                 table_data.addRow(data);
                 tbl_transaksi.setModel(table_data);
             }
-            rs = stm.executeQuery("SELECT * FROM transaksi INNER JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi WHERE transaksi.id_transaksi = '"+id+"'");
+            rs = stm.executeQuery("SELECT * FROM transaksi "
+                    + "JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi "
+                    + "JOIN detail_pembelian ON detail_pembelian.id_pembelian = pembelian.id_pembelian "
+                    + "JOIN menu ON menu.id_menu = detail_pembelian.id_menu "
+                    + "WHERE transaksi.id_transaksi = '"+id+"'");
             rs.next();
             txt_id_transaksi.setText(rs.getString("id_transaksi"));
             txt_id_pembelian.setText(rs.getString("id_pembelian"));
+            txt_nama_menu.setText(rs.getString("nama_menu"));
+            txt_jumlah.setText(rs.getString("jumlah"));
             txt_nama_user.setText(nama);
             txt_total.setText(String.valueOf(-rs.getInt("total_transaksi")));
-            txt_waktu_pesan.setText(rs.getString("waktu_transaksi"));
             this.id_user = rs.getInt("id_user");
-            
             rs.close();
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
     }
     
     private void kembali(){                        
@@ -100,7 +102,6 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
         txt_nama_menu = new javax.swing.JTextField();
         txt_jumlah = new javax.swing.JTextField();
         txt_total = new javax.swing.JTextField();
-        txt_waktu_pesan = new javax.swing.JTextField();
         btn_terima = new javax.swing.JLabel();
         btn_tolak = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
@@ -122,7 +123,7 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
                 txt_id_transaksiActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_id_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 205, 175, -1));
+        getContentPane().add(txt_id_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 229, 175, -1));
 
         txt_id_pembelian.setEditable(false);
         txt_id_pembelian.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -132,7 +133,7 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
                 txt_id_pembelianActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_id_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 246, 175, -1));
+        getContentPane().add(txt_id_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 270, 175, -1));
 
         txt_nama_user.setEditable(false);
         txt_nama_user.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -142,12 +143,12 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
                 txt_nama_userActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_nama_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 288, 175, -1));
+        getContentPane().add(txt_nama_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 313, 175, -1));
 
         txt_nama_menu.setEditable(false);
         txt_nama_menu.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         txt_nama_menu.setBorder(null);
-        getContentPane().add(txt_nama_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 329, 175, -1));
+        getContentPane().add(txt_nama_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 354, 175, -1));
 
         txt_jumlah.setEditable(false);
         txt_jumlah.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -157,22 +158,12 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
                 txt_jumlahActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_jumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 371, 175, -1));
+        getContentPane().add(txt_jumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 395, 175, -1));
 
         txt_total.setEditable(false);
         txt_total.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         txt_total.setBorder(null);
-        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 413, 175, -1));
-
-        txt_waktu_pesan.setEditable(false);
-        txt_waktu_pesan.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        txt_waktu_pesan.setBorder(null);
-        txt_waktu_pesan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_waktu_pesanActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txt_waktu_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 454, 175, -1));
+        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(632, 437, 175, -1));
 
         btn_terima.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_terima.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -248,6 +239,15 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
 
     private void tbl_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_transaksiMouseClicked
         // TODO add your handling code here:
+        int baris = tbl_transaksi.rowAtPoint(evt.getPoint());
+        String id_pembelian = tbl_transaksi.getValueAt(baris, 0).toString();
+        txt_id_pembelian.setText(id_pembelian);
+        String nama_menu = tbl_transaksi.getValueAt(baris,1).toString();
+        txt_nama_menu.setText(nama_menu);
+        String total = tbl_transaksi.getValueAt(baris, 3).toString();
+        txt_jumlah.setText(total);
+        String harga = tbl_transaksi.getValueAt(baris, 4).toString();
+        txt_total.setText(harga);
     }//GEN-LAST:event_tbl_transaksiMouseClicked
 
     private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
@@ -258,10 +258,6 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
     private void txt_id_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_transaksiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_id_transaksiActionPerformed
-
-    private void txt_waktu_pesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_waktu_pesanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_waktu_pesanActionPerformed
 
     private void btn_terimaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_terimaMouseClicked
         // TODO add your handling code here:
@@ -356,6 +352,5 @@ public class Detail_Konfirmasi_Pesanan_Toko extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nama_menu;
     private javax.swing.JTextField txt_nama_user;
     private javax.swing.JTextField txt_total;
-    private javax.swing.JTextField txt_waktu_pesan;
     // End of variables declaration//GEN-END:variables
 }

@@ -83,7 +83,7 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         btn_back = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
         btn_detail = new javax.swing.JLabel();
-        btn_menunggu = new javax.swing.JLabel();
+        btn_penarikan = new javax.swing.JLabel();
         btn_tolak = new javax.swing.JLabel();
         btn_terima = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -115,7 +115,13 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_detail, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 495, 115, 36));
-        getContentPane().add(btn_menunggu, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 391, 80, 80));
+
+        btn_penarikan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_penarikanMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_penarikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 391, 80, 80));
 
         btn_tolak.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -186,78 +192,116 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
     private void btn_terimaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_terimaMouseClicked
         // TODO add your handling code here:
         DefaultTableModel table_data = new DefaultTableModel();
-        table_data.addColumn("Id Pembelian");
-        table_data.addColumn("Nama Menu");
-        table_data.addColumn("Jumlah");
-        table_data.addColumn("Harga Total");
-        table_data.addColumn("Tanggal Transaksi");
+        table_data.addColumn("Id Transaksi");
+        table_data.addColumn("Nama Pemesan");
+        table_data.addColumn("Total Transaksi");
+        table_data.addColumn("Tanggal Penarikan");
         table_data.addColumn("Status");
         tbl_pesanan.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT dp.id_detail_pembelian, m.nama_menu, dp.jumlah, dp.subtotal, t.waktu_transaksi, dp.status"
+            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.total_transaksi, t.waktu_transaksi, t.status"
                     + " FROM detail_pembelian dp"
                     + " JOIN menu m ON m.id_menu = dp.id_menu"
                     + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
                     + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
+                    + " JOIN user u ON u.id_user = t.id_user"
+                    + " JOIN pelanggan pl ON pl.id_user = t.id_user"
                     + " WHERE p.id_toko = (SELECT id_toko FROM toko WHERE id_user = '" + toko_login.id_user + "')"
-                    + " AND dp.status = 'Diterima'"
+                    + " AND t.jenis_transaksi = 'Pembelian'"
+                    + " AND t.status = 'Berhasil'"
                     + " ORDER BY t.waktu_transaksi DESC");
             
             while(rs.next()){
-                Object[] data = new Object[6];
-                data[0] = rs.getString("id_detail_pembelian");
-                data[1] = rs.getString("nama_menu");
-                data[2] = rs.getString("jumlah");
-                data[3] = rs.getString("subtotal");
-                data[4] = rs.getString("Waktu_transaksi");
-                data[5] = rs.getString("status");
+                Object[] data = new Object[5];
+                data[0] = rs.getString("id_transaksi");
+                data[1] = rs.getString("nama_pelanggan");
+                data[2] = rs.getString("total_transaksi");
+                data[3] = rs.getString("waktu_transaksi");
+                data[4] = rs.getString("status");
                 table_data.addRow(data);
                 tbl_pesanan.setModel(table_data);
             }
         }catch (SQLException e){
-            JOptionPane.showMessageDialog(null,"Error!");
+            JOptionPane.showMessageDialog(null, e);
         }
-
     }//GEN-LAST:event_btn_terimaMouseClicked
 
     private void btn_tolakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_tolakMouseClicked
         // TODO add your handling code here:
         DefaultTableModel table_data = new DefaultTableModel();
-        table_data.addColumn("Id Pembelian");
-        table_data.addColumn("Nama Menu");
-        table_data.addColumn("Jumlah");
-        table_data.addColumn("Harga Total");
-        table_data.addColumn("Tanggal Transaksi");
+        table_data.addColumn("Id Transaksi");
+        table_data.addColumn("Nama Pemesan");
+        table_data.addColumn("Total Transaksi");
+        table_data.addColumn("Tanggal Penarikan");
         table_data.addColumn("Status");
         tbl_pesanan.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT dp.id_detail_pembelian, m.nama_menu, dp.jumlah, dp.subtotal, t.waktu_transaksi, dp.status"
+            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.total_transaksi, t.waktu_transaksi, t.status"
                     + " FROM detail_pembelian dp"
                     + " JOIN menu m ON m.id_menu = dp.id_menu"
                     + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
                     + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
+                    + " JOIN user u ON u.id_user = t.id_user"
+                    + " JOIN pelanggan pl ON pl.id_user = t.id_user"
                     + " WHERE p.id_toko = (SELECT id_toko FROM toko WHERE id_user = '" + toko_login.id_user + "')"
-                    + " AND dp.status = 'Ditolak'"
+                    + " AND t.jenis_transaksi = 'Pembelian'"
+                    + " AND t.status = 'Ditolak'"
                     + " ORDER BY t.waktu_transaksi DESC");
             
             while(rs.next()){
-                Object[] data = new Object[6];
-                data[0] = rs.getString("id_detail_pembelian");
-                data[1] = rs.getString("nama_menu");
-                data[2] = rs.getString("jumlah");
-                data[3] = rs.getString("subtotal");
-                data[4] = rs.getString("Waktu_transaksi");
-                data[5] = rs.getString("status");
+                Object[] data = new Object[5];
+                data[0] = rs.getString("id_transaksi");
+                data[1] = rs.getString("nama_pelanggan");
+                data[2] = rs.getString("total_transaksi");
+                data[3] = rs.getString("waktu_transaksi");
+                data[4] = rs.getString("status");
                 table_data.addRow(data);
                 tbl_pesanan.setModel(table_data);
             }
         }catch (SQLException e){
-            JOptionPane.showMessageDialog(null,"Error!");
+            JOptionPane.showMessageDialog(null, e);
         }
-
     }//GEN-LAST:event_btn_tolakMouseClicked
+
+    private void btn_penarikanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_penarikanMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel table_data = new DefaultTableModel();
+        table_data.addColumn("Id Transaksi");
+        table_data.addColumn("Nama User");
+        table_data.addColumn("Total Penarikan");
+        table_data.addColumn("Tanggal Penarikan");
+        table_data.addColumn("Status");
+        tbl_pesanan.setModel(table_data);
+        
+        try{
+            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.total_transaksi, t.waktu_transaksi, t.status"
+                    + " FROM detail_pembelian dp"
+                    + " JOIN menu m ON m.id_menu = dp.id_menu"
+                    + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
+                    + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
+                    + " JOIN user u ON u.id_user = t.id_user"
+                    + " JOIN pelanggan pl ON pl.id_user = t.id_user"
+                    + " WHERE p.id_toko = (SELECT id_toko FROM toko WHERE id_user = '" + toko_login.id_user + "')"
+                    + " AND t.jenis_transaksi = 'Penarikan'"
+                    + " AND t.status = 'Berhasil'"
+                    + " ORDER BY t.waktu_transaksi DESC");
+            
+            while(rs.next()){
+                Object[] data = new Object[5];
+                data[0] = rs.getString("id_transaksi");
+                data[1] = rs.getString("nama_toko");
+                data[2] = rs.getString("total_transaksi");
+                data[3] = rs.getString("waktu_transaksi");
+                data[4] = rs.getString("status");
+                table_data.addRow(data);
+                tbl_pesanan.setModel(table_data);
+            }
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_penarikanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -299,7 +343,7 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
     private javax.swing.JLabel btn_back;
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel btn_detail;
-    private javax.swing.JLabel btn_menunggu;
+    private javax.swing.JLabel btn_penarikan;
     private javax.swing.JLabel btn_terima;
     private javax.swing.JLabel btn_tolak;
     private javax.swing.JScrollPane jScrollPane1;
