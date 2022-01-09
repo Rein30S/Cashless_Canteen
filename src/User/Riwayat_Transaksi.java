@@ -5,16 +5,22 @@
  */
 package User;
 
-import Toko.Detail_Konfirmasi_Pesanan_Toko;
-import Toko.Detail_Riwayat_Pesanan;
-import Toko.toko_login;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 /**
  *
@@ -39,28 +45,26 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
     
     private void tampil_data() {
         DefaultTableModel table_data = new DefaultTableModel();
-        table_data.addColumn("Id Transaksi");
-        table_data.addColumn("Total Transaksi");
+        table_data.addColumn("ID Transaksi");
+        table_data.addColumn("Jenis Transaksi");
+        table_data.addColumn("Total");
         table_data.addColumn("Tanggal Transaksi");
         table_data.addColumn("Status");
         tbl_riwayat.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT t.id_transaksi, t.total_transaksi, t.waktu_transaksi, t.status"
-                    + " FROM detail_pembelian dp"
-                    + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
-                    + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
-                    + " JOIN user u ON u.id_user = t.id_user"
-                    + " JOIN pelanggan pl ON pl.id_user = t.id_user"
+            rs = stm.executeQuery("SELECT * "
+                    + " FROM transaksi t"
                     + " WHERE t.id_user =  '" + user_login.id_user + "'"
                     + " ORDER BY t.waktu_transaksi DESC");
             
             while(rs.next()){
-                Object[] data = new Object[4];
+                Object[] data = new Object[5];
                 data[0] = rs.getString("id_transaksi");
-                data[1] = rs.getString("total_transaksi");
-                data[2] = rs.getString("waktu_transaksi");
-                data[3] = rs.getString("status");
+                data[1] = rs.getString("jenis_transaksi");
+                data[2] = rs.getString("total_transaksi");
+                data[3] = rs.getString("waktu_transaksi");
+                data[4] = rs.getString("status");
                 table_data.addRow(data);
                 tbl_riwayat.setModel(table_data);
             }
@@ -69,6 +73,18 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
         }
     }
 
+    private String cekTanggal(){
+        Date date = new Date();
+        date = tanggalTransaksi.getDate();
+        String tanggal = "";
+        if(date != null){
+            String tampilan ="yyyy-MM-dd" ; 
+            SimpleDateFormat fm = new SimpleDateFormat(tampilan); 
+            tanggal = String.valueOf(fm.format(date));
+        }
+        
+        return tanggal;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -78,10 +94,13 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tanggalTransaksi = new com.toedter.calendar.JDateChooser();
+        jLabel1 = new javax.swing.JLabel();
         btn_pembelian = new javax.swing.JLabel();
         btn_setortunai = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_riwayat = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         btn_detail = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
         btn_back = new javax.swing.JLabel();
@@ -91,10 +110,23 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(tanggalTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 570, -1));
+
+        jLabel1.setText("Transaksi");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
         btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_pembelianMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_pembelianMouseEntered(evt);
             }
         });
         getContentPane().add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 260, 90, 90));
@@ -121,6 +153,16 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 670, 280));
 
+        jLabel2.setText("Cetak");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, -1, -1));
+
+        btn_detail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_detail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_detailMouseClicked(evt);
@@ -128,6 +170,7 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
         });
         getContentPane().add(btn_detail, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 500, 110, 30));
 
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -163,86 +206,215 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
 
     private void btn_pembelianMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseClicked
         // TODO add your handling code here:
-    DefaultTableModel table_data = new DefaultTableModel();
-        table_data.addColumn("Id Transaksi");
-        table_data.addColumn("Total Transaksi");
-        table_data.addColumn("Tanggal Transaksi");
-        table_data.addColumn("Status");
-        tbl_riwayat.setModel(table_data);
-        
-        try{
-            rs = stm.executeQuery("SELECT t.id_transaksi, t.total_transaksi, t.waktu_transaksi, t.status"
-                    + " FROM detail_pembelian dp"
-                    + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
-                    + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
-                    + " JOIN user u ON u.id_user = t.id_user"
-                    + " JOIN pelanggan pl ON pl.id_user = t.id_user"
-                    + " WHERE t.id_user =  '" + user_login.id_user + "'"
-                            + "AND t.jenis_transaksi = 'Pembelian'"
-                    + " ORDER BY t.waktu_transaksi DESC");
-            
-            while(rs.next()){
-                Object[] data = new Object[4];
-                data[0] = rs.getString("id_transaksi");
-                data[1] = rs.getString("total_transaksi");
-                data[2] = rs.getString("waktu_transaksi");
-                data[3] = rs.getString("status");
-                table_data.addRow(data);
-                tbl_riwayat.setModel(table_data);
+        if("".equals(cekTanggal())){
+            DefaultTableModel table_data = new DefaultTableModel();
+            table_data.addColumn("ID Transaksi");
+            table_data.addColumn("Jenis Transaksi");
+            table_data.addColumn("Total");
+            table_data.addColumn("Tanggal Transaksi");
+            table_data.addColumn("Status");
+            tbl_riwayat.setModel(table_data);
+
+            try{
+                rs = stm.executeQuery("SELECT * "
+                        + " FROM transaksi t"
+                        + " WHERE t.id_user =  '" + user_login.id_user + "'"
+                        + " AND t.jenis_transaksi = 'Pembelian'"
+                        + " ORDER BY t.waktu_transaksi DESC");
+
+                while(rs.next()){
+                    Object[] data = new Object[5];
+                    data[0] = rs.getString("id_transaksi");
+                    data[1] = rs.getString("jenis_transaksi");
+                    data[2] = rs.getString("total_transaksi");
+                    data[3] = rs.getString("waktu_transaksi");
+                    data[4] = rs.getString("status");
+                    table_data.addRow(data);
+                    tbl_riwayat.setModel(table_data);
+                }
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null, e);
             }
-        }catch (SQLException e){
-            JOptionPane.showMessageDialog(null, e);
+        }else{
+            DefaultTableModel table_data = new DefaultTableModel();
+            table_data.addColumn("ID Transaksi");
+            table_data.addColumn("Jenis Transaksi");
+            table_data.addColumn("Total");
+            table_data.addColumn("Tanggal Transaksi");
+            table_data.addColumn("Status");
+            tbl_riwayat.setModel(table_data);
+
+            try{
+                rs = stm.executeQuery("SELECT * "
+                        + " FROM transaksi t"
+                        + " WHERE t.id_user =  '" + user_login.id_user + "'"
+                        + " AND t.jenis_transaksi = 'Pembelian'"
+                        + " AND t.waktu_transaksi LIKE '"+cekTanggal()+"%'"
+                        + " ORDER BY t.waktu_transaksi DESC");
+
+                while(rs.next()){
+                    Object[] data = new Object[5];
+                    data[0] = rs.getString("id_transaksi");
+                    data[1] = rs.getString("jenis_transaksi");
+                    data[2] = rs.getString("total_transaksi");
+                    data[3] = rs.getString("waktu_transaksi");
+                    data[4] = rs.getString("status");
+                    table_data.addRow(data);
+                    tbl_riwayat.setModel(table_data);
+                }
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }//GEN-LAST:event_btn_pembelianMouseClicked
 
     private void btn_setortunaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_setortunaiMouseClicked
         // TODO add your handling code here:
-    DefaultTableModel table_data = new DefaultTableModel();
-        table_data.addColumn("Id Transaksi");
-        table_data.addColumn("Total Transaksi");
-        table_data.addColumn("Tanggal Transaksi");
-        table_data.addColumn("Status");
-        tbl_riwayat.setModel(table_data);
-        
-        try{
-            rs = stm.executeQuery("SELECT t.id_transaksi, t.total_transaksi, t.waktu_transaksi, t.status"
-                    + " FROM detail_pembelian dp"
-                    + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
-                    + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
-                    + " JOIN user u ON u.id_user = t.id_user"
-                    + " JOIN pelanggan pl ON pl.id_user = t.id_user"
-                    + " WHERE t.id_user =  '" + user_login.id_user + "'"
-                            + "AND t.jenis_transaksi = 'Deposit'"
-                    + " ORDER BY t.waktu_transaksi DESC");
-            
-            while(rs.next()){
-                Object[] data = new Object[4];
-                data[0] = rs.getString("id_transaksi");
-                data[1] = rs.getString("total_transaksi");
-                data[2] = rs.getString("waktu_transaksi");
-                data[3] = rs.getString("status");
-                table_data.addRow(data);
-                tbl_riwayat.setModel(table_data);
+        if("".equals(cekTanggal())){
+            DefaultTableModel table_data = new DefaultTableModel();
+            table_data.addColumn("ID Transaksi");
+            table_data.addColumn("Jenis Transaksi");
+            table_data.addColumn("Total");
+            table_data.addColumn("Tanggal Transaksi");
+            table_data.addColumn("Status");
+            tbl_riwayat.setModel(table_data);
+
+            try{
+                rs = stm.executeQuery("SELECT * "
+                        + " FROM transaksi t"
+                        + " WHERE t.id_user =  '" + user_login.id_user + "'"
+                        + " AND t.jenis_transaksi = 'Deposit'"
+                        + " ORDER BY t.waktu_transaksi DESC");
+
+                while(rs.next()){
+                    Object[] data = new Object[5];
+                    data[0] = rs.getString("id_transaksi");
+                    data[1] = rs.getString("jenis_transaksi");
+                    data[2] = rs.getString("total_transaksi");
+                    data[3] = rs.getString("waktu_transaksi");
+                    data[4] = rs.getString("status");
+                    table_data.addRow(data);
+                    tbl_riwayat.setModel(table_data);
+                }
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null, e);
             }
-        }catch (SQLException e){
-            JOptionPane.showMessageDialog(null, e);
+        }else{
+            DefaultTableModel table_data = new DefaultTableModel();
+            table_data.addColumn("ID Transaksi");
+            table_data.addColumn("Jenis Transaksi");
+            table_data.addColumn("Total");
+            table_data.addColumn("Tanggal Transaksi");
+            table_data.addColumn("Status");
+            tbl_riwayat.setModel(table_data);
+
+            try{
+                rs = stm.executeQuery("SELECT * "
+                        + " FROM transaksi t"
+                        + " WHERE t.id_user =  '" + user_login.id_user + "'"
+                        + " AND t.jenis_transaksi = 'Deposit'"
+                        + " AND t.waktu_transaksi LIKE '"+cekTanggal()+"%'"
+                        + " ORDER BY t.waktu_transaksi DESC");
+
+                while(rs.next()){
+                    Object[] data = new Object[5];
+                    data[0] = rs.getString("id_transaksi");
+                    data[1] = rs.getString("jenis_transaksi");
+                    data[2] = rs.getString("total_transaksi");
+                    data[3] = rs.getString("waktu_transaksi");
+                    data[4] = rs.getString("status");
+                    table_data.addRow(data);
+                    tbl_riwayat.setModel(table_data);
+                }
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
+        
     }//GEN-LAST:event_btn_setortunaiMouseClicked
 
     private void btn_detailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_detailMouseClicked
         // TODO add your handling code here:
-     if(tbl_riwayat.getSelectionModel().isSelectionEmpty() == false){
+        if(tbl_riwayat.getSelectionModel().isSelectionEmpty() == false){
             int row = tbl_riwayat.getSelectedRow();
-            String id_transaksi = tbl_riwayat.getValueAt(row, 0).toString();
-            String nama_user = tbl_riwayat.getValueAt(row, 1).toString();
-            Detail_Transaksi detail = new Detail_Transaksi();
-            detail.tampil_data(id_transaksi);
-            detail.setVisible(true);
-            this.dispose();
+            String jenisTransaksi = String.valueOf(tbl_riwayat.getValueAt(row, 1));
+            
+            if(jenisTransaksi.equals("Deposit")){
+                Detail_Deposit dd = new Detail_Deposit();
+                dd.setData(Integer.parseInt(String.valueOf(tbl_riwayat.getValueAt(row, 0))));
+                dd.setVisible(true);
+                this.dispose();
+            }else if(jenisTransaksi.equals("Pembelian")){
+                String id_transaksi = tbl_riwayat.getValueAt(row, 0).toString();
+                Detail_Transaksi detail = new Detail_Transaksi();
+                detail.tampil_data(id_transaksi);
+                detail.setVisible(true);
+                this.dispose();
+            }
         }else{
-            JOptionPane.showMessageDialog(null, "Silahkan pilih pesanan terlebih dahulu!");
+            JOptionPane.showMessageDialog(null, "Anda belum memilih data pada tabel!");
         }
     }//GEN-LAST:event_btn_detailMouseClicked
+
+    private void btn_pembelianMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pembelianMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_pembelianMouseEntered
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        if("".equals(cekTanggal())){
+            tampil_data();
+        }else{
+            DefaultTableModel table_data = new DefaultTableModel();
+            table_data.addColumn("ID Transaksi");
+            table_data.addColumn("Jenis Transaksi");
+            table_data.addColumn("Total");
+            table_data.addColumn("Tanggal Transaksi");
+            table_data.addColumn("Status");
+            tbl_riwayat.setModel(table_data);
+        
+            try{
+                rs = stm.executeQuery("SELECT * "
+                        + " FROM transaksi t"
+                        + " WHERE t.id_user =  '" + user_login.id_user + "'"
+                        + " AND t.waktu_transaksi LIKE '"+cekTanggal()+"%'"
+                        + " ORDER BY t.waktu_transaksi DESC");
+
+                while(rs.next()){
+                    Object[] data = new Object[5];
+                    data[0] = rs.getString("id_transaksi");
+                    data[1] = rs.getString("jenis_transaksi");
+                    data[2] = rs.getString("total_transaksi");
+                    data[3] = rs.getString("waktu_transaksi");
+                    data[4] = rs.getString("status");
+                    table_data.addRow(data);
+                    tbl_riwayat.setModel(table_data);
+                }
+            }catch (SQLException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        try{
+                // Report PDF
+                String jrxmlFile = "src/Report/riwayat_transaksi.jrxml";
+                HashMap param = new HashMap();
+                param.put("ID_USER", user_login.getId_user());
+                param.put("USERNAME", user_login.getusername());
+                param.put("SALDO", String.valueOf(user_login.getsaldo()));
+                JasperReport jspR = JasperCompileManager.compileReport(jrxmlFile);
+                JasperPrint JPrint = JasperFillManager.fillReport(jspR, param, con);
+                String dest = "src/Report/riwayat_transaksi"+user_login.getId_user()+".pdf";
+                JasperExportManager.exportReportToPdfFile(JPrint, dest);
+                // End Report PDF
+                JOptionPane.showMessageDialog(null, "File berhasil di-generate");
+            }catch(JRException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -285,7 +457,10 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel btn_detail;
     private javax.swing.JLabel btn_pembelian;
     private javax.swing.JLabel btn_setortunai;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser tanggalTransaksi;
     private javax.swing.JTable tbl_riwayat;
     private javax.swing.JLabel template;
     // End of variables declaration//GEN-END:variables

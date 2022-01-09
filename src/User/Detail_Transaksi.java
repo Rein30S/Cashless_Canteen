@@ -9,9 +9,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 /**
  *
@@ -22,6 +29,7 @@ Connection con;
     Statement stm;
     ResultSet rs;
     String sql;
+    String status, id_transaksi;
     /**
      * Creates new form Detail_Transaksi
      */
@@ -34,33 +42,36 @@ Connection con;
     }
 
     public void tampil_data(String id_transaksi){
+        
         DefaultTableModel table_data = new DefaultTableModel();
-        table_data.addColumn("Id Transaksi");
-        table_data.addColumn("Nama Pemesan");
+        table_data.addColumn("ID Menu");
         table_data.addColumn("Nama Menu");
-        table_data.addColumn("Jumlah");
-        table_data.addColumn("Total Harga");
-        table_data.addColumn("Status");
+        table_data.addColumn("Harga");
+        table_data.addColumn("Jumlah Pesanan");
+        table_data.addColumn("Total");
         tbl_detail.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, m.nama_menu, dp.jumlah, dp.subtotal, t.status FROM pembelian p"
-                    + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
-                    + " JOIN user u ON u.id_user = t.id_user"
-                    + " JOIN pelanggan pl ON pl.id_user = u.id_user"
-                    + " JOIN detail_pembelian dp ON dp.id_pembelian = p.id_pembelian"
-                    + " JOIN menu m ON m.id_menu = dp.id_menu"
-                    + " WHERE t.id_transaksi = '" + id_transaksi + "'"
-                    + "AND t.id_user = '" + user_login.id_user + "'");
+            rs = stm.executeQuery("SELECT * FROM transaksi INNER JOIN user ON transaksi.id_user = user.id_user INNER JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi INNER JOIN toko ON pembelian.id_toko = toko.id_toko WHERE transaksi.id_transaksi = '"+id_transaksi+"'");
+            rs.next();
+            tf_id_transaksi.setText(rs.getString("id_transaksi"));
+            this.id_transaksi = id_transaksi;
+            tf_total_transaksi.setText(String.valueOf(-rs.getInt("total_transaksi")));
+            tf_waktu_perubahan.setText(rs.getString("status_change_time"));
+            tf_id_toko.setText(rs.getString("id_toko"));
+            tf_nama_toko.setText(rs.getString("nama_toko"));
+            tf_status.setText(rs.getString("status"));
+            this.status = rs.getString("status");
+            
+            rs = stm.executeQuery("SELECT * FROM transaksi INNER JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi INNER JOIN detail_pembelian ON pembelian.id_pembelian = detail_pembelian.id_pembelian INNER JOIN menu ON detail_pembelian.id_menu = menu.id_menu WHERE transaksi.id_transaksi = '"+id_transaksi+"'");
                     
             while (rs.next()){
-                Object[] data = new Object[6];
-                data[0] = rs.getString("id_transaksi");
-                data[1] = rs.getString("Nama_Pelanggan");
-                data[2] = rs.getString("Nama_Menu");
-                data[3] = rs.getString("Jumlah");
-                data[4] = rs.getString("Subtotal");
-                data[5] = rs.getString("Status");
+                Object[] data = new Object[5];
+                data[0] = rs.getString("id_menu");
+                data[1] = rs.getString("nama_menu");
+                data[2] = rs.getString("harga_satuan");
+                data[3] = rs.getString("jumlah");
+                data[4] = rs.getString("subtotal");
                 table_data.addRow(data);
                 tbl_detail.setModel(table_data);
             }
@@ -79,12 +90,16 @@ Connection con;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_detail = new javax.swing.JTable();
-        nama_pemesan = new javax.swing.JTextField();
-        id_transaksi = new javax.swing.JTextField();
-        nama_menu = new javax.swing.JTextField();
-        jumlah = new javax.swing.JTextField();
-        total_harga = new javax.swing.JTextField();
-        status = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        tf_total_transaksi = new javax.swing.JTextField();
+        tf_id_transaksi = new javax.swing.JTextField();
+        tf_waktu_perubahan = new javax.swing.JTextField();
+        tf_id_toko = new javax.swing.JTextField();
+        tf_nama_toko = new javax.swing.JTextField();
+        tf_status = new javax.swing.JTextField();
         btn_close = new javax.swing.JLabel();
         btn_back = new javax.swing.JLabel();
         btn_cetak = new javax.swing.JLabel();
@@ -113,32 +128,45 @@ Connection con;
         });
         jScrollPane1.setViewportView(tbl_detail);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 760, 110));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 760, 130));
 
-        nama_pemesan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        nama_pemesan.setBorder(null);
-        getContentPane().add(nama_pemesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 273, 155, -1));
+        jLabel5.setText("Nama Toko");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
 
-        id_transaksi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        id_transaksi.setBorder(null);
-        getContentPane().add(id_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 228, 155, -1));
+        jLabel4.setText("ID Toko");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
 
-        nama_menu.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        nama_menu.setBorder(null);
-        getContentPane().add(nama_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 319, 155, -1));
+        jLabel3.setText("Waktu Perubahan");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
 
-        jumlah.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jumlah.setBorder(null);
-        getContentPane().add(jumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 228, 155, -1));
+        jLabel1.setText("Total Transaksi");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
 
-        total_harga.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        total_harga.setBorder(null);
-        getContentPane().add(total_harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 273, 155, -1));
+        tf_total_transaksi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tf_total_transaksi.setBorder(null);
+        getContentPane().add(tf_total_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 273, 155, -1));
 
-        status.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        status.setBorder(null);
-        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 319, 155, -1));
+        tf_id_transaksi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tf_id_transaksi.setBorder(null);
+        getContentPane().add(tf_id_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 228, 155, -1));
 
+        tf_waktu_perubahan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tf_waktu_perubahan.setBorder(null);
+        getContentPane().add(tf_waktu_perubahan, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 319, 155, -1));
+
+        tf_id_toko.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tf_id_toko.setBorder(null);
+        getContentPane().add(tf_id_toko, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 228, 155, -1));
+
+        tf_nama_toko.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tf_nama_toko.setBorder(null);
+        getContentPane().add(tf_nama_toko, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 273, 155, -1));
+
+        tf_status.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tf_status.setBorder(null);
+        getContentPane().add(tf_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 319, 155, -1));
+
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -146,12 +174,20 @@ Connection con;
         });
         getContentPane().add(btn_close, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
 
+        btn_back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_backMouseClicked(evt);
             }
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
+
+        btn_cetak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_cetak.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_cetakMouseClicked(evt);
+            }
+        });
         getContentPane().add(btn_cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 490, 130, 40));
 
         template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Detail_Riwayat_Pesanan.png"))); // NOI18N
@@ -175,20 +211,32 @@ Connection con;
 
     private void tbl_detailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_detailMouseClicked
         // TODO add your handling code here:
-    int row = tbl_detail.getSelectedRow();
-            String id_pembelian = tbl_detail.getValueAt(row, 0).toString();
-            id_transaksi.setText(id_pembelian);
-            String nama_user = tbl_detail.getValueAt(row, 1).toString();
-            nama_pemesan.setText(nama_user);
-            String nama_menu1 = tbl_detail.getValueAt(row, 2).toString();
-            nama_menu.setText(nama_menu1);
-            String jumlah1 = tbl_detail.getValueAt(row, 3).toString();
-            jumlah.setText(jumlah1);
-            String total_harga1 = tbl_detail.getValueAt(row, 4).toString();
-            total_harga.setText(total_harga1);
-            String status1 = tbl_detail.getValueAt(row, 5).toString();
-            status.setText(status1);
     }//GEN-LAST:event_tbl_detailMouseClicked
+
+    private void btn_cetakMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cetakMouseClicked
+        // TODO add your handling code here:
+        if(status.equals("Berhasil")){
+            try{
+                // Report PDF
+                String jrxmlFile = "src/Report/detail_pembelian.jrxml";
+                HashMap param = new HashMap();
+                param.put("ID_TRANSAKSI", this.id_transaksi);
+                param.put("USERNAME", user_login.getusername());
+                param.put("NAMA_TOKO", tf_nama_toko.getText());
+                param.put("TOTAL_TRANSAKSI", tf_total_transaksi.getText());
+                JasperReport jspR = JasperCompileManager.compileReport(jrxmlFile);
+                JasperPrint JPrint = JasperFillManager.fillReport(jspR, param, con);
+                String dest = "src/Report/detail_pembelian_"+this.id_transaksi+".pdf";
+                JasperExportManager.exportReportToPdfFile(JPrint, dest);
+                // End Report PDF
+                JOptionPane.showMessageDialog(null, "File berhasil di-generate");
+            }catch(JRException e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Untuk mencetak detail pembelian, status pembelian harus berhasil!");
+        }
+    }//GEN-LAST:event_btn_cetakMouseClicked
 
     /**
      * @param args the command line arguments
@@ -229,14 +277,18 @@ Connection con;
     private javax.swing.JLabel btn_back;
     private javax.swing.JLabel btn_cetak;
     private javax.swing.JLabel btn_close;
-    private javax.swing.JTextField id_transaksi;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jumlah;
-    private javax.swing.JTextField nama_menu;
-    private javax.swing.JTextField nama_pemesan;
-    private javax.swing.JTextField status;
     private javax.swing.JTable tbl_detail;
     private javax.swing.JLabel template;
-    private javax.swing.JTextField total_harga;
+    private javax.swing.JTextField tf_id_toko;
+    private javax.swing.JTextField tf_id_transaksi;
+    private javax.swing.JTextField tf_nama_toko;
+    private javax.swing.JTextField tf_status;
+    private javax.swing.JTextField tf_total_transaksi;
+    private javax.swing.JTextField tf_waktu_perubahan;
     // End of variables declaration//GEN-END:variables
 }
