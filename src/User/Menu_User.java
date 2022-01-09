@@ -46,6 +46,7 @@ public class Menu_User extends javax.swing.JFrame {
         btn_close = new javax.swing.JLabel();
         tm_saldo = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
+        btn_riwayatpesanan = new javax.swing.JLabel();
         template = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,6 +109,14 @@ public class Menu_User extends javax.swing.JFrame {
         });
         getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 150, 40));
 
+        btn_riwayatpesanan.setText("Riwayat Pesanan");
+        btn_riwayatpesanan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_riwayatpesananMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btn_riwayatpesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 550, -1, -1));
+
         template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Page.png"))); // NOI18N
         template.setNextFocusableComponent(this);
         getContentPane().add(template, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
@@ -149,6 +158,13 @@ public class Menu_User extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void btn_riwayatpesananMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_riwayatpesananMouseClicked
+        // TODO add your handling code here:
+    Riwayat_Transaksi riwayat = new Riwayat_Transaksi();
+    riwayat.setVisible(true);
+    this.dispose();
+    }//GEN-LAST:event_btn_riwayatpesananMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -187,6 +203,7 @@ public class Menu_User extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_close;
     private javax.swing.JLabel btn_pesan;
+    private javax.swing.JLabel btn_riwayatpesanan;
     private javax.swing.JLabel btn_topup;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl_username;
