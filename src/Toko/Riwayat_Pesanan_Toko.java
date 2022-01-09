@@ -40,13 +40,14 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         DefaultTableModel table_data = new DefaultTableModel();
         table_data.addColumn("Id Transaksi");
         table_data.addColumn("Nama Pemesan");
+        table_data.addColumn("Jenis Transaksi");
         table_data.addColumn("Total Transaksi");
         table_data.addColumn("Tanggal Transaksi");
         table_data.addColumn("Status");
         tbl_pesanan.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.total_transaksi, t.waktu_transaksi, t.status"
+            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status"
                     + " FROM detail_pembelian dp"
                     + " JOIN menu m ON m.id_menu = dp.id_menu"
                     + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
@@ -57,12 +58,13 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
                     + " ORDER BY t.waktu_transaksi DESC");
             
             while(rs.next()){
-                Object[] data = new Object[5];
+                Object[] data = new Object[6];
                 data[0] = rs.getString("id_transaksi");
                 data[1] = rs.getString("nama_pelanggan");
-                data[2] = rs.getString("total_transaksi");
-                data[3] = rs.getString("waktu_transaksi");
-                data[4] = rs.getString("status");
+                data[2] = rs.getString("jenis_transaksi");
+                data[3] = rs.getString("total_transaksi");
+                data[4] = rs.getString("waktu_transaksi");
+                data[5] = rs.getString("status");
                 table_data.addRow(data);
                 tbl_pesanan.setModel(table_data);
             }
@@ -176,13 +178,20 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(tbl_pesanan.getSelectionModel().isSelectionEmpty() == false){
             int row = tbl_pesanan.getSelectedRow();
-            String id_pembelian = tbl_pesanan.getValueAt(row, 0).toString();
+            String id = tbl_pesanan.getValueAt(row, 0).toString();
             String nama_user = tbl_pesanan.getValueAt(row, 1).toString();
-            Detail_Konfirmasi_Pesanan_Toko d = new Detail_Konfirmasi_Pesanan_Toko();
-            Detail_Riwayat_Pesanan r = new Detail_Riwayat_Pesanan();
-            r.tampil_data(id_pembelian, nama_user);
-            r.setVisible(true);
-            this.dispose();
+            String jenis_transaksi = tbl_pesanan.getValueAt(row, 2).toString();
+            if(jenis_transaksi.equals("Pembelian")){
+                Detail_Riwayat_Pesanan r = new Detail_Riwayat_Pesanan();
+                r.tampil_data(id, nama_user);
+                r.setVisible(true);
+                this.dispose();    
+            }else{
+                Detail_Riwayat_Penarikan rp = new Detail_Riwayat_Penarikan();
+                rp.tampil_data(id);
+                rp.setVisible(true);
+                this.dispose();
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Silahkan pilih pesanan terlebih dahulu!");
         }
@@ -194,13 +203,14 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         DefaultTableModel table_data = new DefaultTableModel();
         table_data.addColumn("Id Transaksi");
         table_data.addColumn("Nama Pemesan");
+        table_data.addColumn("jenis_transaksi");
         table_data.addColumn("Total Transaksi");
         table_data.addColumn("Tanggal Penarikan");
         table_data.addColumn("Status");
         tbl_pesanan.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.total_transaksi, t.waktu_transaksi, t.status"
+            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status"
                     + " FROM detail_pembelian dp"
                     + " JOIN menu m ON m.id_menu = dp.id_menu"
                     + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
@@ -213,15 +223,17 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
                     + " ORDER BY t.waktu_transaksi DESC");
             
             while(rs.next()){
-                Object[] data = new Object[5];
+                Object[] data = new Object[6];
                 data[0] = rs.getString("id_transaksi");
                 data[1] = rs.getString("nama_pelanggan");
-                data[2] = rs.getString("total_transaksi");
-                data[3] = rs.getString("waktu_transaksi");
-                data[4] = rs.getString("status");
+                data[2] = rs.getString("jenis_transaksi");
+                data[3] = rs.getString("total_transaksi");
+                data[4] = rs.getString("waktu_transaksi");
+                data[5] = rs.getString("status");
                 table_data.addRow(data);
                 tbl_pesanan.setModel(table_data);
             }
+            
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -232,13 +244,14 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         DefaultTableModel table_data = new DefaultTableModel();
         table_data.addColumn("Id Transaksi");
         table_data.addColumn("Nama Pemesan");
+        table_data.addColumn("Jenis Transaksi");
         table_data.addColumn("Total Transaksi");
         table_data.addColumn("Tanggal Penarikan");
         table_data.addColumn("Status");
         tbl_pesanan.setModel(table_data);
         
         try{
-            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.total_transaksi, t.waktu_transaksi, t.status"
+            rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status"
                     + " FROM detail_pembelian dp"
                     + " JOIN menu m ON m.id_menu = dp.id_menu"
                     + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
@@ -251,12 +264,13 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
                     + " ORDER BY t.waktu_transaksi DESC");
             
             while(rs.next()){
-                Object[] data = new Object[5];
+                Object[] data = new Object[6];
                 data[0] = rs.getString("id_transaksi");
                 data[1] = rs.getString("nama_pelanggan");
-                data[2] = rs.getString("total_transaksi");
-                data[3] = rs.getString("waktu_transaksi");
-                data[4] = rs.getString("status");
+                data[2] = rs.getString("Jenis_transaksi");
+                data[3] = rs.getString("total_transaksi");
+                data[4] = rs.getString("waktu_transaksi");
+                data[5] = rs.getString("status");
                 table_data.addRow(data);
                 tbl_pesanan.setModel(table_data);
             }
@@ -281,7 +295,6 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
                     + " WHERE t.id_user = '" + toko_login.id_user + "'"
                     + " AND t.jenis_transaksi = 'withdraw'"
                     + " ORDER BY t.waktu_transaksi DESC");
-            
             while(rs.next()){
                 Object[] data = new Object[5];
                 data[0] = rs.getString("id_transaksi");
