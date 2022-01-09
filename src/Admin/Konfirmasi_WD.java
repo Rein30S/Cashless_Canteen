@@ -114,6 +114,8 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -138,7 +140,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
                 jLabel18MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 496, 102, 33));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(485, 496, 132, 33));
 
         jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,10 +222,10 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         });
         getContentPane().add(txt_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 220, 200, -1));
 
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Konfirmasi Penarikan.png"))); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Konfirmasi Transaksi.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
-        setSize(new java.awt.Dimension(916, 639));
+        setSize(new java.awt.Dimension(900, 600));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
