@@ -3,6 +3,41 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="ID_USER" class="java.lang.String"/>
+	<parameter name="ID_TOKO" class="java.lang.String"/>
+	<parameter name="USERNAME" class="java.lang.String"/>
+	<parameter name="SALDO" class="java.lang.String"/>
+	<parameter name="NAMA_TOKO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM transaksi LEFT JOIN pembelian ON transaksi.ID_TRANSAKSI = pembelian.ID_TRANSAKSI WHERE transaksi.ID_USER = $P{ID_USER} OR pembelian.ID_TOKO = $P{ID_TOKO}]]>
+	</queryString>
+	<field name="ID_TRANSAKSI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_USER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TOTAL_TRANSAKSI" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JENIS_TRANSAKSI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="WAKTU_TRANSAKSI" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATUS_CHANGE_TIME" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATUS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_PEMBELIAN" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ID_TOKO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -18,21 +53,122 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="67" height="20" uuid="6fe75ba0-128f-42dd-9935-cdd2068b1b1f"/>
+				<text><![CDATA[Dicetak:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="67" y="0" width="100" height="20" uuid="602b2570-b0d6-491d-8f8e-8ce9aadd650c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="96" splitType="Stretch">
+			<staticText>
+				<reportElement x="277" y="0" width="61" height="20" uuid="25861316-b5b8-422e-b317-1c6ea2ba4758"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Saldo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="66" height="20" uuid="8081d00e-6086-4796-8079-54bc398af977"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ID User:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="31" width="66" height="20" uuid="f2107559-58fd-4516-bbfa-90c4d949324a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Username:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="338" y="0" width="100" height="20" uuid="330575ca-90cc-4ca3-8f34-2ea60f2e5f15"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{SALDO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="31" width="88" height="20" uuid="b72d5907-cabf-4bc3-a143-21dad81805ff"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{USERNAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="277" y="31" width="61" height="20" uuid="5de12ff2-f26a-4afd-9b41-425c2744a9b2"/>
+				<text><![CDATA[Nama Toko:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="338" y="31" width="100" height="20" uuid="94483165-8f74-4332-8244-185baa0f0984"/>
+				<textFieldExpression><![CDATA[$P{NAMA_TOKO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="79" y="76" width="117" height="20" uuid="ba1b401a-8833-403a-8da0-ecea7cefbdcb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Jenis Transaksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="76" width="69" height="20" uuid="47544531-27cb-4979-8a23-4c1b4ba558dc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="76" width="66" height="20" uuid="02cab990-adce-445d-9eda-509bf98f31d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ID Transaksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="76" width="129" height="20" uuid="06f772f0-f508-4a42-87d6-b5e872005f1a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tanggal ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="76" width="123" height="20" uuid="f0b113db-f0db-449f-9138-be506134e0e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="67" y="0" width="88" height="20" uuid="a2086d9c-652e-4690-92ea-c38fa6dd200d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ID_USER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="13" y="0" width="66" height="20" uuid="6de51b35-d049-41fa-9c62-3951dbd60459"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ID_TRANSAKSI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="0" width="117" height="20" uuid="c2a29b2f-b66c-4d82-bed1-f06d8279cbdc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{JENIS_TRANSAKSI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="196" y="0" width="123" height="20" uuid="5af51a69-d8ba-43cf-b747-abfc59340bab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_TRANSAKSI} * -1]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="129" height="20" uuid="a9a64a40-6755-4667-a9cb-7d0aa13244f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{WAKTU_TRANSAKSI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="0" width="69" height="20" uuid="9e8e463a-862b-4b78-8d53-73dc7d404e17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="392" y="21" width="125" height="20" uuid="33698c4f-5316-44bf-b61c-449ddeeebdf1"/>
+				<text><![CDATA[Admin CashlessCanteen]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
-	<summary>
-		<band height="42" splitType="Stretch"/>
-	</summary>
 </jasperReport>

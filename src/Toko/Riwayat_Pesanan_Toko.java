@@ -34,6 +34,8 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
     Connection con;
     Statement stm;
     ResultSet rs;
+    String id_toko;
+    String nama_toko;
 
     public Riwayat_Pesanan_Toko() {
         initComponents();
@@ -55,6 +57,10 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         tbl_pesanan.setModel(table_data);
         
         try{
+            rs = stm.executeQuery("SELECT * FROM user INNER JOIN toko ON user.id_user = toko.id_user WHERE user.id_user='"+toko_login.getId_user()+"'");
+            rs.next();
+            this.id_toko = rs.getString("id_toko");
+            this.nama_toko = rs.getString("nama_toko");
             rs = stm.executeQuery("SELECT t.id_transaksi, pl.nama_pelanggan, t.jenis_transaksi, t.total_transaksi, t.waktu_transaksi, t.status"
                     + " FROM detail_pembelian dp"
                     + " JOIN menu m ON m.id_menu = dp.id_menu"
@@ -121,6 +127,7 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         });
         getContentPane().add(btn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
+        btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_closeMouseClicked(evt);
@@ -330,14 +337,16 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             // Report PDF
-            String jrxmlFile = "src/Report/riwayat_transaksi.jrxml";
+            String jrxmlFile = "src/Report/riwayat_transaksi_toko.jrxml";
             HashMap param = new HashMap();
-            param.put("ID_USER", user_login.getId_user());
-            param.put("USERNAME", user_login.getusername());
-            param.put("SALDO", String.valueOf(user_login.getsaldo()));
+            param.put("ID_USER", String.valueOf(toko_login.getId_user()));
+            param.put("ID_TOKO", this.id_toko);
+            param.put("USERNAME", toko_login.getUsername());
+            param.put("NAMA_TOKO", this.nama_toko);
+            param.put("SALDO", String.valueOf(toko_login.getSaldo()));
             JasperReport jspR = JasperCompileManager.compileReport(jrxmlFile);
             JasperPrint JPrint = JasperFillManager.fillReport(jspR, param, con);
-            String dest = "src/Report/riwayat_transaksi"+user_login.getId_user()+".pdf";
+            String dest = "src/Report/riwayat_transaksi_toko"+toko_login.getId_user()+".pdf";
             JasperExportManager.exportReportToPdfFile(JPrint, dest);
             // End Report PDF
             JOptionPane.showMessageDialog(null, "File berhasil di-generate");

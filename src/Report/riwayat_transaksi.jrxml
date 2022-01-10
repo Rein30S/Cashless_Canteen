@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="425" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f537ab43-8467-4858-8627-3c690b931919">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="4"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="ID_USER" class="java.lang.String"/>
 	<parameter name="USERNAME" class="java.lang.String"/>
 	<parameter name="SALDO" class="java.lang.String"/>
@@ -139,6 +139,7 @@
 			</textField>
 			<textField>
 				<reportElement x="475" y="0" width="69" height="20" uuid="43ad2da6-6b6c-4a28-a61c-1c18318d90b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
 			</textField>
 		</band>
