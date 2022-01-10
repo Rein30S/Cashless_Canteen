@@ -75,7 +75,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<text><![CDATA[USERNAME]]></text>
+				<text><![CDATA[EMAIL]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="116" y="35" width="142" height="20" uuid="5b8cb010-2f4a-406a-8edd-1632350611ca"/>

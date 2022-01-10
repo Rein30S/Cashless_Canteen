@@ -216,18 +216,17 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         if(tbl_riwayat.getSelectionModel().isSelectionEmpty() == false){
             int row = tbl_riwayat.getSelectedRow();
             String id = tbl_riwayat.getValueAt(row, 0).toString();
-            String nama_user = tbl_riwayat.getValueAt(row, 1).toString();
             String jenis_transaksi = tbl_riwayat.getValueAt(row, 1).toString();
             
             if(jenis_transaksi.equals("Pembelian")){
                 Detail_Riwayat_Pesanan r = new Detail_Riwayat_Pesanan();
-                r.tampil_data(id, nama_user);
+                r.tampil_data(id);
                 r.setVisible(true);
                 this.dispose();    
             }else{
-                Detail_Riwayat_Penarikan rp = new Detail_Riwayat_Penarikan();
-                rp.tampil_data(id);
-                rp.setVisible(true);
+                Detail_Withdraw dw = new Detail_Withdraw();
+                dw.setData(id);
+                dw.setVisible(true);
                 this.dispose();
             }
         }else{
