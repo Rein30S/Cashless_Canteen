@@ -142,47 +142,38 @@ public class Laporan extends javax.swing.JFrame {
 
         lbJmlPenjualan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbJmlPenjualan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbJmlPenjualan.setText("jLabel17");
         getContentPane().add(lbJmlPenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 150, 20));
 
         lbJumlahTopUp.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbJumlahTopUp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbJumlahTopUp.setText("jLabel18");
         getContentPane().add(lbJumlahTopUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 150, 20));
 
         lbJmlPenarikan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbJmlPenarikan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbJmlPenarikan.setText("jLabel19");
         getContentPane().add(lbJmlPenarikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 150, 20));
 
         lbTotalPenjualan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbTotalPenjualan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTotalPenjualan.setText("jLabel20");
         getContentPane().add(lbTotalPenjualan, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 405, 150, 20));
 
         lbTotalTopUp.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbTotalTopUp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTotalTopUp.setText("jLabel21");
         getContentPane().add(lbTotalTopUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 445, 150, 20));
 
         lbTotalPenarikan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbTotalPenarikan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTotalPenarikan.setText("jLabel22");
         getContentPane().add(lbTotalPenarikan, new org.netbeans.lib.awtextra.AbsoluteConstraints(671, 280, 150, 20));
 
         lbTotalSaldo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbTotalSaldo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTotalSaldo.setText("jLabel24");
         getContentPane().add(lbTotalSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 320, 150, 20));
 
         lbPengguna.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbPengguna.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbPengguna.setText("jLabel17");
         getContentPane().add(lbPengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 360, 150, 20));
 
         lbToko.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lbToko.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbToko.setText("jLabel19");
         getContentPane().add(lbToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 405, 150, 20));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Admin/Laporan.png"))); // NOI18N
