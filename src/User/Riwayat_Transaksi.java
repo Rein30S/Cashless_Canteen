@@ -110,7 +110,7 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(tanggalTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 650, -1));
+        getContentPane().add(tanggalTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 650, -1));
 
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
