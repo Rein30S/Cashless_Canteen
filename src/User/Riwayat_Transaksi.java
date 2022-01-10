@@ -118,7 +118,7 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
                 jLabel1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 225, 89, 89));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 225, 90, 90));
 
         btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,14 +128,14 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
                 btn_pembelianMouseEntered(evt);
             }
         });
-        getContentPane().add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 260, 90, 90));
+        getContentPane().add(btn_pembelian, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 90, 90));
 
         btn_setortunai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_setortunaiMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_setortunai, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 360, 90, 80));
+        getContentPane().add(btn_setortunai, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 416, 90, 90));
 
         tbl_riwayat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
