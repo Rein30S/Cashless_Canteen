@@ -79,13 +79,6 @@ public class Detail_Withdraw extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lb_id_transaksi = new javax.swing.JLabel();
         lb_jenis_transaksi = new javax.swing.JLabel();
@@ -94,154 +87,70 @@ public class Detail_Withdraw extends javax.swing.JFrame {
         lb_status = new javax.swing.JLabel();
         lb_waktu_perubahan = new javax.swing.JLabel();
         lb_pengubah = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Keluar");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 10, 40, 40));
 
-        jLabel2.setText("Kembali");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 40, 40));
 
-        jLabel3.setText("ID Transaksi");
-
-        jLabel4.setText("Jenis Transaksi");
-
-        jLabel5.setText("Total");
-
-        jLabel6.setText("Waktu");
-
-        jLabel7.setText("Status");
-
-        jLabel8.setText("Waktu Perubahan");
-
-        jLabel9.setText("Status Diubah Oleh");
-
-        jLabel10.setText("Cetak");
         jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
             }
         });
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 488, 130, 40));
 
+        lb_id_transaksi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lb_id_transaksi.setText("jLabel11");
+        getContentPane().add(lb_id_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 224, 190, 20));
 
+        lb_jenis_transaksi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lb_jenis_transaksi.setText("jLabel11");
+        getContentPane().add(lb_jenis_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 266, 190, 20));
 
+        lb_total.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lb_total.setText("jLabel11");
+        getContentPane().add(lb_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 308, 190, 20));
 
+        lb_waktu.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lb_waktu.setText("jLabel11");
+        getContentPane().add(lb_waktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 350, 190, 20));
 
+        lb_status.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lb_status.setText("jLabel11");
+        getContentPane().add(lb_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 390, 190, 20));
 
+        lb_waktu_perubahan.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lb_waktu_perubahan.setText("jLabel11");
+        getContentPane().add(lb_waktu_perubahan, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 433, 190, 20));
 
+        lb_pengubah.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         lb_pengubah.setText("jLabel11");
+        getContentPane().add(lb_pengubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 474, 190, 20));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lb_jenis_transaksi))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(lb_id_transaksi))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(lb_status))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(lb_waktu_perubahan))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(lb_pengubah))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lb_total))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lb_waktu))))))
-                .addContainerGap(398, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(28, 28, 28))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(55, 55, 55))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lb_id_transaksi))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(lb_jenis_transaksi))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lb_total))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(lb_waktu))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(lb_status))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(lb_waktu_perubahan))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(lb_pengubah))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap())
-        );
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Detail Riwayat Penarikan.png"))); // NOI18N
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
-        pack();
+        setSize(new java.awt.Dimension(900, 600));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -316,14 +225,8 @@ public class Detail_Withdraw extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel lb_id_transaksi;
     private javax.swing.JLabel lb_jenis_transaksi;
     private javax.swing.JLabel lb_pengubah;

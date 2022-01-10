@@ -43,8 +43,8 @@ public class Detail_User extends javax.swing.JFrame {
             labelNama.setText(rs.getString("nama_pelanggan"));
             labelJenisKelamin.setText(rs.getString("jk_pelanggan"));
             labelTanggalLahir.setText(rs.getString("tgl_lahir_pelanggan"));
-            labelSaldo.setText("saldo");
-            labelLevel.setText("level");
+            labelSaldo.setText(rs.getString("saldo"));
+            labelLevel.setText(rs.getString("level"));
             this.id = rs.getInt("id_user");
             
             DefaultTableModel model = new DefaultTableModel();
@@ -121,23 +121,23 @@ public class Detail_User extends javax.swing.JFrame {
 
         labelLevel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelLevel.setText("jLabel7");
-        getContentPane().add(labelLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, -1, -1));
+        getContentPane().add(labelLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, -1, -1));
 
         labelSaldo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelSaldo.setText("jLabel6");
-        getContentPane().add(labelSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 390, -1, -1));
+        getContentPane().add(labelSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, -1, -1));
 
         labelTanggalLahir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelTanggalLahir.setText("jLabel5");
-        getContentPane().add(labelTanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, -1, -1));
+        getContentPane().add(labelTanggalLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 340, -1, -1));
 
         labelJenisKelamin.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelJenisKelamin.setText("jLabel4");
-        getContentPane().add(labelJenisKelamin, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 290, -1, -1));
+        getContentPane().add(labelJenisKelamin, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 290, -1, -1));
 
         labelNama.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelNama.setText("jLabel3");
-        getContentPane().add(labelNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, -1, -1));
+        getContentPane().add(labelNama, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 240, -1, -1));
 
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -5,6 +5,7 @@
  */
 package Login;
 
+import java.awt.Color;
 import koneksi.koneksi;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -37,6 +38,15 @@ public class RegisterPage extends javax.swing.JFrame {
         stm = DB.stm;
         Mhs.setSelected(true);
         LK.setSelected(true);
+        Email.setBackground(new Color(0, 0, 0, 0));
+        Password.setBackground(new Color(0, 0, 0, 0));
+        Notelp.setBackground(new Color(0, 0, 0, 0));
+        Mhs.setBackground(new Color(0, 0, 0, 0));
+        Dosen.setBackground(new Color(0, 0, 0, 0));
+        Pegawai.setBackground(new Color(0, 0, 0, 0));
+        Nama_Lengkap.setBackground(new Color(0, 0, 0, 0));
+        tanggalLahir.setBackground(new Color(0, 0, 0, 0));
+        
     }
 
     /**
@@ -62,8 +72,8 @@ public class RegisterPage extends javax.swing.JFrame {
         Dosen = new javax.swing.JRadioButton();
         Mhs = new javax.swing.JRadioButton();
         Notelp = new javax.swing.JTextField();
-        Email = new javax.swing.JTextField();
         Password = new javax.swing.JPasswordField();
+        Email = new javax.swing.JTextField();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,41 +122,55 @@ public class RegisterPage extends javax.swing.JFrame {
         LK.setOpaque(false);
         getContentPane().add(LK, new org.netbeans.lib.awtextra.AbsoluteConstraints(473, 297, -1, -1));
 
+        Nama_Lengkap.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Nama_Lengkap.setBorder(null);
+        Nama_Lengkap.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         Nama_Lengkap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Nama_LengkapActionPerformed(evt);
             }
         });
-        getContentPane().add(Nama_Lengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, 290, -1));
+        getContentPane().add(Nama_Lengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 212, 290, -1));
 
         buttonGroup1.add(Pegawai);
         Pegawai.setOpaque(false);
-        getContentPane().add(Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 422, -1, -1));
+        getContentPane().add(Pegawai, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 418, -1, -1));
 
         buttonGroup1.add(Dosen);
         Dosen.setOpaque(false);
-        getContentPane().add(Dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 384, -1, -1));
+        getContentPane().add(Dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 380, -1, -1));
 
         buttonGroup1.add(Mhs);
         Mhs.setOpaque(false);
-        getContentPane().add(Mhs, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 348, -1, -1));
+        getContentPane().add(Mhs, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 345, -1, -1));
 
+        Notelp.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Notelp.setBorder(null);
+        Notelp.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         Notelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NotelpActionPerformed(evt);
             }
         });
-        getContentPane().add(Notelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 180, -1));
-        getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 180, -1));
+        getContentPane().add(Notelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 255, 173, -1));
 
+        Password.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Password.setBorder(null);
+        Password.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         Password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PasswordActionPerformed(evt);
             }
         });
-        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 180, -1));
+        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 212, 173, -1));
+
+        Email.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Email.setBorder(null);
+        Email.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        getContentPane().add(Email, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 169, 173, -1));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Register Page.png"))); // NOI18N
+        BG.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         setSize(new java.awt.Dimension(900, 600));

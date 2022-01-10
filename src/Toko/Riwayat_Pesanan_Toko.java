@@ -120,15 +120,14 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Cetak");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 510, -1, -1));
-        getContentPane().add(tanggalTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, 480, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 496, 113, 35));
+        getContentPane().add(tanggalTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 660, 30));
 
         btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -190,7 +189,7 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbl_riwayat);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 680, 280));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 680, 230));
 
         BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Riwayat Pesanan.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));

@@ -95,10 +95,6 @@ public class Detail_Riwayat_Pesanan extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_pesanan = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
         btn_back = new javax.swing.JLabel();
         btn_cetak = new javax.swing.JLabel();
@@ -131,18 +127,6 @@ public class Detail_Riwayat_Pesanan extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 780, 130));
 
-        jLabel4.setText("Total Transaksi");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
-
-        jLabel2.setText("Email Pemesan");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
-
-        jLabel3.setText("Nama Pemesan");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, -1));
-
-        jLabel1.setText("Waktu Perubahan");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
-
         btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -169,7 +153,7 @@ public class Detail_Riwayat_Pesanan extends javax.swing.JFrame {
 
         txt_status.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txt_status.setBorder(null);
-        getContentPane().add(txt_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 319, 155, -1));
+        getContentPane().add(txt_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(678, 319, 155, -1));
 
         txt_total.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txt_total.setBorder(null);
@@ -178,7 +162,7 @@ public class Detail_Riwayat_Pesanan extends javax.swing.JFrame {
                 txt_totalActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(664, 273, 155, -1));
+        getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(678, 273, 155, -1));
 
         txt_waktu.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txt_waktu.setBorder(null);
@@ -187,7 +171,7 @@ public class Detail_Riwayat_Pesanan extends javax.swing.JFrame {
                 txt_waktuActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_waktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(664, 228, 155, -1));
+        getContentPane().add(txt_waktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(678, 228, 155, -1));
 
         txt_pemesan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         txt_pemesan.setBorder(null);
@@ -206,7 +190,7 @@ public class Detail_Riwayat_Pesanan extends javax.swing.JFrame {
         tf_id_transaksi.setBorder(null);
         getContentPane().add(tf_id_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 228, 155, -1));
 
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Detail_Riwayat_Pesanan.png"))); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Detail Riwayat Pesanan.png"))); // NOI18N
         getContentPane().add(BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(900, 600));
@@ -304,10 +288,6 @@ public class Detail_Riwayat_Pesanan extends javax.swing.JFrame {
     private javax.swing.JLabel btn_back;
     private javax.swing.JLabel btn_cetak;
     private javax.swing.JLabel btn_close;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_pesanan;
     private javax.swing.JTextField tf_id_transaksi;

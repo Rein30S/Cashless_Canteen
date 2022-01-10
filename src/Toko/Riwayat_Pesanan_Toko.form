@@ -30,7 +30,6 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cetak"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>
@@ -40,14 +39,14 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="650" y="510" width="-1" height="-1"/>
+          <AbsoluteConstraints x="595" y="496" width="113" height="35"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="tanggalTransaksi">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="330" y="180" width="480" height="-1"/>
+          <AbsoluteConstraints x="170" y="220" width="660" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -142,7 +141,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="210" width="680" height="280"/>
+          <AbsoluteConstraints x="160" y="260" width="680" height="230"/>
         </Constraint>
       </Constraints>
 

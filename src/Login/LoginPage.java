@@ -90,9 +90,11 @@ public class LoginPage extends javax.swing.JFrame {
         });
         getContentPane().add(LoginButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 455, 220, 55));
 
+        PassText.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         PassText.setBorder(null);
         getContentPane().add(PassText, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 260, 30));
 
+        UserText.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         UserText.setBorder(null);
         UserText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         UserText.setHighlighter(null);
