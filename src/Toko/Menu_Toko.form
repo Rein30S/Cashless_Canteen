@@ -86,6 +86,11 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="Btn_Pesanan">
+      <Properties>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Btn_PesananMouseClicked"/>
       </Events>
@@ -111,6 +116,11 @@
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="Btn_RiwayatPenjualan">
+      <Properties>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Btn_RiwayatPenjualanMouseClicked"/>
       </Events>

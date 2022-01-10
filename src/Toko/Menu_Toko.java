@@ -83,6 +83,7 @@ public class Menu_Toko extends javax.swing.JFrame {
         labelUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         getContentPane().add(labelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 90, 220, 30));
 
+        Btn_Pesanan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Btn_Pesanan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Btn_PesananMouseClicked(evt);
@@ -98,6 +99,7 @@ public class Menu_Toko extends javax.swing.JFrame {
         });
         getContentPane().add(Btn_TarikSaldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 240, 170));
 
+        Btn_RiwayatPenjualan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Btn_RiwayatPenjualan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Btn_RiwayatPenjualanMouseClicked(evt);

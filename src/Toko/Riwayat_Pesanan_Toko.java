@@ -52,7 +52,6 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
                     + " JOIN menu m ON m.id_menu = dp.id_menu"
                     + " JOIN pembelian p ON p.id_pembelian = dp.id_pembelian"
                     + " JOIN transaksi t ON t.id_transaksi = p.id_transaksi"
-                    + " JOIN user u ON u.id_user = t.id_user"
                     + " JOIN pelanggan pl ON pl.id_user = t.id_user"
                     + " WHERE p.id_toko = (SELECT id_toko FROM toko WHERE id_user = '" + toko_login.id_user + "')"
                     + " ORDER BY t.waktu_transaksi DESC");

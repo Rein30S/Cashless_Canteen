@@ -158,6 +158,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 495, 101, 35));
 
+        txt_admin.setEditable(false);
         txt_admin.setBorder(null);
         txt_admin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +167,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         });
         getContentPane().add(txt_admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 270, 140, -1));
 
+        txt_waktuperubahan.setEditable(false);
         txt_waktuperubahan.setBorder(null);
         txt_waktuperubahan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +176,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         });
         getContentPane().add(txt_waktuperubahan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, 140, -1));
 
+        txt_status.setEditable(false);
         txt_status.setBorder(null);
         txt_status.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +185,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         });
         getContentPane().add(txt_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 470, 200, -1));
 
+        txt_waktu.setEditable(false);
         txt_waktu.setBorder(null);
         txt_waktu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,6 +194,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         });
         getContentPane().add(txt_waktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 420, 200, -1));
 
+        txt_total.setEditable(false);
         txt_total.setBorder(null);
         txt_total.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +203,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         });
         getContentPane().add(txt_total, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 370, 200, -1));
 
+        txt_jenis.setEditable(false);
         txt_jenis.setBorder(null);
         txt_jenis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,6 +212,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         });
         getContentPane().add(txt_jenis, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 320, 200, -1));
 
+        txt_email.setEditable(false);
         txt_email.setBorder(null);
         txt_email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +221,7 @@ public class Konfirmasi_WD extends javax.swing.JFrame {
         });
         getContentPane().add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 270, 200, -1));
 
+        txt_id.setEditable(false);
         txt_id.setBorder(null);
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

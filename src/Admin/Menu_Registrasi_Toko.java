@@ -65,24 +65,26 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(tfNamaToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 500, 30));
+        getContentPane().add(tfNamaToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 217, 302, 30));
 
+        tfNamaPemilik.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
+        tfNamaPemilik.setBorder(null);
         tfNamaPemilik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNamaPemilikActionPerformed(evt);
             }
         });
-        getContentPane().add(tfNamaPemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 500, 30));
+        getContentPane().add(tfNamaPemilik, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 272, 302, 30));
 
         cbNomorKantin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6" }));
-        getContentPane().add(cbNomorKantin, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 500, 30));
+        getContentPane().add(cbNomorKantin, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 330, 302, 30));
 
         tfUsernameToko.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfUsernameTokoActionPerformed(evt);
             }
         });
-        getContentPane().add(tfUsernameToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 490, 30));
+        getContentPane().add(tfUsernameToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 435, 302, 30));
 
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,7 +154,7 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
                 if(rs.next()){
                     JOptionPane.showMessageDialog(null, "Maaf, email sudah digunakan");
                 }else{
-                    int query1 = stm.executeUpdate("INSERT INTO user VALUES('"+id+"', '"+userNameToko+"', '"+passwordToko+"', '"+0+"', 'Toko')");
+                    int query1 = stm.executeUpdate("INSERT INTO user VALUES('"+id+"', '"+userNameToko+"', '"+passwordToko+"', '"+0+"', 'Toko' , '0')");
                     int query2 = stm.executeUpdate("INSERT INTO toko(id_user, nama_toko, id_blok, nama_pemilik_toko) VALUES('"+id+"', '"+namaToko+"', '"+nomorToko+"', '"+namaPemilik+"')");
                     
                     if((query1 == 1) && (query2 == 1)){
