@@ -5,14 +5,22 @@
  */
 package Toko;
 
+import User.user_login;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import koneksi.koneksi;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 /**
  *
@@ -81,6 +89,7 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         btn_back = new javax.swing.JLabel();
         btn_close = new javax.swing.JLabel();
         btn_detail = new javax.swing.JLabel();
@@ -95,6 +104,15 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("Cetak");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 510, -1, -1));
 
         btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -308,6 +326,26 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_penarikanMouseClicked
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        try{
+            // Report PDF
+            String jrxmlFile = "src/Report/riwayat_transaksi.jrxml";
+            HashMap param = new HashMap();
+            param.put("ID_USER", user_login.getId_user());
+            param.put("USERNAME", user_login.getusername());
+            param.put("SALDO", String.valueOf(user_login.getsaldo()));
+            JasperReport jspR = JasperCompileManager.compileReport(jrxmlFile);
+            JasperPrint JPrint = JasperFillManager.fillReport(jspR, param, con);
+            String dest = "src/Report/riwayat_transaksi"+user_login.getId_user()+".pdf";
+            JasperExportManager.exportReportToPdfFile(JPrint, dest);
+            // End Report PDF
+            JOptionPane.showMessageDialog(null, "File berhasil di-generate");
+        }catch(JRException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -351,6 +389,7 @@ public class Riwayat_Pesanan_Toko extends javax.swing.JFrame {
     private javax.swing.JLabel btn_penarikan;
     private javax.swing.JLabel btn_terima;
     private javax.swing.JLabel btn_tolak;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_pesanan;
     // End of variables declaration//GEN-END:variables
