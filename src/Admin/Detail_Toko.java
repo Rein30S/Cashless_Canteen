@@ -89,7 +89,8 @@ public class Detail_Toko extends javax.swing.JFrame {
             model2.addColumn("Status");
             tbTransaksi.setModel(model2);
             
-            rs = stm.executeQuery("SELECT * FROM transaksi LEFT JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi LEFT JOIN toko ON pembelian.id_toko = toko.id_toko WHERE transaksi.id_transaksi = '"+id+"' OR toko.id_toko = '"+id+"'");
+            rs = stm.executeQuery("SELECT * FROM transaksi LEFT JOIN pembelian ON transaksi.ID_TRANSAKSI = pembelian.ID_TRANSAKSI WHERE transaksi.ID_USER = '"+this.id+"' OR pembelian.ID_TOKO = '"+this.id_toko+"' ORDER BY transaksi.waktu_transaksi");
+            //rs = stm.executeQuery("SELECT * FROM transaksi LEFT JOIN pembelian ON transaksi.id_transaksi = pembelian.id_transaksi LEFT JOIN toko ON pembelian.id_toko = toko.id_toko WHERE transaksi.id_transaksi = '"+id+"' OR toko.id_toko = '"+id+"'");
             while(rs.next()){
                 Object[] data = new Object[5];
                 data[0] = rs.getString("id_transaksi");
