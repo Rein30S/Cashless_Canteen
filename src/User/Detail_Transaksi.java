@@ -90,10 +90,6 @@ Connection con;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_detail = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         tf_total_transaksi = new javax.swing.JTextField();
         tf_id_transaksi = new javax.swing.JTextField();
         tf_waktu_perubahan = new javax.swing.JTextField();
@@ -130,41 +126,29 @@ Connection con;
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 760, 130));
 
-        jLabel5.setText("Nama Toko");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
-
-        jLabel4.setText("ID Toko");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, -1));
-
-        jLabel3.setText("Waktu Perubahan");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
-
-        jLabel1.setText("Total Transaksi");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
-
         tf_total_transaksi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tf_total_transaksi.setBorder(null);
-        getContentPane().add(tf_total_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 273, 155, -1));
+        getContentPane().add(tf_total_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 270, 155, -1));
 
         tf_id_transaksi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tf_id_transaksi.setBorder(null);
-        getContentPane().add(tf_id_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 228, 155, -1));
+        getContentPane().add(tf_id_transaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 224, 155, -1));
 
         tf_waktu_perubahan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tf_waktu_perubahan.setBorder(null);
-        getContentPane().add(tf_waktu_perubahan, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 319, 155, -1));
+        getContentPane().add(tf_waktu_perubahan, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 315, 155, -1));
 
         tf_id_toko.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tf_id_toko.setBorder(null);
-        getContentPane().add(tf_id_toko, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 228, 155, -1));
+        getContentPane().add(tf_id_toko, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 224, 154, -1));
 
         tf_nama_toko.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tf_nama_toko.setBorder(null);
-        getContentPane().add(tf_nama_toko, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 273, 155, -1));
+        getContentPane().add(tf_nama_toko, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 270, 154, -1));
 
         tf_status.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tf_status.setBorder(null);
-        getContentPane().add(tf_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 319, 155, -1));
+        getContentPane().add(tf_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(665, 315, 154, -1));
 
         btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +174,7 @@ Connection con;
         });
         getContentPane().add(btn_cetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 490, 130, 40));
 
-        template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Toko/Detail_Riwayat_Pesanan.png"))); // NOI18N
+        template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Detail_Riwayat_Pesanan.png"))); // NOI18N
         getContentPane().add(template, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 600));
 
         setSize(new java.awt.Dimension(900, 600));
@@ -277,10 +261,6 @@ Connection con;
     private javax.swing.JLabel btn_back;
     private javax.swing.JLabel btn_cetak;
     private javax.swing.JLabel btn_close;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_detail;
     private javax.swing.JLabel template;

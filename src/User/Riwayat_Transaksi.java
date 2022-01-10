@@ -94,7 +94,6 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tanggalTransaksi = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         btn_pembelian = new javax.swing.JLabel();
         btn_setortunai = new javax.swing.JLabel();
@@ -110,7 +109,6 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(tanggalTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 570, -1));
 
         jLabel1.setText("Transaksi");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -460,7 +458,6 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.calendar.JDateChooser tanggalTransaksi;
     private javax.swing.JTable tbl_riwayat;
     private javax.swing.JLabel template;
     // End of variables declaration//GEN-END:variables
