@@ -54,14 +54,13 @@ public class Menu_User extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Akun");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 140, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(765, 135, 128, 40));
 
         salam.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         salam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -80,7 +79,7 @@ public class Menu_User extends javax.swing.JFrame {
                 btn_pesanMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 250, 250));
+        getContentPane().add(btn_pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 200, 240));
 
         btn_topup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_topup.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,7 +87,7 @@ public class Menu_User extends javax.swing.JFrame {
                 btn_topupMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_topup, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 250, 250));
+        getContentPane().add(btn_topup, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 268, 203, 242));
 
         btn_close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_close.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,13 +108,13 @@ public class Menu_User extends javax.swing.JFrame {
         });
         getContentPane().add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 150, 40));
 
-        btn_riwayatpesanan.setText("Riwayat Pesanan");
+        btn_riwayatpesanan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_riwayatpesanan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_riwayatpesananMouseClicked(evt);
             }
         });
-        getContentPane().add(btn_riwayatpesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 550, -1, -1));
+        getContentPane().add(btn_riwayatpesanan, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 265, 205, 242));
 
         template.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/User/Menu Page.png"))); // NOI18N
         template.setNextFocusableComponent(this);
