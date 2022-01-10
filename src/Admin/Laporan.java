@@ -270,7 +270,7 @@ public class Laporan extends javax.swing.JFrame {
                     lbJmlPenarikan.setText(rs.getString("jumlah_withdraw"));
                     rs = stm.executeQuery("SELECT SUM(total_transaksi) AS total_jual FROM transaksi WHERE status != 'Pending' AND MONTH(waktu_transaksi) = '"+month+"' AND YEAR(waktu_transaksi) = '"+tahun+"' AND jenis_transaksi = 'Pembelian'");
                     rs.next();
-                    lbTotalPenjualan.setText(cekNull(rs.getString("total_jual")));
+                    lbTotalPenjualan.setText(cekNull(String.valueOf(-rs.getInt("total_jual"))));
                     rs = stm.executeQuery("SELECT SUM(total_transaksi) AS total_topup FROM transaksi WHERE status != 'Pending' AND MONTH(waktu_transaksi) = '"+month+"' AND YEAR(waktu_transaksi) = '"+tahun+"' AND jenis_transaksi = 'Deposit'");
                     rs.next();
                     lbTotalTopUp.setText(cekNull(rs.getString("total_topup")));
