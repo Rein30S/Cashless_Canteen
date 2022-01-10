@@ -110,16 +110,15 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(tanggalTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 570, -1));
+        getContentPane().add(tanggalTransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 650, -1));
 
-        jLabel1.setText("Transaksi");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 225, 89, 89));
 
         btn_pembelian.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -151,16 +150,15 @@ public class Riwayat_Transaksi extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbl_riwayat);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 670, 280));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 670, 220));
 
-        jLabel2.setText("Cetak");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 510, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 495, 115, 36));
 
         btn_detail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_detail.addMouseListener(new java.awt.event.MouseAdapter() {
