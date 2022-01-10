@@ -53,7 +53,6 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel5 = new javax.swing.JLabel();
         tfNamaToko = new javax.swing.JTextField();
         tfNamaPemilik = new javax.swing.JTextField();
         cbNomorKantin = new javax.swing.JComboBox<>();
@@ -66,15 +65,6 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel5.setText("Kembali");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
-            }
-        });
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, -1, -1));
         getContentPane().add(tfNamaToko, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 217, 302, 30));
 
         tfNamaPemilik.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
@@ -194,13 +184,6 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel4MouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-        Menu_Atur_Toko mat = new Menu_Atur_Toko();
-        mat.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel5MouseClicked
-
     private void clearText(){
         tfNamaToko.setText("");
         tfNamaPemilik.setText("");
@@ -276,7 +259,6 @@ public class Menu_Registrasi_Toko extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField tfNamaPemilik;
     private javax.swing.JTextField tfNamaToko;
     private javax.swing.JTextField tfUsernameToko;
